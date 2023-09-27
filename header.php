@@ -1,5 +1,5 @@
 <?php
-include 'dbh.php';
+include 'connection.php';
 ?>
 
 <!DOCTYPE html>

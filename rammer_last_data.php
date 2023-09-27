@@ -52,8 +52,8 @@
     //storing database details in variables.
     $hostname = "localhost";
     $username = "root";
-    $password = "root";
-    $dbname = "hydra";
+    $password = "";
+    $dbname = "login_db";
 
     //creating connection to database
     $con = mysqli_connect($hostname, $username, $password, $dbname);

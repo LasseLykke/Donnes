@@ -32,7 +32,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
                 $_SESSION['user_name'] = $row['user_name'];
                 $_SESSION['name'] = $row['name'];
                 $_SESSION['users_id'] = $row['users_id'];
-                header("Location: upload.php"); // sender bruger til velkommen siden.
+                header("Location: forside.php"); // sender bruger til velkommen siden.
                 exit();
             } else {
                 header("Location: index.php?error=Incorect User name or password");

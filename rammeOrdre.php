@@ -1,5 +1,8 @@
 <?php
 
+
+if (isset($_SESSION['users_id']) && isset($_SESSION['user_name']))
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dates = $_POST["Indleveringsdato"];
     $names = $_POST["Kundens_navn"];
@@ -19,11 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Bestilt = $_POST["bestilt"];
     $ekspedient = $_POST["ekspedient"];
 
+    
+
      try {
-        require_once "dbh.php";
+        require_once "connection.php";
 
         $query = "INSERT INTO rammer (dates, names, telefon, rammeprofil, rammestørrelse, glastype, passepartout, Hulmål, passepartoutFarve, antal, montering, billedetype, bemærkninger, pris, betalt, bestilt, ekspedient) VALUES
-        (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,? );";
+        (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,);";
 
         $stmt = $pdo->prepare($query);
 
@@ -31,14 +36,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $pdo = null;
         $stmt = null;
-        header("Location: ../test.html");
+        header("Location: forside.php");
         die();
      } catch (PDOException $e) {
         die ("Query failed: " . $e->getMessage());
      }
 
 } else {
-    header("Location: forside.php");
+    header("Location: index.php");
 }
 
 
