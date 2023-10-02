@@ -1,13 +1,4 @@
 <?php
-/*
-// Example of restricting access to a page
-if (!isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
-    // Redirect to the login page or show an error message
-    header('Location: index.php');
-    exit;
-}*/
-
-
 
 
 // Check if the form is submitted
@@ -30,11 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $betalt = $_POST["betaling"];
     $Bestilt = $_POST["bestilt"];
     $ekspedient = $_POST["ekspedient"];
-    
-    // Validate and sanitize data (you can add more validation)
-    /*$username = filter_var($username, FILTER_SANITIZE_STRING);
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-    */
+
     // Create a MySQL database connection
     $mysqli = new mysqli("localhost", "root", "", "login_db");
 
@@ -88,16 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         unset($_SESSION["message"]);
     } ?>
 
-    <!--
-    <form method="post" action="">
-        <label for="username">Username:</label>
-        <input type="text" name="username" required><br><br>
-        
-        <label for="email">Email:</label>
-        <input type="email" name="email" required><br><br>
-        
-        <input type="submit" value="Save Data">
-    </form> -->
 
 
     <form action="" method="POST">
