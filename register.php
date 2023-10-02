@@ -39,7 +39,7 @@
         <label for="">Password</label>
         <input type="password" name="password" placeholder="Password"><br>
         <label for="">Re password</label>
-        <input type="text" name="re_password" placeholder="Re_Password"><br>
+        <input type="password" name="re_password" placeholder="Re_Password"><br>
         <button type="submit">Register</button>
         <a href="index.php" class="ca">Already have an account?</a>
     </form>

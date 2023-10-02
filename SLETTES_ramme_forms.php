@@ -1,3 +1,10 @@
+<?php
+
+    session_start();
+    if (isset($_SESSION['users_id']) && isset($_SESSION['user_name']))
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +18,7 @@
 
     <h1>Ramme bestilling</h1>
 
-    <form action="rammeOrdre.php" method="POST">
+    <form action="ramme_ordre.php" method="POST">
         <div>
             <label for="dates">Indleverings dato</label>
             <input type="date" id="dates" name="Indleveringsdato">

@@ -8,7 +8,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     <html>
 
     <head>
-        <title>HOME</title>
+        <title>DONNÉS</title>
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
 
@@ -18,19 +18,19 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             echo $_SESSION['name'];
             ?>
         </h1>
-        <a href="ramme_forms.html">form</a>
-        <a href="logout.php">Logout</a>
-
-
-        <h1>Velkommen til forsiden</h1>
-
-    <a href="ramme_forms.html">
+        <a href="rammeOrdre.php">
         <button>Ramme bestilling</button>
     </a>
+    <br>
 
     <a href="rammer_last_data.php">
         <button>Hent rammeordre</button>
     </a>
+    <br>
+        <a href="logout.php">Logout</a>
+
+
+
     </body>
 
     </html>
