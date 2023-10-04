@@ -9,7 +9,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
     <head>
         <title>DONNÉS</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href="main.css" type="text/css" rel="stylesheet">
     </head>
 
     <body>

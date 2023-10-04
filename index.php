@@ -2,10 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css" text="text/css">
+
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="main.css" type="text/css" rel="stylesheet">
+    <meta name="keywords" content="SKAL ÆNDRES!!!" />
+    <meta name="description" content="SKAL ÆNDRES" />
+    <meta name="author" content="Lasse Lykke @ Lasselykke.com" />
+
+
     <title>LOGIN</title>
 </head>
 
