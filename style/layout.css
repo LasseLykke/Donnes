@@ -1,7 +1,6 @@
 body {
-	background: -moz-linear-gradient(top, #124124 0%, #548D54 100%);
-    background: -webkit-linear-gradient(top, #124124 0%, #548D54 100%);
-    background: linear-gradient(to bottom, #124124 0%, #548D54 100%);
+	background: rgb(100,140,142);
+	background: linear-gradient(340deg, rgba(100,140,142,1) 0%, rgba(30,44,47,1) 100%);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -45,7 +44,7 @@ label {
 
 button {
 	float: right;
-	background: #555;
+	background: #a3b1b1;
 	padding: 10px 15px;
 	color: #fff;
 	border-radius: 5px;

@@ -3,13 +3,15 @@ session_start();
 
 if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
+    include 'header.php';
     ?>
     <!DOCTYPE html>
     <html>
 
     <head>
-        <title>DONNÉS</title>
-        <link href="main.css" type="text/css" rel="stylesheet">
+        
+        <!--<title>DONNÉS</title>
+        <link href="main.css" type="text/css" rel="stylesheet"> -->
     </head>
 
     <body>
