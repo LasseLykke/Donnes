@@ -9,14 +9,13 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     <html>
 
     <head>
-        
-        <!--<title>DONNÉS</title>
-        <link href="main.css" type="text/css" rel="stylesheet"> -->
+
     </head>
 
     <body>
         <h1>Velkommen,
             <?php
+            /* Trækker login bruger ind*/
             echo $_SESSION['name'];
             ?>
         </h1>
@@ -38,6 +37,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     </html>
 
 <?php
+/* Hvis ikke looget ind bliver man sendt tilbage til login skærm */
 } else {
     header("Location: index.php");
     exit();

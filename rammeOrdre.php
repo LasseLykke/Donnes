@@ -1,9 +1,9 @@
 <?php
 
 
-// Check if the form is submitted
+ /* Tjekker om der submittet til formen */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get data from the form
+    // Henter data fra tabel
     $dates = $_POST["Indleveringsdato"];
     $names = $_POST["Kundens_navn"];
     $telefon = $_POST["telefon"];
@@ -22,35 +22,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Bestilt = $_POST["bestilt"];
     $ekspedient = $_POST["ekspedient"];
 
-    // Create a MySQL database connection
+    // Forbinder til database
     $mysqli = new mysqli("localhost", "root", "", "login_db");
 
-    // Check connection
+    // Tjekker forbindelsen
     if ($mysqli->connect_error) {
         die("Connection failed: " . $mysqli->connect_error);
     }
     
-    // Prepare an SQL statement to insert data
+    // Forbereder SQL statement til indsættelse af data
     $sql = "INSERT INTO rammer (dates, names, telefon, rammeprofil, rammestørrelse, glastype, passepartout, Hulmål, passepartoutFarve, antal, montering, billedetype, bemærkninger, pris, betalt, bestilt, ekspedient) VALUES
     (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?);";
     $stmt = $mysqli->prepare($sql);
     
-    // Bind parameters and execute the statement
+    // Binder parameter sammen og eksekvere statement
     $stmt->bind_param("sssssssssssssssss", $dates, $names, $telefon, $rammeprofil, $rammestørrelse, $glastype, $passepartout, $passepartoutHulmål, $passepartoutFarve, $antal, $montering, $billedetype, $bemærkninger, $pris, $betalt, $Bestilt, $ekspedient);
     
     if ($stmt->execute()) {
-        // Data successfully inserted
+        // Data indsat med sussess 
         $_SESSION["message"] = "Data saved successfully!";
     } else {
-        // Error occurred
+        // Fejl sket.
         $_SESSION["message"] = "Error: " . $mysqli->error;
     }
     
-    // Close the statement and database connection
+    // Lukker statement og database forbindelse
     $stmt->close();
     $mysqli->close();
     
-    // Redirect to a confirmation page or back to the form
+    //  Går tilbage til bekræftelses side fra form. SKAL ÆNDRES
     header("Location: forside.php");
     exit();
 }
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- classless style, ændres når det er sat korrekt op-->
+    <!-- classless style, ændres når det er sat korrekt op ÆNDRES NÅR CSS ER SAT OP-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <title>Ramme bestilling</title>  <!-- Også det filen hedder -->
 </head>
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h1>Ramme bestilling</h1>
     
     <?php
-    // Display success or error message
+    // Viser success eller fejl meddelelse
     if (isset($_SESSION["message"])) {
         echo "<p>{$_SESSION["message"]}</p>";
         unset($_SESSION["message"]);

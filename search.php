@@ -35,15 +35,15 @@
 <div class="søge-container">
 
     <?php
-    //storing database details in variables.
+    //Åbner forbindelse til database.
     $hostname = "localhost";
     $username = "root";
     $password = "";
     $dbname = "login_db";
 
-    //creating connection to database
+    //Forbinder til database
     $con = mysqli_connect($hostname, $username, $password, $dbname);
-    //checking if connection is working or not
+    //Tjekker om der er forbindelse eller ej.
     if(!$con)
     {
         die("Connection failed!" . mysqli_connect_error());
@@ -116,7 +116,7 @@
                 echo "Ingen resultat på søgning";
             }
         }
-
+        // Lukker forbindelsen.
         mysqli_close($con);
     ?>
 </div>

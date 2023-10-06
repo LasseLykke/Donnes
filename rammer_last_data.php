@@ -35,7 +35,7 @@
     </style>
 <body>
 
-    <!-- (A) SEARCH FORM -->
+    <!-- SEARCH FORM -->
     <form action="search.php" method="POST">
         <input type="text" name="search" placeholder="Søg her">
         <button type="submit" name="submit-search">Søgefelt</button>
@@ -49,15 +49,15 @@
      
     <div class="søge-container">
 <?php
-    //storing database details in variables.
+    // Henter database
     $hostname = "localhost";
     $username = "root";
     $password = "";
     $dbname = "login_db";
 
-    //creating connection to database
+    //Forbinder til database
     $con = mysqli_connect($hostname, $username, $password, $dbname);
-    //checking if connection is working or not
+    //Tjekker om der er forbindelse.
     if(!$con)
     {
         die("Connection failed!" . mysqli_connect_error());
@@ -67,7 +67,7 @@
         echo "Forbundet! <br>";
     }
 
-    //Output Form Entries from the Database
+    //Outputter Hele 'Ramme table" i en.
     $sql = "SELECT  id, dates, names, telefon, rammeprofil, rammestørrelse, Glastype, Passepartout, Hulmål, passepartoutFarve, Antal, Montering, Billedetype, Bemærkninger, Pris, Betalt, Bestilt, Ekspedient FROM rammer ORDER BY id DESC";
     //fire query
     $result = mysqli_query($con, $sql);
@@ -93,7 +93,7 @@
         <th> Bestilt </th>
         <th> Ekspedient </th> </tr></div>';
        while($row = mysqli_fetch_assoc($result)){
-         // to output mysql data in HTML table format
+         // Outputter SQL data til HTML tableformat
          echo '<tr > <td>' . $row["id"] . '</td>
            <td>' . $row["dates"] . '</td>
            <td> ' . $row["names"] . '</td>
@@ -119,7 +119,7 @@
     {
         echo "0 results";
     } 
-    // closing connection
+    // Lukker forbindelsen.
     mysqli_close($con);
 
 ?>

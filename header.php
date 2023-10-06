@@ -9,7 +9,7 @@ include 'connection.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="main.css" type="text/css" rel="stylesheet">
-    <meta name="keywords" content="SKAL ÆNDRES!!!" />
-    <meta name="description" content="SKAL ÆNDRES" />
+    <meta name="keywords" content="internal tooling for ordermanagement system." />
+    <meta name="description" content="Internal tooling for ordremanagement system and database" />
     <meta name="author" content="Lasse Lykke @ Lasselykke.com" />
 </head>
