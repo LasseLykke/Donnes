@@ -4,7 +4,7 @@ $sname = "localhost";
 $uname = "root";
 $password = "";
 
-$db_name = "login_db";
+$db_name = "DonnesDB";
 
 $conn = mysqli_connect($sname, $uname, $password, $db_name);
 

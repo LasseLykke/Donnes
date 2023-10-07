@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ekspedient = $_POST["ekspedient"];
 
     // Forbinder til database
-    $mysqli = new mysqli("localhost", "root", "", "login_db");
+    $mysqli = new mysqli("localhost", "root", "", "DonnesDB");
 
     // Tjekker forbindelsen
     if ($mysqli->connect_error) {
