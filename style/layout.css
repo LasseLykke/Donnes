@@ -43,7 +43,7 @@ label {
 }
 
 button {
-	float: right;
+	float: left;
 	background: #a3b1b1;
 	padding: 10px 15px;
 	color: #fff;
@@ -54,6 +54,8 @@ button {
 button:hover{
 	opacity: .7;
 }
+
+/*Fejl eller success under register.*/
 .error {
    background: #F2DEDE;
    color: #A94442;
@@ -77,6 +79,7 @@ h1 {
 	color: #fff;
 }
 
+/* Har allerede en konto? - findes under register */
 .ca {
 	font-size: 14px;
 	display: inline-block;

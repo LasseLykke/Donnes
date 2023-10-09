@@ -1,3 +1,13 @@
+body {
+	background: rgb(100,140,142);
+	background: linear-gradient(340deg, rgba(100,140,142,1) 0%, rgba(30,44,47,1) 100%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	flex-direction: column;
+}
+
 
 
 *{
@@ -33,8 +43,8 @@ label {
 }
 
 button {
-	float: right;
-	background: #555;
+	float: left;
+	background: #a3b1b1;
 	padding: 10px 15px;
 	color: #fff;
 	border-radius: 5px;
@@ -44,6 +54,8 @@ button {
 button:hover{
 	opacity: .7;
 }
+
+/*Fejl eller success under register.*/
 .error {
    background: #F2DEDE;
    color: #A94442;
@@ -67,6 +79,7 @@ h1 {
 	color: #fff;
 }
 
+/* Har allerede en konto? - findes under register */
 .ca {
 	font-size: 14px;
 	display: inline-block;

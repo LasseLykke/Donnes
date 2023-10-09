@@ -1,4 +1,4 @@
-<h1>Søge side</h1>
+<h1>Søge resultat</h1>
 
 <style>
         table{
@@ -29,7 +29,7 @@
         }
     </style>
 
-<a href="rammer_last_data.php">
+<a href="forside.php">
         <button class="retur_btn">Retur</button>
     </a>
 <div class="søge-container">

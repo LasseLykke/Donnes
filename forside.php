@@ -13,24 +13,38 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     </head>
 
     <body>
-        <h1>Velkommen,
+
+    <div class="maincontainer">
+        <div class="header">
+            <h1>Hej 
             <?php
             /* Trækker login bruger ind*/
             echo $_SESSION['name'];
-            ?>
-        </h1>
+            ?> 👋🏻</h1>
+        
+        <br>
+        <form action="search.php" method="POST">
+        <input type="text" name="search" placeholder="Søg her">
+        <button type="submit" name="submit-search">Søgefelt</button>
+    </form>
+        </div>
+        <div class="main">
+        <h2>Formular</h2>
+       
         <a href="rammeOrdre.php">
         <button>Ramme bestilling</button>
     </a>
-    <br>
-
-    <a href="rammer_last_data.php">
-        <button>Hent rammeordre</button>
+    <a href="rammeOrdre.php">
+        <button>Ordre</button>
     </a>
-    <br>
-        <a href="logout.php">Logout</a>
-
-
+    <a href="rammeOrdre.php">
+        <button>Bånd</button>
+    </a>
+    <a href="rammeOrdre.php">
+        <button>Reperationer</button>
+    </a>
+        </div>
+    </div>
 
     </body>
 
