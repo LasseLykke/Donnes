@@ -8,7 +8,10 @@ include 'connection.php';
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="main.css" type="text/css" rel="stylesheet">
+    <link href="./style/base.css" type="text/css" rel="stylesheet">
+    <link href="./style/components.css" type="text/css" rel="stylesheet">
+    <link href="./style/layout.css" type="text/css" rel="stylesheet">
+    <link href="./style/typography.css" type="text/css" rel="stylesheet">
     <meta name="keywords" content="internal tooling for ordermanagement system." />
     <meta name="description" content="Internal tooling for ordremanagement system and database" />
     <meta name="author" content="Lasse Lykke @ Lasselykke.com" />
