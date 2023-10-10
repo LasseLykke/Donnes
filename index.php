@@ -20,8 +20,9 @@ include 'header.php';
 </head>
 
 <body>
+    <div class="loginContainer">
     <form action="login.php" method="POST">
-        <h2>LOGIN</h2>
+        <h2 class="loginHeader">LOGIN</h2>
 <?php
 if(isset($_GET['error'])) {?>
 <p class="error"><?php echo $_GET['error']; ?><p>
@@ -35,6 +36,7 @@ if(isset($_GET['error'])) {?>
         <button class="login" type="submit">Login</button>
         <a href="register.php" class="ca">Create an account</a>
     </form>
+</div>
 </body>
 
 </html>

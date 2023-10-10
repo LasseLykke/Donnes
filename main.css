@@ -1,7 +1,7 @@
 /* Compiler CSS   */
 @import "./style/base.css";
-@import "./style/typography.css";
 @import "./style/layout.css";
 @import "./style/components.css";
+@import "./style/typography.css";
 
 
