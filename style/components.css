@@ -1,23 +1,44 @@
 form {
 	width: 500px;
-	border: 2px solid #ccc;
+	/*border: 2px solid #ccc;*/
 	padding: 30px;
-	background: #fff;
+	background-color: rgba(255,255,255);
 	border-radius: 15px;
+	backdrop-filter: blur(1.5rem);
+	box-shadow:
+    -.25rem -.25rem .5rem rgba(#fff,.07),
+    .25rem .25rem .5rem rgba(#000,.12),
+    -.75rem -.75rem 1.75rem rgba(#fff,.07),
+    .75rem .75rem 1.75rem rgba(#000,.12),
+    inset 8rem 8rem 8rem rgba(#000,.05),
+    inset -8rem -8rem 8rem rgba(#fff,.05)
 }
 
 input {
 	display: block;
-	border: 2px solid #ccc;
+	background: transparent;
+	border: 1px solid var(--grey);
 	width: 95%;
 	padding: 10px;
 	margin: 10px auto;
-	border-radius: 5px;
+	border-radius: 2px;
 }
+
+input:focus {
+	background: transparent;
+	border: 1px solid var(--blue);
+}
+
+
 label {
-	color: #888;
+	color: var(--blue);
 	font-size: 18px;
 	padding: 10px;
+}
+
+::placeholder {
+	color: var(--placeholder);
+	opacity: 1; /*FIREFOX FIX*/
 }
 
 button {
@@ -31,4 +52,11 @@ button {
 }
 button:hover{
 	opacity: .7;
+}
+
+/* Login btn*/
+.loginBtn {
+	background-color: var(--white);
+	border: 1px solid var(--grey);
+	color: var(--blue);
 }

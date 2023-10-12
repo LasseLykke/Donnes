@@ -1,8 +1,9 @@
 
 /*LOGIN SIDE*/
 .loginContainer {
-	background: rgb(100,140,142);
-	background: linear-gradient(340deg, rgba(100,140,142,1) 0%, rgba(30,44,47,1) 100%);
+	background-color: var(--grd-color);
+	box-shadow: 0px 10px 30px rgba(0,0,0,.1);
+	box-shadow: 0px 0px 17px -6px rgba(0,0,0,0.48);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -12,8 +13,7 @@
 
 /*FORSIDE*/
 .header {
-	background: rgb(100,140,142);
-	background: linear-gradient(340deg, rgba(100,140,142,1) 0%, rgba(30,44,47,1) 100%);
+	background: var(--grd-color);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -38,8 +38,3 @@
 .ca:hover {
 	text-decoration: underline;
 } 
-
-/* Login btn*/
-.login {
-	background-color: pink;
-}

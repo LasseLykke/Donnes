@@ -3,3 +3,14 @@
     margin: 0px;
     font-family: sans-serif;
 }
+
+:root {
+    --bg: #f8f8f8;
+    --white: #ffffff;
+    --blue: #233238;
+    --grey: #d9d9d9;
+    --placeholder: #999999;
+    --grd-color: background: rgb(100,140,142);
+	background: linear-gradient(340deg, rgba(100,140,142,1) 0%, rgba(30,44,47,1) 100%);
+    
+}
