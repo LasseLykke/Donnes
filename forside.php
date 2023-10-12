@@ -35,12 +35,24 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
         <div class="main">
             <div class="mainContent">
-         <h2>Formular</h2>
-        <a href="rammeOrdre.php">
-        <button>ADJ rammebestilling</button>
-        </a>
+                <h2>Bestillingsformular</h2><br>
+                    <a href="rammeOrdre.php">
+                        <button>ADJ rammebestilling</button>
+                    </a>
+                    <a href="rammeOrdre.php">
+                        <button>Ordre</button>
+                    </a>
+                    <a href="rammeOrdre.php">
+                        <button>Dias</button>
+                    </a>
+                    <a href="rammeOrdre.php">
+                        <button>Smalfilm</button>
+                    </a>
+                    <a href="rammeOrdre.php">
+                        <button>Reperationer</button>
+                    </a>
 
-        </div>
+            </div>
         </div>
 
     </body>
