@@ -12,13 +12,30 @@
 }
 
 /*FORSIDE*/
+
+.nav {
+	width: 100%;
+	background-color: var(--grd-color);
+}
+
 .header {
-	background: var(--grd-color);
+	background-color: var(--grd-color);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 50vh;
 	flex-direction: column;
+}
+
+.main {
+	background-color: var(--bg);
+}
+
+.mainContent {
+	height: 100vh;
+	max-width: 600px;
+	margin: 0 auto;
+	padding-top: 20px;
 }
 
 
