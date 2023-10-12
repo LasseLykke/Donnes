@@ -9,7 +9,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     <html>
 
     <head>
-
+    <title>DONNÉS || FORSIDE</title>
     </head>
 
     <body>
