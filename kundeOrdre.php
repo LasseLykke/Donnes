@@ -17,7 +17,6 @@ Ekspediendt (text)
  /* Tjekker om der submittet til formen */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Henter data fra tabel
-    $id = $_POST["Ordrenummer"];
     $dates = $_POST["Indleveringsdato"];
     $names = $_POST["Kundens_navn"];
     $telefon = $_POST["Telefon"];
@@ -79,8 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <h1>Kunde ordre
-        <?php echo $last_id;
-        ?>
+ 
     </h1>
     
     <?php

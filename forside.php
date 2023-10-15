@@ -26,7 +26,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
         
         <br>
         
-        <form action="search.php" method="POST">
+        <form action="searchTest.php" method="POST">
         <input type="text" name="search" placeholder="Hvad vil du søge efter?">
         <button class="submitSearch" type="submit" name="submit-search">Søg</button>
          </form>
