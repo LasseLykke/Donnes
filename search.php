@@ -62,7 +62,9 @@
             OR Hulmål LIKE '%$search%' 
             OR Bemærkninger LIKE '%$search%' 
             OR pris LIKE '%$search%' 
-            OR Ekspedient LIKE '%$search%' 
+            OR Ekspedient LIKE '%$search%'
+
+
             ORDER BY id DESC";
             $result = mysqli_query($con, $sql);
             $queryResult = mysqli_num_rows($result);

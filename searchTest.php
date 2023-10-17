@@ -52,7 +52,7 @@
 
         if (isset($_POST['submit-search'])) {
             $search = mysqli_real_escape_string($con, $_POST['search']);
-            $sql = "SELECT * FROM rammer AND kundeOrdre WHERE id LIKE '%$search%' 
+            $sql = "SELECT * FROM rammer JOIN kundeOrdre ON rammer.co WHERE id LIKE '%$search%' 
             OR dates LIKE '%$search%' 
             OR names LIKE '%$search%' 
             OR telefon LIKE '%$search%'  
