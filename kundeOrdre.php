@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Forbinder til database
-    $mysqli = new mysqli("localhost", "root", "", "DonnesDB");
+    $mysqli = new mysqli("localhost", "root", "", "Donnes");
 
     // Tjekker forbindelsen
     if ($mysqli->connect_error) {

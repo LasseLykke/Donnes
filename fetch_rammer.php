@@ -53,7 +53,7 @@
     $hostname = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "DonnesDB";
+    $dbname = "Donnes";
 
     //Forbinder til database
     $con = mysqli_connect($hostname, $username, $password, $dbname);
