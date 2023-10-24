@@ -5,8 +5,10 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Henter data fra tabel
     $dates = $_POST["Indleveringsdato"];
-    $rammeprofil = $_POST["Rammeprofil"];
-    $rammestørrelse = $_POST["Rammestørrelse"];
+    $profil = $_POST["profil"];
+    $størrelse = $_POST["størrelse"];
+    $glastype = $_POST["glastype"];
+
 
 
     // Forbinder til database
@@ -18,12 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     // Forbereder SQL statement til indsættelse af data
-    $sql = "INSERT INTO rammer (dates, rammeprofil, rammestørrelse) VALUES
-    (?, ?, ?);";
+    $sql = "INSERT INTO rammer (dates, profil, størrelse, glastype) VALUES
+    (?, ?, ?, ?);";
     $stmt = $mysqli->prepare($sql);
     
     // Binder parameter sammen og eksekvere statement
-    $stmt->bind_param("sss", $dates, $rammeprofil, $rammestørrelse);
+    $stmt->bind_param("ssss", $dates, $profil, $størrelse, $glastype);
     
     if ($stmt->execute()) {
         // Data indsat med sussess 
@@ -71,14 +73,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div>
-            <label for="rammeprofil">Ramme Profil</label>
-            <input type="number" id="rammeprofil" name="Rammeprofil">
+            <label for="profil">Ramme Profil</label>
+            <input type="number" id="profil" name="profil">
         </div>
 
         <div>
-            <label for="rammestørrelse">Ramme Størrelse</label>
-            <input type="text" id="rammestørrelse" name="Rammestørrelse">
+            <label for="størrelse">Ramme Størrelse</label>
+            <input type="text" id="størrelse" name="størrelse">
         </div>
+        
+        <div>
+            <fieldset>
+                <legend>Glas Type</legend>
+                <input type="radio" id="klart" name="glastype" value="Klart glas" required>
+                <label for="klart">Klart Glas</label><br>
+                <input type="radio" id="reflo" name="glastype" value="Reflo glas" required>
+                <label for="reflo">Reflo glas</label><br>
+                <input type="radio" id="museums" name="glastype" value="Museums glas" required>
+                <label for="museums">Museums Glas</label><br>
+                <input type="radio" id="tom" name="glastype" value="Uden glas" required>
+                <label for="tom_uden_bagplade">Uden glas</label><br>
+                <input type="radio" id="tom_uden_bagplade" name="glastype" value="Tom uden bagplade" required>
+                <label for="tom">Uden glas og bagplade</label>
+            </fieldset>
+        </div>
+
+        
 
         
         <button onClick="window.print()">PRINT & GEM</button> required
