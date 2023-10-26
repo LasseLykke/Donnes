@@ -45,7 +45,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                     <a href="rammeOrdre.php">
                         <button>Dias</button>
                     </a>
-                    <a href="rammeOrdre.php">
+                    <a href="testform.php">
                         <button>Smalfilm</button>
                     </a>
                     <a href="ordre_test.php">
@@ -60,7 +60,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     </html>
 
 <?php
-/* Hvis ikke looget ind bliver man sendt tilbage til login skærm */
+/* Hvis ikke logget ind bliver man sendt tilbage til login skærm */
 } else {
     header("Location: index.php");
     exit();

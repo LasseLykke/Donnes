@@ -20,32 +20,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $mysqli->connect_error);
     }
     
-    // Forbereder SQL statement til indsættelse af data
+    // Forbereder SQL statement til indsættelse af data til rammer
     if ($kundeID != "value_to_skip") {
-    $sql = "INSERT INTO rammer (dates, kundeID, profil, størrelse, glastype) VALUES
+    $sql1 = "INSERT INTO rammer (dates, kundeID, profil, størrelse, glastype) VALUES
     (?, ?, ?, ?, ?);";
-    $stmt = $mysqli->prepare($sql);
+
+    // Forbereder SQL statement til indsættelse af data til kunder
+    $sql2 = "INSERT INTO rammer (fornavn, telefonnummer) VALUES
+    (?, ?);";
+
+
+    $stmt1 = $mysqli->prepare($sql1);
+    $stmt2 = $mysqli->prepare($sql2);
     
     // Binder parameter sammen og eksekvere statement
-    $stmt->bind_param("sssss", $dates, $kundeID, $profil, $størrelse, $glastype);
-    }
-    if ($stmt->execute()) {
-        // Data indsat med sussess 
-        $_SESSION["message"] = "Data saved successfully!";
-    } else {
-        // Fejl sket.
-        $_SESSION["message"] = "Error: " . $mysqli->error;
-    }
+    $stmt1->bind_param("sssss", $dates, $kundeID, $profil, $størrelse, $glastype);
+    $stmt2->bind_param("si", $fornavn, $telefonnummer);
     
-    // Lukker statement og database forbindelse
-    $stmt->close();
-    $mysqli->close();
+    $stmt1->execute();
+    $stmt2->execute();
+
+    // Check for execution errors
+if ($stmt1->errno || $stmt2->errno) {
+    $mysqli->rollback(); // Rollback the transaction in case of an error
+    die("Error: " . $stmt1->error . " or " . $stmt2->error);
+}
+
+// Commit the transaction if both statements executed successfully
+$mysqli->commit();
+
+// Close the statements and the database connection
+$stmt1->close();
+$stmt2->close();
+$mysqli->close();
+
+  //  Går tilbage til bekræftelses side fra form. SKAL ÆNDRES
+  header("Location: forside.php");
+  exit();
+
+}
     
-    //  Går tilbage til bekræftelses side fra form. SKAL ÆNDRES
-    header("Location: forside.php");
-    exit();
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -73,38 +91,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="dates">Indleverings dato</label>
             <input type="date" id="dates" name="Indleveringsdato">
         </div>
+        <div>
+            <label for="fornavn">fornavn</label>
+            <input type="text" id="fornavn" name="fornavn">
+        </div>
+        <div>
+            <label for="telefonnummer">Telefonummer</label>
+            <input type="number" id="telefonnummer" name="telefonnummer">
+        </div>
 
         <div style="display: none;">
         <label for="kundeID">KundeID</label>
-            <input type="number" id="kundeID" name="kundeID">
+            <input type="number" id="kundeID" name="Indleveringsdato">
         </div>
 
         <div>
             <label for="profil">Ramme Profil</label>
             <input type="number" id="profil" name="profil">
         </div>
-
-        <div>
-            <label for="størrelse">Ramme Størrelse</label>
-            <input type="text" id="størrelse" name="størrelse">
-        </div>
-        
-        <div>
-            <fieldset>
-                <legend>Glas Type</legend>
-                <input type="radio" id="klart" name="glastype" value="Klart glas" required>
-                <label for="klart">Klart Glas</label><br>
-                <input type="radio" id="reflo" name="glastype" value="Reflo glas" required>
-                <label for="reflo">Reflo glas</label><br>
-                <input type="radio" id="museums" name="glastype" value="Museums glas" required>
-                <label for="museums">Museums Glas</label><br>
-                <input type="radio" id="tom" name="glastype" value="Uden glas" required>
-                <label for="tom_uden_bagplade">Uden glas</label><br>
-                <input type="radio" id="tom_uden_bagplade" name="glastype" value="Tom uden bagplade" required>
-                <label for="tom">Uden glas og bagplade</label>
-            </fieldset>
-        </div>
-
         
 
         
@@ -116,4 +120,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </body>
 </html>
-
