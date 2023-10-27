@@ -45,7 +45,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                     <a href="rammeOrdre.php">
                         <button>Dias</button>
                     </a>
-                    <a href="testform.php">
+                    <a href="test.php">
                         <button>Smalfilm</button>
                     </a>
                     <a href="ordre_test.php">
