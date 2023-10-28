@@ -1,60 +1,86 @@
 <?php
 
-
- /* Tjekker om der submittet til formen */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Henter data fra tabel
-    $dates = $_POST["Indleveringsdato"];
-    $names = $_POST["Kundens_navn"];
-    $telefon = $_POST["telefon"];
-    $rammeprofil = $_POST["Rammeprofil"];
-    $rammestørrelse = $_POST["Rammestørrelse"];
-    $glastype = $_POST["Glastype"];
-    $passepartout = $_POST["Passepartout"];
-    $passepartoutHulmål = $_POST["Hulmål"];
-    $passepartoutFarve = $_POST["passepartoutFarve"];
-    $antal = $_POST["Antal"];
-    $montering = $_POST["montering"];
-    $billedetype = $_POST["billedetype"];
-    $bemærkninger = $_POST["bemærkninger"];
-    $pris = $_POST["Pris"];
-    $betalt = $_POST["betaling"];
-    $Bestilt = $_POST["bestilt"];
-    $ekspedient = $_POST["ekspedient"];
+    // Retrieve form data using POST method
+$fornavn = $_POST["fornavn"];
+$telefonnummer = $_POST["telefonnummer"];
+$ramme_kundeID =$_POST["kundeID"];
+$dates = $_POST["Indleveringsdato"];
+$profil = $_POST["profil"];
+$størrelse = $_POST["størrelse"];
+$glastype = $_POST["glastype"];
+$passepartout = $_POST["passepartout"];
+$hulmål = $_POST["hulmål"];
+$passepartoutFarve = $_POST["passepartoutFarve"];
+$antal = $_POST["antal"];
+$montering = $_POST["montering"];
+$billedetype = $_POST["billedetype"];
+$bemærkninger = $_POST["bemærkninger"];
+$pris = $_POST["pris"];
+$betalt = $_POST["betalt"];
+$bestilt = $_POST["bestilt"];
+$ekspedient = $_POST["ekspedient"];
 
-    // Forbinder til database
-    $mysqli = new mysqli("localhost", "root", "", "DonnesDB");
 
-    // Tjekker forbindelsen
-    if ($mysqli->connect_error) {
-        die("Connection failed: " . $mysqli->connect_error);
-    }
-    
-    // Forbereder SQL statement til indsættelse af data
-    $sql = "INSERT INTO rammer (dates, names, telefon, rammeprofil, rammestørrelse, glastype, passepartout, Hulmål, passepartoutFarve, antal, montering, billedetype, bemærkninger, pris, betalt, bestilt, ekspedient) VALUES
-    (?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?);";
-    $stmt = $mysqli->prepare($sql);
-    
-    // Binder parameter sammen og eksekvere statement
-    $stmt->bind_param("sssssssssssssssss", $dates, $names, $telefon, $rammeprofil, $rammestørrelse, $glastype, $passepartout, $passepartoutHulmål, $passepartoutFarve, $antal, $montering, $billedetype, $bemærkninger, $pris, $betalt, $Bestilt, $ekspedient);
-    
-    if ($stmt->execute()) {
-        // Data indsat med sussess 
-        $_SESSION["message"] = "Data saved successfully!";
-    } else {
-        // Fejl sket.
-        $_SESSION["message"] = "Error: " . $mysqli->error;
-    }
-    
-    // Lukker statement og database forbindelse
-    $stmt->close();
-    $mysqli->close();
-    
+
+// Forbinder til database
+$mysqli = new mysqli("localhost", "root", "", "Donnes");
+
+// Tjekker forbindelsen
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+
+// Begin a transaction
+$mysqli->begin_transaction();
+
+// Define SQL queries with placeholders for each table
+$sql1 = "INSERT INTO kunder (fornavn, telefonnummer) VALUES (?, ?)";
+$sql2 = "INSERT INTO rammer (ramme_kundeID, dates, profil, størrelse, glastype, passepartout, hulmål, passepartoutFarve, antal, montering, billedetype, bemærkninger, pris, betalt, bestilt, ekspedient) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+// Create prepared statements for each query
+$stmt1 = $mysqli->prepare($sql1);
+$stmt2 = $mysqli->prepare($sql2);
+
+if ($stmt1 === false || $stmt2 === false) {
+    die("Error: " . $mysqli->error);
+}
+
+
+// Bind parameters and their values for the first statement
+$stmt1->bind_param("si", $fornavn, $telefonnummer);
+
+// Bind parameters and their values for the second statement (leaving one row out)
+// You can decide to insert or not based on your requirements
+if ($ramme_kundeID != "value_to_skip") {
+    $stmt2->bind_param("ssssssssssssssss", $ramme_kundeID, $dates, $profil, $størrelse, $glastype, $passepartout, $hulmål, $passepartoutFarve, $antal, $montering, $billedetype, $bemærkninger, $pris, $betalt, $bestilt, $ekspedient);
+    $stmt2->execute();
+}
+
+// Execute the prepared statement for the first table
+$stmt1->execute();
+
+// Check for execution errors
+if ($stmt1->errno || $stmt2->errno) {
+    $mysqli->rollback(); // Rollback the transaction in case of an error
+    die("Error: " . $stmt1->error . " or " . $stmt2->error);
+}
+
+// Commit the transaction if the first statement executed successfully
+$mysqli->commit();
+
+// Close the statements and the database connection
+$stmt1->close();
+$stmt2->close();
+$mysqli->close();
+
     //  Går tilbage til bekræftelses side fra form. SKAL ÆNDRES
     header("Location: forside.php");
     exit();
 }
+
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -77,59 +103,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-    <form action="" method="POST">
+<form action="" method="POST">
         <div>
             <label for="dates">Indleverings dato</label>
             <input type="date" id="dates" name="Indleveringsdato">
         </div>
 
-        <div>
-            <label for="names">Navn</label>
-            <input type="text" id="names" name="Kundens_navn" >
+        <div style="display: none;">
+        <label for="ramme_kundeID">KundeID</label>
+            <input type="number" id="ramme_kundeID" name="kundeID">
         </div>
 
         <div>
-            <label for="telefon">Telefon nummer</label>
-            <input type="number" id="telefon" name="telefon">
+            <label for="fornavn">fornavn</label>
+            <input type="text" id="fornavn" name="fornavn">
+        </div>
+        <div>
+            <label for="telefonnummer">Telefonummer</label>
+            <input type="number" id="telefonnummer" name="telefonnummer">
         </div>
 
         <div>
-            <label for="rammeprofil">Ramme Profil</label>
-            <input type="number" id="rammeprofil" name="Rammeprofil">
+            <label for="profil">Ramme Profil</label>
+            <input type="number" id="profil" name="profil">
         </div>
 
         <div>
-            <label for="rammestørrelse">Ramme Størrelse</label>
-            <input type="text" id="rammestørrelse" name="Rammestørrelse">
+            <label for="størrelse">Ramme Størrelse</label>
+            <input type="text" id="størrelse" name="størrelse">
         </div>
-
+        
         <div>
             <fieldset>
                 <legend>Glas Type</legend>
-                <input type="radio" id="klart" name="Glastype" value="Klart glas" required>
+                <input type="radio" id="klart" name="glastype" value="Klart glas" required>
                 <label for="klart">Klart Glas</label><br>
-                <input type="radio" id="reflo" name="Glastype" value="Reflo glas" required>
+                <input type="radio" id="reflo" name="glastype" value="Reflo glas" required>
                 <label for="reflo">Reflo glas</label><br>
-                <input type="radio" id="museums" name="Glastype" value="Museums glas" required>
+                <input type="radio" id="museums" name="glastype" value="Museums glas" required>
                 <label for="museums">Museums Glas</label><br>
-                <input type="radio" id="tom" name="Glastype" value="Uden glas" required>
+                <input type="radio" id="tom" name="glastype" value="Uden glas" required>
                 <label for="tom_uden_bagplade">Uden glas</label><br>
-                <input type="radio" id="tom_uden_bagplade" name="Glastype" value="Tom uden bagplade" required>
+                <input type="radio" id="tom_uden_bagplade" name="glastype" value="Tom uden bagplade" required>
                 <label for="tom">Uden glas og bagplade</label>
             </fieldset>
         </div>
 
         <div>
             <h3>Passepartout</h3>
-            <input type="radio" id="passepartout_ja" name="Passepartout" value="Ja">
+            <input type="radio" id="passepartout_ja" name="passepartout" value="Ja">
             <label for="passepartout_ja">Ja</label>
-            <input type="radio" id="passepartout_nej" name="Passepartout" value="Nej">
+            <input type="radio" id="passepartout_nej" name="passepartout" value="Nej">
             <label for="passepartout_nej">Nej</label>
         </div>
 
         <div>
-            <label for="passepartoutHulmål">Hulmål</label>
-            <input type="text" id="passepartoutHulmål" name="Hulmål">
+            <label for="hulmål">Hulmål</label>
+            <input type="text" id="hulmål" name="hulmål">
         </div>
 
         <div>
@@ -161,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div>
             <label for="antal">Antal rammer</label>
-            <input type="number" id="antal" name="Antal">
+            <input type="number" id="antal" name="antal">
         </div>
 
         <div>
@@ -176,9 +206,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <fieldset>
             <legend>Billede</legend>
             <input type="radio" id="kundens_Billede" name="billedetype" value="Vi har fået billede fra kunde">
-            <label fot="kundens_Billede">Kunden har vedlagt billede</label><br>
+            <label for="kundens_Billede">Kunden har vedlagt billede</label><br>
             <input type="radio" id="print_Billede" name="billedetype" value="Vi skal printe">
-            <label fot="print_Billede">Vi skal printe billede</label><br>
+            <label for="print_Billede">Vi skal printe billede</label><br>
         </fieldset>
         </div>
 
@@ -189,14 +219,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div>
             <label for="pris">Aftalt pris</label>
-            <input type="number" id="pris" name="Pris">
+            <input type="number" id="pris" name="pris">
         </div>
 
         <div>
             <h4>Betalt</h4>
-            <input type="radio" id="betalt" name="betaling" value="Ja">
+            <input type="radio" id="betalt" name="betalt" value="Ja">
             <label for="betalt">Ja</label>
-            <input type="radio" id="betalt" name="betaling" value="Nej">
+            <input type="radio" id="betalt" name="betalt" value="Nej">
             <label for="betalt">Nej</label>
         </div>
 
@@ -214,6 +244,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         
+
+        
         <button onClick="window.print()">PRINT & GEM</button> required
 
         
@@ -222,4 +254,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </body>
 </html>
-
