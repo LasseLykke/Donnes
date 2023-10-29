@@ -34,54 +34,62 @@
     </a>
 <div class="søge-container">
 
-    <?php
-    //Åbner forbindelse til database.
-    $hostname = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "Donnes";
+<?php
+// Åbner forbindelse til database.
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$dbname = "Donnes";
 
-    //Forbinder til database
-    $con = mysqli_connect($hostname, $username, $password, $dbname);
-    //Tjekker om der er forbindelse eller ej.
-    if(!$con)
-    {
-        die("Connection failed!" . mysqli_connect_error());
-    }
+// Forbinder til database
+$con = mysqli_connect($hostname, $username, $password, $dbname);
+// Tjekker om der er forbindelse eller ej.
+if (!$con) {
+    die("Connection failed!" . mysqli_connect_error());
+}
 
+if (isset($_POST['submit-search'])) {
+    $search = mysqli_real_escape_string($con, $_POST['search']);
+    $sql = "SELECT rammer.ordreID, rammer.profil, rammer.dates, kunder.fornavn, kunder.telefonnummer, rammer.profil
+    FROM rammer
+    INNER JOIN kunder
+    ON rammer.ramme_kundeID=kunder.kundeID 
 
-        if (isset($_POST['submit-search'])) {
-            $search = mysqli_real_escape_string($con, $_POST['search']);
-            $sql = "SELECT * FROM rammer JOIN kundeOrdre ON rammer.co WHERE id LIKE '%$search%' 
-            OR dates LIKE '%$search%' 
-            OR names LIKE '%$search%' 
-            OR telefon LIKE '%$search%'  
-            ORDER BY id DESC";
-            $result = mysqli_query($con, $sql);
-            $queryResult = mysqli_num_rows($result);
+        WHERE kunder.kundeID LIKE '%$search' 
+        OR rammer.dates LIKE '%$search' 
+        OR kunder.fornavn LIKE '%$search'
+        OR kunder.telefonnummer LIKE '%$search'
+        OR rammer.profil LIKE '%$search'
+        ORDER BY rammer.ordreID DESC";
 
-            echo '<table> <tr>
-        <th> Ordre </th> 
-       <th> Dato </th>
-        <th> Navn </th> 
-        <th> Telefon </th>';
+    $result = mysqli_query($con, $sql);
+    $queryResult = mysqli_num_rows($result);
 
-        echo "Der er ".$queryResult." resultater";
+    echo '<table> <tr>
+    <th> Ordre </th> 
+    <th> Dato </th>
+    <th> Fornavn </th> 
+    <th> Telefon </th>
+    <th> Rammeprofil </th>';
 
-            if ($queryResult > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<tr > <td>' . $row["id"] . '</td>
-           <td>' . $row["dates"] . '</td>
-           <td> ' . $row["names"] . '</td>
-           <td>' . $row["telefon"] . '</td>';
-       } 
-       echo '</table>';
+    echo "Der er " . $queryResult . " resultater";
 
-            } else {
-                echo "Ingen resultat på søgning";
-            }
+    if ($queryResult > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo '<tr > <td>' . $row["ordreID"] . '</td>
+            <td>' . $row["dates"] . '</td>
+            <td> ' . $row["fornavn"] . '</td>
+            <td>' . $row["telefonnummer"] . '</td>
+            <td> ' . $row["profil"] . '</td> </tr>';
         }
-        // Lukker forbindelsen.
-        mysqli_close($con);
-    ?>
+        echo '</table>';
+    } else {
+        echo "Ingen resultat på søgning";
+    }
+}
+// Lukker forbindelsen.
+mysqli_close($con);
+?>
+</div>
+
 </div>
