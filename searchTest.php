@@ -50,16 +50,30 @@ if (!$con) {
 
 if (isset($_POST['submit-search'])) {
     $search = mysqli_real_escape_string($con, $_POST['search']);
-    $sql = "SELECT rammer.ordreID, rammer.profil, rammer.dates, kunder.fornavn, kunder.telefonnummer, rammer.profil
+    $sql = "SELECT rammer.ordreID, rammer.profil, rammer.dates, kunder.fornavn, kunder.telefonnummer, rammer.profil, rammer.størrelse, rammer.glastype, rammer.passepartout, rammer.hulmål, 
+    rammer.passepartoutFarve, rammer.antal, rammer.montering, rammer.billedetype, rammer.bemærkninger, rammer.pris, rammer.betalt, rammer.bestilt, rammer.ekspedient
     FROM rammer
     INNER JOIN kunder
-    ON rammer.ramme_kundeID=kunder.kundeID 
+    ON rammer.ordreID = kunder.kundeID 
 
         WHERE kunder.kundeID LIKE '%$search' 
         OR rammer.dates LIKE '%$search' 
         OR kunder.fornavn LIKE '%$search'
         OR kunder.telefonnummer LIKE '%$search'
         OR rammer.profil LIKE '%$search'
+        OR rammer.størrelse LIKE '%$search'
+        OR rammer.glastype LIKE '%$search'
+        OR rammer.passepartout LIKE '%$search'
+        OR rammer.hulmål LIKE '%$search'
+        OR rammer.passepartoutFarve LIKE '%$search'
+        OR rammer.antal LIKE '%$search'
+        OR rammer.montering LIKE '%$search'
+        OR rammer.billedetype LIKE '%$search'
+        OR rammer.bemærkninger LIKE '%$search'
+        OR rammer.pris LIKE '%$search'
+        OR rammer.betalt LIKE '%$search'
+        OR rammer.bestilt LIKE '%$search'
+        OR rammer.ekspedient LIKE '%$search'
         ORDER BY rammer.ordreID DESC";
 
     $result = mysqli_query($con, $sql);
@@ -70,8 +84,22 @@ if (isset($_POST['submit-search'])) {
     <th> Dato </th>
     <th> Fornavn </th> 
     <th> Telefon </th>
-    <th> Rammeprofil </th>';
-
+    <th> Rammeprofil </th>
+    <th> Størrelse </th>
+    <th> Glas </th>
+    <th> Passepartout </th>
+    <th> Hulmål </th>
+    <th> PP Farve </th>
+    <th> Antal </th>
+    <th> Montering </th>
+    <th> Billede </th>
+    <th> Bemærkninger </th>
+    <th> Pris </th>
+    <th> Betalt </th>
+    <th> Bestilt </th>
+    <th> Ekspedient </th>
+    ';
+    // Viser hvor mange resultater der er. 
     echo "Der er " . $queryResult . " resultater";
 
     if ($queryResult > 0) {
@@ -80,7 +108,21 @@ if (isset($_POST['submit-search'])) {
             <td>' . $row["dates"] . '</td>
             <td> ' . $row["fornavn"] . '</td>
             <td>' . $row["telefonnummer"] . '</td>
-            <td> ' . $row["profil"] . '</td> </tr>';
+            <td> ' . $row["profil"] . '</td> 
+            <td> ' . $row["størrelse"] . '</td> 
+            <td> ' . $row["glastype"] . '</td> 
+            <td> ' . $row["passepartout"] . '</td> 
+            <td> ' . $row["hulmål"] . '</td> 
+            <td> ' . $row["passepartoutFarve"] . '</td> 
+            <td> ' . $row["antal"] . '</td> 
+            <td> ' . $row["montering"] . '</td> 
+            <td> ' . $row["billedetype"] . '</td> 
+            <td> ' . $row["bemærkninger"] . '</td> 
+            <td> ' . $row["pris"] . '</td> 
+            <td> ' . $row["betalt"] . '</td> 
+            <td> ' . $row["bestilt"] . '</td> 
+            <td> ' . $row["ekspedient"] . '</td> 
+            </tr>';
         }
         echo '</table>';
     } else {
