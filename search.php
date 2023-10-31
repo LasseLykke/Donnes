@@ -34,91 +34,104 @@
     </a>
 <div class="søge-container">
 
-    <?php
-    //Åbner forbindelse til database.
-    $hostname = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "Donnes";
+<?php
+// Åbner forbindelse til database.
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$dbname = "Donnes";
 
-    //Forbinder til database
-    $con = mysqli_connect($hostname, $username, $password, $dbname);
-    //Tjekker om der er forbindelse eller ej.
-    if(!$con)
-    {
-        die("Connection failed!" . mysqli_connect_error());
-    }
+// Forbinder til database
+$con = mysqli_connect($hostname, $username, $password, $dbname);
+// Tjekker om der er forbindelse eller ej.
+if (!$con) {
+    die("Connection failed!" . mysqli_connect_error());
+}
 
+if (isset($_POST['submit-search'])) {
+    $search = mysqli_real_escape_string($con, $_POST['search']);
+    $sql = "SELECT rammer.ordreID, rammer.profil, rammer.dates, kunder.fornavn, kunder.telefonnummer, rammer.profil, rammer.størrelse, rammer.glastype, rammer.passepartout, rammer.hulmål, 
+    rammer.passepartoutFarve, rammer.antal, rammer.montering, rammer.billedetype, rammer.bemærkninger, rammer.pris, rammer.betalt, rammer.bestilt, rammer.ekspedient
+    FROM rammer
+    INNER JOIN kunder
+    ON rammer.ordreID = kunder.kundeID 
 
-        if (isset($_POST['submit-search'])) {
-            $search = mysqli_real_escape_string($con, $_POST['search']);
-            $sql = "SELECT * FROM rammer WHERE id LIKE '%$search%' 
-            OR dates LIKE '%$search%' 
-            OR names LIKE '%$search%' 
-            OR telefon LIKE '%$search%' 
-            OR rammeprofil LIKE '%$search%' 
-            OR rammestørrelse LIKE '%$search%' 
-            OR Glastype LIKE '%$search%' 
-            OR Hulmål LIKE '%$search%' 
-            OR Bemærkninger LIKE '%$search%' 
-            OR pris LIKE '%$search%' 
-            OR Ekspedient LIKE '%$search%'
+        WHERE kunder.kundeID LIKE '%$search' 
+        OR rammer.dates LIKE '%$search' 
+        OR kunder.fornavn LIKE '%$search'
+        OR kunder.telefonnummer LIKE '%$search'
+        OR rammer.profil LIKE '%$search'
+        OR rammer.størrelse LIKE '%$search'
+        OR rammer.glastype LIKE '%$search'
+        OR rammer.passepartout LIKE '%$search'
+        OR rammer.hulmål LIKE '%$search'
+        OR rammer.passepartoutFarve LIKE '%$search'
+        OR rammer.antal LIKE '%$search'
+        OR rammer.montering LIKE '%$search'
+        OR rammer.billedetype LIKE '%$search'
+        OR rammer.bemærkninger LIKE '%$search'
+        OR rammer.pris LIKE '%$search'
+        OR rammer.betalt LIKE '%$search'
+        OR rammer.bestilt LIKE '%$search'
+        OR rammer.ekspedient LIKE '%$search'
+        ORDER BY rammer.ordreID DESC";
 
+    $result = mysqli_query($con, $sql);
+    $queryResult = mysqli_num_rows($result);
 
-            ORDER BY id DESC";
-            $result = mysqli_query($con, $sql);
-            $queryResult = mysqli_num_rows($result);
+    echo '<table> <tr>
+    <th> Ordre </th> 
+    <th> Dato </th>
+    <th> Fornavn </th> 
+    <th> Telefon </th>
+    <th> Rammeprofil </th>
+    <th> Størrelse </th>
+    <th> Glas </th>
+    <th> Passepartout </th>
+    <th> Hulmål </th>
+    <th> PP Farve </th>
+    <th> Antal </th>
+    <th> Montering </th>
+    <th> Billede </th>
+    <th> Bemærkninger </th>
+    <th> Pris </th>
+    <th> Betalt </th>
+    <th> Bestilt </th>
+    <th> Ekspedient </th>
+    ';
+    // Viser hvor mange resultater der er. 
+    echo "Der er " . $queryResult . " resultater";
 
-            echo '<table> <tr>
-        <th> Ordre </th> 
-       <th> Dato </th>
-        <th> Navn </th> 
-        <th> Telefon </th>
-        <th> Rammeprofil </th>
-        <th> Rammestørrelse </th>
-        <th> Glastype </th>
-        <th> Passepartout </th>
-        <th> Hulmål </th>
-        <th> Passepartout Profil </th>
-        <th> Antal </th>
-        <th> Montering </th>
-        <th> Billedetype </th>
-        <th> Bemærkninger </th>
-        <th> Pris </th>
-        <th> Betalt </th>
-        <th> Bestilt </th>
-        <th> Ekspedient </th> </tr></div>';
-
-        echo "Der er ".$queryResult." resultater";
-
-            if ($queryResult > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<tr > <td>' . $row["id"] . '</td>
-           <td>' . $row["dates"] . '</td>
-           <td> ' . $row["names"] . '</td>
-           <td>' . $row["telefon"] . '</td>
-           <td> ' . $row["rammeprofil"] . '</td>
-           <td> ' . $row["rammestørrelse"] . '</td>
-           <td> ' . $row["Glastype"] . '</td>
-           <td> ' . $row["Passepartout"] . '</td>
-           <td> ' . $row["Hulmål"] . '</td>
-           <td> ' . $row["passepartoutFarve"] . '</td>
-           <td> ' . $row["Antal"] . '</td>
-           <td> ' . $row["Montering"] . '</td>
-           <td> ' . $row["Billedetype"] . '</td>
-           <td> ' . $row["Bemærkninger"] . '</td>
-           <td> ' . $row["Pris"] . '</td>
-           <td> ' . $row["Betalt"] . '</td>
-           <td> ' . $row["Bestilt"] . '</td>
-           <td> ' . $row["Ekspedient"] . '</td> </tr>';
-       } 
-       echo '</table>';
-
-            } else {
-                echo "Ingen resultat på søgning";
-            }
+    if ($queryResult > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo '<tr > <td>' . $row["ordreID"] . '</td>
+            <td>' . $row["dates"] . '</td>
+            <td> ' . $row["fornavn"] . '</td>
+            <td>' . $row["telefonnummer"] . '</td>
+            <td> ' . $row["profil"] . '</td> 
+            <td> ' . $row["størrelse"] . '</td> 
+            <td> ' . $row["glastype"] . '</td> 
+            <td> ' . $row["passepartout"] . '</td> 
+            <td> ' . $row["hulmål"] . '</td> 
+            <td> ' . $row["passepartoutFarve"] . '</td> 
+            <td> ' . $row["antal"] . '</td> 
+            <td> ' . $row["montering"] . '</td> 
+            <td> ' . $row["billedetype"] . '</td> 
+            <td> ' . $row["bemærkninger"] . '</td> 
+            <td> ' . $row["pris"] . '</td> 
+            <td> ' . $row["betalt"] . '</td> 
+            <td> ' . $row["bestilt"] . '</td> 
+            <td> ' . $row["ekspedient"] . '</td> 
+            </tr>';
         }
-        // Lukker forbindelsen.
-        mysqli_close($con);
-    ?>
+        echo '</table>';
+    } else {
+        echo "Ingen resultat på søgning";
+    }
+}
+// Lukker forbindelsen.
+mysqli_close($con);
+?>
+</div>
+
 </div>
