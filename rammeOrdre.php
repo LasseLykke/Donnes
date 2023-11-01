@@ -48,7 +48,7 @@ if ($stmt1 === false || $stmt2 === false) {
 
 
 // Bind parameters and their values for the first statement
-$stmt1->bind_param("ss", $fornavn, $telefonnummer);
+$stmt1->bind_param("si", $fornavn, $telefonnummer);
 
 // Bind parameters and their values for the second statement (leaving one row out)
 // You can decide to insert or not based on your requirements

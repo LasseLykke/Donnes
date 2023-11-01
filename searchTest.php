@@ -79,56 +79,54 @@ if (isset($_POST['submit-search'])) {
     $result = mysqli_query($con, $sql);
     $queryResult = mysqli_num_rows($result);
 
-    echo '<table> <tr>
-    <th> Ordre </th> 
-    <th> Dato </th>
-    <th> Fornavn </th> 
-    <th> Telefon </th>
-    <th> Rammeprofil </th>
-    <th> Størrelse </th>
-    <th> Glas </th>
-    <th> Passepartout </th>
-    <th> Hulmål </th>
-    <th> PP Farve </th>
-    <th> Antal </th>
-    <th> Montering </th>
-    <th> Billede </th>
-    <th> Bemærkninger </th>
-    <th> Pris </th>
-    <th> Betalt </th>
-    <th> Bestilt </th>
-    <th> Ekspedient </th>
-    ';
-    // Viser hvor mange resultater der er. 
-    echo "Der er " . $queryResult . " resultater";
 
     if ($queryResult > 0) {
+        echo '<table>';
+        echo '<tr>
+                <th>Ordre</th>
+                <th>Dato</th>
+                <th>Fornavn</th>
+                <th>Telefon</th>
+                <th>Rammeprofil</th>
+                <th>Størrelse</th>
+                <th>Glas</th>
+                <th>Passepartout</th>
+                <th>Hulmål</th>
+                <th>PP Farve</th>
+                <th>Antal</th>
+                <th>Montering';
+        
+        $showBemærkninger = false;
+    
         while ($row = mysqli_fetch_assoc($result)) {
-            echo '<tr > <td>' . $row["ordreID"] . '</td>
-            <td>' . $row["dates"] . '</td>
-            <td> ' . $row["fornavn"] . '</td>
-            <td>' . $row["telefonnummer"] . '</td>
-            <td> ' . $row["profil"] . '</td> 
-            <td> ' . $row["størrelse"] . '</td> 
-            <td> ' . $row["glastype"] . '</td> 
-            <td> ' . $row["passepartout"] . '</td> 
-            <td> ' . $row["hulmål"] . '</td> 
-            <td> ' . $row["passepartoutFarve"] . '</td> 
-            <td> ' . $row["antal"] . '</td> 
-            <td> ' . $row["montering"] . '</td> 
-            <td> ' . $row["billedetype"] . '</td> 
-            <td> ' . $row["bemærkninger"] . '</td> 
-            <td> ' . $row["pris"] . '</td> 
-            <td> ' . $row["betalt"] . '</td> 
-            <td> ' . $row["bestilt"] . '</td> 
-            <td> ' . $row["ekspedient"] . '</td> 
-            </tr>';
+            echo '<tr>
+                <td>' . $row["ordreID"] . '</td>
+                <td>' . $row["dates"] . '</td>
+                <td>' . $row["fornavn"] . '</td>
+                <td>' . $row["telefonnummer"] . '</td>
+                <td>' . $row["profil"] . '</td> 
+                <td>' . $row["størrelse"] . '</td> 
+                <td>' . $row["glastype"] . '</td> 
+                <td>' . $row["passepartout"] . '</td> 
+                <td>' . $row["hulmål"] . '</td> 
+                <td>' . $row["passepartoutFarve"] . '</td> 
+                <td>' . $row["antal"] . '</td> 
+                <td>' . $row["montering"] . '</td>';
+                
+            if (!empty($row["bemærkninger"])) {
+                $showBemærkninger = true;
+            }
+            
+            if ($showBemærkninger) {
+                echo '<td>' . $row["bemærkninger"] . '</td>';
+            }
         }
+        
+        echo '</tr>';
         echo '</table>';
     } else {
         echo "Ingen resultat på søgning";
-    }
-}
+    } }
 // Lukker forbindelsen.
 mysqli_close($con);
 ?>
