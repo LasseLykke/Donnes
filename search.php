@@ -1,21 +1,23 @@
-<h1>Søge resultat</h1>
-
-<style>
-        table{
-            width: 90wv;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <style>
+        table {
+            width: 90%;
             margin: auto;
             font-family: Arial, Helvetica, sans-serif;
         }
-        table, tr, th, td{
+        table, tr, th, td {
             border: 1px solid #d4d4d4;
             border-collapse: collapse;
             padding: 12px;
         }
-        th, td{
+        th, td {
             text-align: left;
             vertical-align: top;
         }
-        tr:nth-child(even){
+        tr:nth-child(even) {
             background-color: #e7e9eb;
         }
 
@@ -28,10 +30,14 @@
             text-transform: uppercase;
         }
     </style>
+</head>
 
+
+<body>
+<h1>Søge resultat</h1>
 <a href="forside.php">
-        <button class="retur_btn">Retur</button>
-    </a>
+    <button class="retur_btn">Retur</button>
+</a>
 <div class="søge-container">
 
 <?php
@@ -79,7 +85,7 @@ if (isset($_POST['submit-search'])) {
     $result = mysqli_query($con, $sql);
     $queryResult = mysqli_num_rows($result);
 
-    echo '<table> <tr>
+    echo '<table> <tr class="data-row">
     <th> Ordre </th> 
     <th> Dato </th>
     <th> Fornavn </th> 
@@ -104,7 +110,8 @@ if (isset($_POST['submit-search'])) {
 
     if ($queryResult > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            echo '<tr > <td>' . $row["ordreID"] . '</td>
+            echo '<tr class="data-row"> 
+            <td>' . $row["ordreID"] . '</td>
             <td>' . $row["dates"] . '</td>
             <td> ' . $row["fornavn"] . '</td>
             <td>' . $row["telefonnummer"] . '</td>
@@ -132,6 +139,21 @@ if (isset($_POST['submit-search'])) {
 // Lukker forbindelsen.
 mysqli_close($con);
 ?>
-</div>
+
 
 </div>
+
+<script>
+    // JavaScript to remove rows with no data
+    document.addEventListener('DOMContentLoaded', function() {
+        // JavaScript to remove rows with no data
+        const dataRows = document.querySelectorAll('.data-row');
+        dataRows.forEach(row => {
+            if (row.textContent.trim() === "") {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+</head>
+</html>

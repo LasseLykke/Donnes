@@ -94,7 +94,12 @@ if (isset($_POST['submit-search'])) {
                 <th>Hulmål</th>
                 <th>PP Farve</th>
                 <th>Antal</th>
-                <th>Montering';
+                <th>Montering</th>
+                <th> Pris </th>
+                <th> Betalt </th>
+                <th> Bestilt </th>
+                <th> Ekspedient </th>
+                ';
         
         $showBemærkninger = false;
     
@@ -120,6 +125,11 @@ if (isset($_POST['submit-search'])) {
             if ($showBemærkninger) {
                 echo '<td>' . $row["bemærkninger"] . '</td>';
             }
+            echo '
+            <td> ' . $row["pris"] . '</td> 
+            <td> ' . $row["betalt"] . '</td> 
+            <td> ' . $row["bestilt"] . '</td> 
+            <td> ' . $row["ekspedient"] . '</td> ';
         }
         
         echo '</tr>';
