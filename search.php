@@ -29,7 +29,7 @@
             border: 1px solid black;
             text-transform: uppercase;
         }
-    </style>
+    </style> 
 </head>
 
 
@@ -103,7 +103,7 @@ if (isset($_POST['submit-search'])) {
     <th> Pris </th>
     <th> Betalt </th>
     <th> Bestilt </th>
-    <th> Ekspedient </th>
+    <th> Ekspedient </th></tr>
     ';
     // Viser hvor mange resultater der er. 
     echo "Der er " . $queryResult . " resultater";
@@ -136,6 +136,7 @@ if (isset($_POST['submit-search'])) {
         echo "Ingen resultat på søgning";
     }
 }
+
 // Lukker forbindelsen.
 mysqli_close($con);
 ?>
@@ -145,15 +146,16 @@ mysqli_close($con);
 
 <script>
     // JavaScript to remove rows with no data
-    document.addEventListener('DOMContentLoaded', function() {
-        // JavaScript to remove rows with no data
-        const dataRows = document.querySelectorAll('.data-row');
-        dataRows.forEach(row => {
-            if (row.textContent.trim() === "") {
-                row.style.display = 'none';
-            }
-        });
+    window.addEventListener('DOMContentLoaded', function() {
+    const dataRows = document.querySelectorAll('.data-row');
+    dataRows.forEach(row => {
+        console.log(row.textContent); // Log the content
+        if (row.textContent.trim() === "") {
+            row.style.display = 'none';
+        }
     });
+});;
 </script>
-</head>
+</body>
 </html>
+
