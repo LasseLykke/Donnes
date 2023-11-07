@@ -39,11 +39,6 @@
 }
 
 
-
-
-
-
-
 /* Har allerede en konto? - findes under register */
 .ca {
 	font-size: 14px;
@@ -55,3 +50,36 @@
 .ca:hover {
 	text-decoration: underline;
 } 
+
+.søgemodul {
+	height: 100vh;
+}
+
+/*Tables */
+
+table {
+	width: 90%;
+	margin: auto;
+	font-family: Arial, Helvetica, sans-serif;
+}
+table, tr, th, td {
+	border: 1px solid #d4d4d4;
+	border-collapse: collapse;
+	padding: 12px;
+}
+th, td {
+	text-align: left;
+	vertical-align: top;
+}
+tr:nth-child(even) {
+	background-color: #e7e9eb;
+}
+
+.retur_btn {
+	background-color: #d67D19;
+	padding: 20px 30px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	border: 1px solid black;
+	text-transform: uppercase;
+}

@@ -1,43 +1,27 @@
+<?php 
+session_start();
+
+if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
+
+    include 'header.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Search Results</title>
-    <style>
-        table {
-            width: 90%;
-            margin: auto;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        table, tr, th, td {
-            border: 1px solid #d4d4d4;
-            border-collapse: collapse;
-            padding: 12px;
-        }
-        th, td {
-            text-align: left;
-            vertical-align: top;
-        }
-        tr:nth-child(even) {
-            background-color: #e7e9eb;
-        }
-
-        .retur_btn {
-            background-color: #d67D19;
-            padding: 20px 30px;
-            margin-bottom: 10px;
-            margin-right: 10px;
-            border: 1px solid black;
-            text-transform: uppercase;
-        }
-    </style> 
 </head>
 
 
 <body>
+<div class="søgemodul">
+
 <h1>Søge resultat</h1>
 <a href="forside.php">
     <button class="retur_btn">Retur</button>
 </a>
+
+
+<!-- Starter visning af søgeresultat -->
 <div class="søge-container">
 
 <?php
@@ -85,7 +69,7 @@ if (isset($_POST['submit-search'])) {
     $result = mysqli_query($con, $sql);
     $queryResult = mysqli_num_rows($result);
 
-    echo '<table> <tr class="data-row">
+    echo '<table> <tr">
     <th> Ordre </th> 
     <th> Dato </th>
     <th> Fornavn </th> 
@@ -110,7 +94,7 @@ if (isset($_POST['submit-search'])) {
 
     if ($queryResult > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            echo '<tr class="data-row"> 
+            echo '<tr> 
             <td>' . $row["ordreID"] . '</td>
             <td>' . $row["dates"] . '</td>
             <td> ' . $row["fornavn"] . '</td>
@@ -135,27 +119,13 @@ if (isset($_POST['submit-search'])) {
     } else {
         echo "Ingen resultat på søgning";
     }
-}
+} }
 
 // Lukker forbindelsen.
 mysqli_close($con);
 ?>
 
-
 </div>
-
-<script>
-    // JavaScript to remove rows with no data
-    window.addEventListener('DOMContentLoaded', function() {
-    const dataRows = document.querySelectorAll('.data-row');
-    dataRows.forEach(row => {
-        console.log(row.textContent); // Log the content
-        if (row.textContent.trim() === "") {
-            row.style.display = 'none';
-        }
-    });
-});;
-</script>
+</div>
 </body>
 </html>
-
