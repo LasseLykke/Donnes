@@ -74,6 +74,7 @@ $stmt1->close();
 $stmt2->close();
 $mysqli->close();
 
+
     //  Går tilbage til bekræftelses side fra form. SKAL ÆNDRES
     header("Location: forside.php");
     exit();

@@ -51,8 +51,16 @@
 	text-decoration: underline;
 } 
 
+/*Søge side SKAL ÆNDRES OM - så modul er selve søgning og ikke container som nu. */
 .søgemodul {
+	padding-top: 20px;
 	height: 100vh;
+	background-color: var(--bg);
+	color: var(--blue);
+}
+
+.søge-container {
+	background-color: var(--bg);
 }
 
 /*Tables */
@@ -60,7 +68,6 @@
 table {
 	width: 90%;
 	margin: auto;
-	font-family: Arial, Helvetica, sans-serif;
 }
 table, tr, th, td {
 	border: 1px solid #d4d4d4;

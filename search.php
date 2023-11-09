@@ -15,7 +15,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 <body>
 <div class="søgemodul">
 
-<h1>Søge resultat</h1>
+<h1 class="søgeheader">Søge resultat</h1>
 <a href="forside.php">
     <button class="retur_btn">Retur</button>
 </a>
@@ -120,6 +120,8 @@ if (isset($_POST['submit-search'])) {
         echo "Ingen resultat på søgning";
     }
 } }
+
+mysqli_free_result($result);
 
 // Lukker forbindelsen.
 mysqli_close($con);
