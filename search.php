@@ -13,16 +13,16 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
 
 <body>
-<div class="søgemodul">
-
+    <div class="main_search">
 <h1 class="søgeheader">Søge resultat</h1>
 <a href="forside.php">
     <button class="retur_btn">Retur</button>
 </a>
+<div class="søg-container">
 
 
 <!-- Starter visning af søgeresultat -->
-<div class="søge-container">
+<div class="søge-modul">
 
 <?php
 // Åbner forbindelse til database.
