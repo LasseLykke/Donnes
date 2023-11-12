@@ -41,9 +41,9 @@ label {
 	opacity: 1; /*FIREFOX FIX*/
 }
 
-button {
+button { /* SKAL GØRES STØRRE */
 	float: left;
-	background: #a3b1b1;
+	background: var(--deepblue);
 	padding: 10px 15px;
 	color: #fff;
 	border-radius: 5px;
@@ -57,7 +57,7 @@ button:hover{
 /* Login btn*/
 .loginBtn {
 	background-color: var(--white);
-	border: 1px solid var(--grey);
+	border: 1px solid var(--offgrey);
 	color: var(--blue);
 }
 
