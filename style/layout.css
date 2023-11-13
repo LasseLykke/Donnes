@@ -56,16 +56,17 @@
 } 
 
 /*Søge side. */
-.søg-container {
-	padding-top: 20px;
+.søge-wrapper {
 	height: 100vh;
-	background-color: var(--bg);
-	color: var(--blue);
-	max-width: 100vw;
+	background-color: var(--offgrey);
 }
 
-.søge-modul {
-	background-color: var(--bg);
+.søge-resultat {
+	background-color: #d67D19;
+}
+
+.resultat {
+	padding-bottom: 10px;
 }
 
 /*Tables */

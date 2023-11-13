@@ -10,6 +10,12 @@ h1 {
     font-weight: 700;
 }
 
+.søgeoverskrift {
+    text-align: left;
+    padding-bottom: 10px;
+    color: var(--blackhole);
+}
+
 .loginHeader {
     text-align: center;
 
