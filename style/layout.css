@@ -69,6 +69,7 @@
 /*Container som holder table*/
 .søge-resultat {
 	margin: 20px;
+	overflow-x: auto;
 }
 
 /*Antal resultater på søgning*/
