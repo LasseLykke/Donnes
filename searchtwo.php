@@ -83,7 +83,7 @@ if (isset($_POST['submit-search'])) {
     <th> Ekspedient </th></tr>
     ';
     ?>
-    // Viser hvor mange resultater der er. 
+    <!-- Viser hvor mange resultater der er. -->
     <div class="resultat">
     <?php echo "Der er " . $queryResult . " resultater";?>
 </div>
@@ -123,7 +123,7 @@ mysqli_free_result($result);
 mysqli_close($con);
 ?>
             </div> <!-- Lukker resultat -->
-        </div> /*Lukker wrapper*/
+        </div> <!--Lukker wrapper-->
     </body>
 
 </html>

@@ -61,24 +61,32 @@
 	background-color: var(--offgrey);
 }
 
-.søge-resultat {
-	background-color: #d67D19;
+.søge-header {
+	background-color: white;
+	padding: 20px;
 }
 
+/*Container som holder table*/
+.søge-resultat {
+	margin: 20px;
+}
+
+/*Antal resultater på søgning*/
 .resultat {
-	padding-bottom: 10px;
+	padding-bottom: 20px;
+	color: var(--black);
+	font-size: 0.8rem;
 }
 
 /*Tables */
 
 table {
-	width: 90%;
-	margin: auto;
-	width: 800px;
   	border-collapse: collapse;
   	overflow: hidden;
 	background-color: var(--bg);
   	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	font-size: 0.9rem;
+	border-radius: 5px;
 }
 
 th,
@@ -86,6 +94,7 @@ td {
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.2);
   color: var(--black);
+  border-bottom: 0.5px solid var(--placeholder);
 }
 th {
   text-align: left;
@@ -96,6 +105,7 @@ thead th {
 
 tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.3);
+  background-color: var(--lightblue);
 }
 
 tbody td {
