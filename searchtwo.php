@@ -112,9 +112,7 @@ if (isset($_POST['submit-search'])) {
             </tr>';
         }
         echo '</table>';
-    } else {
-        echo "Ingen resultat på søgning";
-    }
+    } 
 } }
 
 mysqli_free_result($result);
