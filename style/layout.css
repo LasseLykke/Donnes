@@ -57,7 +57,7 @@
 
 /*Søge side. */
 .søge-wrapper {
-	height: 100vh;
+	height: 100%;
 	background-color: var(--offgrey);
 }
 
