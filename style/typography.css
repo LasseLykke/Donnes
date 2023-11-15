@@ -58,4 +58,11 @@ placeholder {
     border-radius: 5px;
     margin: 20px auto;
  }
+
+ /*Antal resultater på søgning*/
+.resultat {
+	padding-bottom: 20px;
+	color: var(--black);
+	font-size: 0.8rem;
+}
  

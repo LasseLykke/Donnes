@@ -5,26 +5,20 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
     include 'header.php';
 ?>
+
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Search Results</title>
-</head>
-
-
-<body>
-    <div class="main_search">
-<h1 class="søgeheader">Søge resultat</h1>
-<a href="forside.php">
-    <button class="retur_btn">Retur</button>
-</a>
-<div class="søg-container">
-
-
-<!-- Starter visning af søgeresultat -->
-<div class="søge-modul">
-
-<?php
+    <head>
+        <title>DONNÉS || Søge resultat</title>
+        <link href="./style/layout.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="søge-wrapper">
+            <div class="søge-header">
+                <h1 class="søgeoverskrift">Søge Resultat</h1>
+            </div>
+            <div class="søge-resultat">
+            <?php
 // Åbner forbindelse til database.
 $hostname = "localhost";
 $username = "root";
@@ -68,7 +62,6 @@ if (isset($_POST['submit-search'])) {
 
     $result = mysqli_query($con, $sql);
     $queryResult = mysqli_num_rows($result);
-
     echo '<table> <tr">
     <th> Ordre </th> 
     <th> Dato </th>
@@ -89,9 +82,12 @@ if (isset($_POST['submit-search'])) {
     <th> Bestilt </th>
     <th> Ekspedient </th></tr>
     ';
-    // Viser hvor mange resultater der er. 
-    echo "Der er " . $queryResult . " resultater";
-
+    ?>
+    <!-- Viser hvor mange resultater der er. -->
+    <div class="resultat">
+    <?php echo "Der er " . $queryResult . " resultater";?>
+</div>
+<?php
     if ($queryResult > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             echo '<tr> 
@@ -116,9 +112,7 @@ if (isset($_POST['submit-search'])) {
             </tr>';
         }
         echo '</table>';
-    } else {
-        echo "Ingen resultat på søgning";
-    }
+    } 
 } }
 
 mysqli_free_result($result);
@@ -126,8 +120,8 @@ mysqli_free_result($result);
 // Lukker forbindelsen.
 mysqli_close($con);
 ?>
+            </div> <!-- Lukker resultat -->
+        </div> <!--Lukker wrapper-->
+    </body>
 
-</div>
-</div>
-</body>
 </html>

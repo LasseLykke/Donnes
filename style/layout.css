@@ -72,12 +72,6 @@
 	overflow-x: auto;
 }
 
-/*Antal resultater på søgning*/
-.resultat {
-	padding-bottom: 20px;
-	color: var(--black);
-	font-size: 0.8rem;
-}
 
 /*Tables */
 
