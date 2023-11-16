@@ -1,5 +1,7 @@
 <?php
 
+include 'header.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data using POST method
 $fornavn = $_POST["fornavn"];
@@ -88,8 +90,9 @@ $mysqli->close();
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- classless style, ændres når det er sat korrekt op ÆNDRES NÅR CSS ER SAT OP-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+     <!--classless style, ændres når det er sat korrekt op ÆNDRES NÅR CSS ER SAT OP-->
+     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+   <link href="./style/forms.css" type="text/css" rel="stylesheet">
     <title>Ramme bestilling</title>  <!-- Også det filen hedder -->
 </head>
 <body>
@@ -103,70 +106,67 @@ $mysqli->close();
     } ?>
 
 
+<div class="form-wrapper">
+<form class="forminput" action="" method="POST">
 
-<form action="" method="POST">
-        <div>
-            <label for="dates">Indleverings dato</label>
-            <input type="date" id="dates" name="Indleveringsdato">
-        </div>
+    <div class="g1">
+        <label for="dates">Indleverings dato</label>
+        <input type="date" id="dates" name="Indleveringsdato">
+    </div>
 
-        <div style="display: none;">
+    <!-- Bliver skjult -->
+    <div style="display: none;">
         <label for="ramme_kundeID">KundeID</label>
-            <input type="number" id="ramme_kundeID" name="kundeID">
-        </div>
+        <input type="number" id="ramme_kundeID" name="kundeID">
+    </div>
 
-        <div>
-            <label for="fornavn">fornavn</label>
-            <input type="text" id="fornavn" name="fornavn">
-        </div>
-        <div>
-            <label for="telefonnummer">Telefonummer</label>
-            <input type="number" id="telefonnummer" name="telefonnummer">
-        </div>
+    <div class="kundedata">
+        <label for="fornavn">Fornavn</label>
+        <input type="text" id="fornavn" name="fornavn">
+        <label for="telefonnummer">Telefonummer</label>
+        <input type="number" id="telefonnummer" name="telefonnummer">
+    </div>
 
-        <div>
-            <label for="profil">Ramme Profil</label>
-            <input type="number" id="profil" name="profil">
-        </div>
+    <div class="rammedata">
+        <label for="profil">Ramme Profil</label>
+        <input type="number" id="profil" name="profil">
+        <label for="størrelse">Ramme Størrelse</label>
+        <input type="text" id="størrelse" name="størrelse">
+        <label for="antal">Antal rammer</label>
+        <input type="number" id="antal" name="antal">
+    </div>
 
-        <div>
-            <label for="størrelse">Ramme Størrelse</label>
-            <input type="text" id="størrelse" name="størrelse">
-        </div>
-        
-        <div>
-            <fieldset>
-                <legend>Glas Type</legend>
-                <input type="radio" id="klart" name="glastype" value="Klart glas" required>
-                <label for="klart">Klart Glas</label><br>
-                <input type="radio" id="reflo" name="glastype" value="Reflo glas" required>
-                <label for="reflo">Reflo glas</label><br>
-                <input type="radio" id="museums" name="glastype" value="Museums glas" required>
-                <label for="museums">Museums Glas</label><br>
-                <input type="radio" id="tom" name="glastype" value="Uden glas" required>
-                <label for="tom_uden_bagplade">Uden glas</label><br>
-                <input type="radio" id="tom_uden_bagplade" name="glastype" value="Tom uden bagplade" required>
-                <label for="tom">Uden glas og bagplade</label>
-            </fieldset>
-        </div>
+    <div>
+    <fieldset>
+        <legend>Glas Type</legend>
+            <input type="radio" id="klart" name="glastype" value="Klart glas" required>
+            <label for="klart">Klart Glas</label><br>
+            <input type="radio" id="reflo" name="glastype" value="Reflo glas" required>
+            <label for="reflo">Reflo glas</label><br>
+            <input type="radio" id="museums" name="glastype" value="Museums glas" required>
+            <label for="museums">Museums Glas</label><br>
+            <input type="radio" id="tom" name="glastype" value="Uden glas" required>
+            <label for="tom_uden_bagplade">Uden glas</label><br>
+            <input type="radio" id="tom_uden_bagplade" name="glastype" value="Tom uden bagplade" required>
+            <label for="tom">Uden glas og bagplade</label>
+    </fieldset>
+    </div>
 
-        <div>
-            <h3>Passepartout</h3>
+
+    <div class="passepartout">
+    <fieldset>
+        <legend>Passepartout</legend>
             <input type="radio" id="passepartout_ja" name="passepartout" value="Ja">
             <label for="passepartout_ja">Ja</label>
             <input type="radio" id="passepartout_nej" name="passepartout" value="Nej">
             <label for="passepartout_nej">Nej</label>
-        </div>
 
-        <div>
             <label for="hulmål">Hulmål</label>
             <input type="text" id="hulmål" name="hulmål">
-        </div>
 
-        <div>
-            <fieldset>
-                <legend>Farve på passepartout</legend>
 
+
+        <h3>Passepartout farve</h3>
             <input type="radio" id="8001" name="passepartoutFarve" value="8001">
             <label for="profil_8001">Hvidt med hvid kerne</label><br>
             <input type="radio" id="8213" name="passepartoutFarve" value="8213">
@@ -187,71 +187,63 @@ $mysqli->close();
             <label for="profil_8411">Olivengrøn med hvid kerne</label><br>
             <input type="radio" id="8009" name="passepartoutFarve" value="8009">
             <label for="profil_8009">Lysebrun med hvid kerne</label><br>
-            </fieldset>
-        </div>
+    </fieldset>
+    </div>
 
-        <div>
-            <label for="antal">Antal rammer</label>
-            <input type="number" id="antal" name="antal">
-        </div>
 
-        <div>
-            <h4>Montering</h4>
+
+    <div class="montering">
+        <h4>Montering</h4>
             <input type="radio" id="montering_JA" name="montering" value="Ja">
             <label for="montering_JA">Ja</label>
             <input type="radio" id="montering_NEJ" name="montering" value="Nej">
             <label for="montering_NEJ">Nej</label>
-        </div>
-        
-        <div>
-        <fieldset>
-            <legend>Billede</legend>
-            <input type="radio" id="kundens_Billede" name="billedetype" value="Vi har fået billede fra kunde">
-            <label for="kundens_Billede">Kunden har vedlagt billede</label><br>
-            <input type="radio" id="print_Billede" name="billedetype" value="Vi skal printe">
-            <label for="print_Billede">Vi skal printe billede</label><br>
-        </fieldset>
-        </div>
 
-        <div>
-            <label for="bemærkninger">Bemærkninger</label>
-            <textarea id="bemærkninger" name="bemærkninger"></textarea>
-        </div>
 
-        <div>
+        <input type="radio" id="kundens_Billede" name="billedetype" value="Vi har fået billede fra kunde">
+        <label for="kundens_Billede">Kundens billede</label>
+        <input type="radio" id="print_Billede" name="billedetype" value="Vi skal printe">
+        <label for="print_Billede">Vi skal printe billede</label>
+    </div>
+
+
+    <div>
+        <label for="bemærkninger">Bemærkninger</label>
+        <textarea id="bemærkninger" placeholder="F.eks er ikke betalt.." name="bemærkninger"></textarea>
+    </div>
+
+
+    <div class="betaling">
+        <h4>Betaling</h4>
             <label for="pris">Aftalt pris</label>
             <input type="number" id="pris" name="pris">
-        </div>
 
-        <div>
-            <h4>Betalt</h4>
+        <h4>Betalt</h4>
             <input type="radio" id="betalt" name="betalt" value="Ja">
             <label for="betalt">Ja</label>
             <input type="radio" id="betalt" name="betalt" value="Nej">
             <label for="betalt">Nej</label>
-        </div>
 
-        <div>
-            <h3>Bestilt</h3>
+        <h4>Bestilt</h4>
             <input type="radio" id="bestilt" name="bestilt" value="Ja">
             <label for="bestilt">Ja</label>
             <input type="radio" id="bestilt" name="bestilt" value="Nej">
             <label for="bestilt">Nej</label>
-        </div>
+    </div>
 
-        <div>
-            <label for="ekspedient">Ekspedient</label>
-            <input type="text" id="ekspedient" name="ekspedient" >
-        </div>
+    <div>
+        <label for="ekspedient">Ekspedient</label>
+        <input type="text" id="ekspedient" name="ekspedient" >
+    </div>
 
-        
 
-        
-        <button onClick="window.print()">PRINT & GEM</button> required
 
-        
-        
-    </form>
+
+<button onClick="window.print()">PRINT & GEM</button>
+
+
+</form>
+</div>
 
 </body>
 </html>

@@ -1,0 +1,18 @@
+.form-wrapper {
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    /*display: grid;*/
+    background-color: var(--bg);
+}
+
+.forminput {
+    background-color: var(--white);
+    min-width: 1600px;
+    display:inline-block;
+}
+
+.kundedata label {
+    background-color: green;
+    display: inline;
+}
+

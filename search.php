@@ -16,6 +16,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
         <div class="søge-wrapper">
             <div class="søge-header">
                 <h1 class="søgeoverskrift">Søge Resultat</h1>
+                <a href="forside.php"><button class="backBtn">Tilbage</button></a>
             </div>
             <div class="søge-resultat">
             <?php

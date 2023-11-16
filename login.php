@@ -16,10 +16,10 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
     $pass = validate($_POST['password']);
 
     if (empty($uname)) {
-        header("location: index.php?error=User Name is required");
+        header("location: index.php?error=Brugernavn er påkrævet");
         exit();
     } else if (empty($pass)) {
-        header("location: index.php?error=Password is required");
+        header("location: index.php?error=Password er påkrævet");
         exit();
     } else {
         $pass = md5($pass);
@@ -35,11 +35,11 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
                 header("Location: forside.php"); /*sender bruger til velkommen siden.*/
                 exit();
             } else {
-                header("Location: index.php?error=Incorect User name or password");
+                header("Location: index.php?error=Forkert brugernavn eller password");
                 exit();
             }
         } else {
-            header("Location: index.php?error=Incorect User name or password");
+            header("Location: index.php?error=Forkert brugernavn eller password");
             exit();
         }
 
