@@ -1,18 +1,35 @@
 .form-wrapper {
     height: 100%;
     font-family: 'Open Sans', sans-serif;
-    /*display: grid;*/
     background-color: var(--bg);
+}
+
+
+input [type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
 }
 
 .forminput {
     background-color: var(--white);
-    min-width: 1600px;
-    display:inline-block;
+    min-width: 1200px;
+    display: grid;
+}
+
+.kundedata {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .kundedata label {
-    background-color: green;
-    display: inline;
+    background-color: pink;
 }
 
+
+input [type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+}
