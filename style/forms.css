@@ -1,21 +1,4 @@
-<<<<<<< HEAD
-.form-wrapper {
-    height: 100%;
-    font-family: 'Open Sans', sans-serif;
-    background-color: var(--blue);
-}
 
-
-input [type=text] {
-    width: 100%;
-    padding: 12px 20px;
-    box-sizing: border-box;
-}
-
-.forminput {
-    background-color: var(--blue);
-    min-width: 600px;
-=======
 @import "base.css";
 
 body {
@@ -68,7 +51,6 @@ label {
 }
 
 .baseinfo {
->>>>>>> refs/remotes/origin/Master
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     border-bottom: 1px solid var(--grey);
