@@ -96,7 +96,6 @@ $mysqli->close();
     <title>Ramme bestilling</title>  <!-- Også det filen hedder -->
 </head>
 <body>
-    <h1>Ramme bestilling</h1>
     
     <?php
     // Viser success eller fejl meddelelse
@@ -108,7 +107,8 @@ $mysqli->close();
 
 <div class="form-wrapper">
 <form class="forminput" action="" method="POST">
-
+<h1 class="bestillingsheader">Ramme bestilling</h1>
+<!-- Basic infomation -->
 <div class="baseinfo">
     <div class="dato">
         <label for="dates">Indleverings dato</label>
@@ -131,7 +131,7 @@ $mysqli->close();
     </div>
 
 
-    <!-- RAMME INFO -->
+    <!-- Ramme information -->
     <div class="ramme-wrapper">
     <div class="ramme">
         <h4>Ramme info:</h4>
@@ -144,7 +144,7 @@ $mysqli->close();
     </div>
 
 
-<!-- GLAS -->
+<!-- Glas og Passepartout information -->
 <div class="glas">
     <h4>Glas Type:</h4>
         <input type="radio" id="klart" name="glastype" value="Klart glas" required>
@@ -200,28 +200,29 @@ $mysqli->close();
         </div>
 
 
-
-    <div class="montering">
-        <h4>Montering</h4>
+    <!-- Montering og print information & bemærkning -->
+    <div class="monteringsinfo">
+        <div class="montering">
+            <h4>Skal billedet monteres?</h4>
             <input type="radio" id="montering_JA" name="montering" value="Ja">
             <label for="montering_JA">Ja</label>
             <input type="radio" id="montering_NEJ" name="montering" value="Nej">
             <label for="montering_NEJ">Nej</label>
-
-
-        <input type="radio" id="kundens_Billede" name="billedetype" value="Vi har fået billede fra kunde">
-        <label for="kundens_Billede">Kundens billede</label>
-        <input type="radio" id="print_Billede" name="billedetype" value="Vi skal printe">
-        <label for="print_Billede">Vi skal printe billede</label>
+            <br>
+            <input type="radio" id="kundens_Billede" name="billedetype" value="Vi har fået billede fra kunde">
+            <label for="kundens_Billede">Kundens billede</label>
+            <input type="radio" id="print_Billede" name="billedetype" value="Vi skal printe">
+            <label for="print_Billede">Vi skal printe billede</label>
+        </div>
+        <div class="bemærkning">
+            <label for="bemærkninger">Bemærkninger:</label>
+            <textarea id="bemærkninger" placeholder="F.eks er ikke betalt.. eller posenummer" name="bemærkninger"></textarea>
+        </div>
     </div>
 
 
-    <div>
-        <label for="bemærkninger">Bemærkninger</label>
-        <textarea id="bemærkninger" placeholder="F.eks er ikke betalt.." name="bemærkninger"></textarea>
-    </div>
+<!-- Bliver fjernet da ordre skal betales!
 
-<!--
     <div class="betaling">
         <h4>Betaling</h4>
             <label for="pris">Aftalt pris</label>
@@ -240,15 +241,15 @@ $mysqli->close();
             <label for="bestilt">Nej</label>
     </div> -->
 
-    <div>
-        <label for="ekspedient">Ekspedient</label>
+    <div class="ekspedient">
+        <label for="ekspedient">Ekspedient:</label>
         <input type="text" id="ekspedient" name="ekspedient" >
     </div>
 
 
 
 
-<button onClick="window.print()">PRINT & GEM</button>
+<button class="saveBtn" onClick="window.print()">PRINT & GEM</button>
 
 
 </form>
