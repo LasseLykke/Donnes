@@ -111,15 +111,15 @@ $mysqli->close();
 <!-- Basic infomation -->
 <div class="baseinfo">
     <div class="dato">
-        <label for="dates">Indleverings dato</label>
+        <label for="dates">Indleverings dato:</label>
         <input type="date" id="dates" name="Indleveringsdato">
     </div>
     <div class="kundenavn">
-        <label for="fornavn">Fornavn</label>
+        <label for="fornavn">Fornavn:</label>
         <input type="text" id="fornavn" name="fornavn">
     </div>
     <div class="kundenummer">
-        <label for="telefonnummer">Telefonummer</label>
+        <label for="telefonnummer">Telefonummer:</label>
         <input type="number" id="telefonnummer" name="telefonnummer">
     </div>
 </div>
@@ -134,19 +134,19 @@ $mysqli->close();
     <!-- Ramme information -->
     <div class="ramme-wrapper">
     <div class="ramme">
-        <h4>Ramme info:</h4>
-        <label for="profil">Ramme Profil</label>
+    <h6>Ramme oplysninger:</h6>
+        <label for="profil">Ramme Profil:</label>
         <input type="number" id="profil" name="profil">
-        <label for="størrelse">Ramme Størrelse</label>
+        <label for="størrelse">Ramme Størrelse:</label>
         <input type="text" id="størrelse" name="størrelse">
-        <label for="antal">Antal rammer</label>
+        <label for="antal">Antal rammer:</label>
         <input type="number" id="antal" name="antal">
     </div>
 
 
 <!-- Glas og Passepartout information -->
 <div class="glas">
-    <h4>Glas Type:</h4>
+    <h6>Glas Type:</h6>
         <input type="radio" id="klart" name="glastype" value="Klart glas" required>
             <label for="klart">Klart Glas</label><br>
             <input type="radio" id="reflo" name="glastype" value="Reflo glas" required>
@@ -163,17 +163,17 @@ $mysqli->close();
 
     <div class="passepartout-wrapper">
         <div class="ppinfo">
-            <h4>Passepartout</h4>
+            <h6>Passepartout:</h6>
             <input type="radio" id="passepartout_ja" name="passepartout" value="Ja">
             <label for="passepartout_ja">Ja</label>
             <input type="radio" id="passepartout_nej" name="passepartout" value="Nej">
-            <label for="passepartout_nej">Nej</label>
-            <h4>Hulmål</h4>
+            <label for="passepartout_nej">Nej</label><br>
+            <h6>Hulmål:</h6>
             <label for="hulmål"></label>
             <input type="text" id="hulmål" placeholder="Billedmål - 1cm" name="hulmål">
         </div>
         <div class="ppfarve1">
-            <h4>Farve:</h4>
+            <h6>Farve:</h6>
             <input type="radio" id="8001" name="passepartoutFarve" value="8001">
             <label for="profil_8001">Hvidt med hvid kerne</label><br>
             <input type="radio" id="8213" name="passepartoutFarve" value="8213">
@@ -203,7 +203,7 @@ $mysqli->close();
     <!-- Montering og print information & bemærkning -->
     <div class="monteringsinfo">
         <div class="montering">
-            <h4>Skal billedet monteres?</h4>
+            <h6>Skal billedet monteres?</h6>
             <input type="radio" id="montering_JA" name="montering" value="Ja">
             <label for="montering_JA">Ja</label>
             <input type="radio" id="montering_NEJ" name="montering" value="Nej">
@@ -244,12 +244,9 @@ $mysqli->close();
     <div class="ekspedient">
         <label for="ekspedient">Ekspedient:</label>
         <input type="text" id="ekspedient" name="ekspedient" >
+        <button class="saveBtn" onClick="window.print()">PRINT & GEM</button>
     </div>
 
-
-
-
-<button class="saveBtn" onClick="window.print()">PRINT & GEM</button>
 
 
 </form>
