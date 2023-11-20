@@ -35,31 +35,28 @@ if (!$con) {
 
 if (isset($_POST['submit-search'])) {
     $search = mysqli_real_escape_string($con, $_POST['search']);
-    $sql = "SELECT rammer.ordreID, rammer.profil, rammer.dates, kunder.fornavn, kunder.telefonnummer, rammer.profil, rammer.størrelse, rammer.glastype, rammer.passepartout, rammer.hulmål, 
-    rammer.passepartoutFarve, rammer.antal, rammer.montering, rammer.billedetype, rammer.bemærkninger, rammer.pris, rammer.betalt, rammer.bestilt, rammer.ekspedient
-    FROM rammer
+    $sql = "SELECT ramme.ordreID, ramme.profil, ramme.dates, kunder.fornavn, kunder.telefonnummer, ramme.profil, ramme.størrelse, ramme.glastype, ramme.passepartout, ramme.hulmål, 
+    ramme.passepartoutFarve, ramme.antal, ramme.montering, ramme.billedetype, ramme.bemærkninger, ramme.ekspedient
+    FROM ramme
     INNER JOIN kunder
-    ON rammer.ordreID = kunder.kundeID 
+    ON ramme.ordreID = kunder.kundeID 
 
         WHERE kunder.kundeID LIKE '%$search' 
-        OR rammer.dates LIKE '%$search' 
+        OR ramme.dates LIKE '%$search' 
         OR kunder.fornavn LIKE '%$search'
         OR kunder.telefonnummer LIKE '%$search'
-        OR rammer.profil LIKE '%$search'
-        OR rammer.størrelse LIKE '%$search'
-        OR rammer.glastype LIKE '%$search'
-        OR rammer.passepartout LIKE '%$search'
-        OR rammer.hulmål LIKE '%$search'
-        OR rammer.passepartoutFarve LIKE '%$search'
-        OR rammer.antal LIKE '%$search'
-        OR rammer.montering LIKE '%$search'
-        OR rammer.billedetype LIKE '%$search'
-        OR rammer.bemærkninger LIKE '%$search'
-        OR rammer.pris LIKE '%$search'
-        OR rammer.betalt LIKE '%$search'
-        OR rammer.bestilt LIKE '%$search'
-        OR rammer.ekspedient LIKE '%$search'
-        ORDER BY rammer.ordreID DESC";
+        OR ramme.profil LIKE '%$search'
+        OR ramme.størrelse LIKE '%$search'
+        OR ramme.glastype LIKE '%$search'
+        OR ramme.passepartout LIKE '%$search'
+        OR ramme.hulmål LIKE '%$search'
+        OR ramme.passepartoutFarve LIKE '%$search'
+        OR ramme.antal LIKE '%$search'
+        OR ramme.montering LIKE '%$search'
+        OR ramme.billedetype LIKE '%$search'
+        OR ramme.bemærkninger LIKE '%$search'
+        OR ramme.ekspedient LIKE '%$search'
+        ORDER BY ramme.ordreID DESC";
 
     $result = mysqli_query($con, $sql);
     $queryResult = mysqli_num_rows($result);
@@ -78,9 +75,6 @@ if (isset($_POST['submit-search'])) {
     <th> Montering </th>
     <th> Billede </th>
     <th> Bemærkninger </th>
-    <th> Pris </th>
-    <th> Betalt </th>
-    <th> Bestilt </th>
     <th> Ekspedient </th></tr>
     ';
     ?>
@@ -106,9 +100,6 @@ if (isset($_POST['submit-search'])) {
             <td> ' . $row["montering"] . '</td> 
             <td> ' . $row["billedetype"] . '</td> 
             <td> ' . $row["bemærkninger"] . '</td> 
-            <td> ' . $row["pris"] . '</td> 
-            <td> ' . $row["betalt"] . '</td> 
-            <td> ' . $row["bestilt"] . '</td> 
             <td> ' . $row["ekspedient"] . '</td> 
             </tr>';
         }

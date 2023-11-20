@@ -18,9 +18,6 @@ $antal = $_POST["antal"];
 $montering = $_POST["montering"];
 $billedetype = $_POST["billedetype"];
 $bemærkninger = $_POST["bemærkninger"];
-$pris = $_POST["pris"];
-$betalt = $_POST["betalt"];
-$bestilt = $_POST["bestilt"];
 $ekspedient = $_POST["ekspedient"];
 
 
@@ -38,7 +35,7 @@ $mysqli->begin_transaction();
 
 // Define SQL queries with placeholders for each table
 $sql1 = "INSERT INTO kunder (fornavn, telefonnummer) VALUES (?, ?)";
-$sql2 = "INSERT INTO rammer (ramme_kundeID, dates, profil, størrelse, glastype, passepartout, hulmål, passepartoutFarve, antal, montering, billedetype, bemærkninger, pris, betalt, bestilt, ekspedient) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql2 = "INSERT INTO ramme (ramme_kundeID, dates, profil, størrelse, glastype, passepartout, hulmål, passepartoutFarve, antal, montering, billedetype, bemærkninger, ekspedient) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 // Create prepared statements for each query
 $stmt1 = $mysqli->prepare($sql1);
@@ -55,7 +52,7 @@ $stmt1->bind_param("si", $fornavn, $telefonnummer);
 // Bind parameters and their values for the second statement (leaving one row out)
 // You can decide to insert or not based on your requirements
 if ($ramme_kundeID != "value_to_skip") {
-    $stmt2->bind_param("ssssssssssssssss", $ramme_kundeID, $dates, $profil, $størrelse, $glastype, $passepartout, $hulmål, $passepartoutFarve, $antal, $montering, $billedetype, $bemærkninger, $pris, $betalt, $bestilt, $ekspedient);
+    $stmt2->bind_param("sssssssssssss", $ramme_kundeID, $dates, $profil, $størrelse, $glastype, $passepartout, $hulmål, $passepartoutFarve, $antal, $montering, $billedetype, $bemærkninger, $ekspedient);
     $stmt2->execute();
 }
 
@@ -111,16 +108,16 @@ $mysqli->close();
 <!-- Basic infomation -->
 <div class="baseinfo">
     <div class="dato">
-        <label for="dates">Indleverings dato:</label>
-        <input type="date" id="dates" name="Indleveringsdato">
+        <label for="dates">Indleverings dato: *</label>
+        <input type="date" id="dates" name="Indleveringsdato" required >
     </div>
     <div class="kundenavn">
         <label for="fornavn">Fornavn:</label>
-        <input type="text" id="fornavn" name="fornavn">
+        <input type="text" id="fornavn" name="fornavn" required>
     </div>
     <div class="kundenummer">
         <label for="telefonnummer">Telefonummer:</label>
-        <input type="number" id="telefonnummer" name="telefonnummer">
+        <input type="number" id="telefonnummer" name="telefonnummer" required>
     </div>
 </div>
 
@@ -136,11 +133,11 @@ $mysqli->close();
     <div class="ramme">
     <h6>Ramme oplysninger:</h6>
         <label for="profil">Ramme Profil:</label>
-        <input type="number" id="profil" name="profil">
+        <input type="number" id="profil" name="profil" required>
         <label for="størrelse">Ramme Størrelse:</label>
-        <input type="text" id="størrelse" name="størrelse">
+        <input type="text" id="størrelse" name="størrelse" required>
         <label for="antal">Antal rammer:</label>
-        <input type="number" id="antal" name="antal">
+        <input type="number" id="antal" name="antal" required>
     </div>
 
 
@@ -243,7 +240,7 @@ $mysqli->close();
 
     <div class="ekspedient">
         <label for="ekspedient">Ekspedient:</label>
-        <input type="text" id="ekspedient" name="ekspedient" >
+        <input type="text" id="ekspedient" name="ekspedient" required>
         <button class="saveBtn" onClick="window.print()">PRINT & GEM</button>
     </div>
 
@@ -251,6 +248,8 @@ $mysqli->close();
 
 </form>
 </div>
-
+<script>
+      $('input[required]').prev('label').addClass('required');
+    </script>
 </body>
 </html>
