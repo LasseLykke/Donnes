@@ -1,7 +1,7 @@
 .form-wrapper {
     height: 100%;
     font-family: 'Open Sans', sans-serif;
-    background-color: var(--bg);
+    background-color: var(--blue);
 }
 
 
@@ -12,8 +12,8 @@ input [type=text] {
 }
 
 .forminput {
-    background-color: var(--white);
-    min-width: 1200px;
+    background-color: var(--blue);
+    min-width: 600px;
     display: grid;
 }
 
