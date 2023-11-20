@@ -14,7 +14,6 @@ include 'connection.php';
     <link href="./style/base.css" type="text/css" rel="stylesheet">
     <link href="./style/components.css" type="text/css" rel="stylesheet">
     <link href="./style/layout.css" type="text/css" rel="stylesheet">
-    <link href="./style/forms.css" type="text/css" rel="stylesheet">
     <link href="./style/typography.css" type="text/css" rel="stylesheet">
     <meta name="keywords" content="internal tooling for ordermanagement system." />
     <meta name="description" content="Internal tooling for ordremanagement system and database" />

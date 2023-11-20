@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .form-wrapper {
     height: 100%;
     font-family: 'Open Sans', sans-serif;
@@ -14,22 +15,96 @@ input [type=text] {
 .forminput {
     background-color: var(--blue);
     min-width: 600px;
+=======
+@import "base.css";
+
+body {
+    background-color: var(--bg);
+    height: 100vh;
+}
+
+form {
+    background-color: var(--white);
+    margin: 0 auto;
+    height: 100%;
+    max-width: 1200px;
+	padding: 30px;
+	border-radius: 15px;
+	backdrop-filter: blur(1.5rem);
+	box-shadow:
+    -.25rem -.25rem .5rem rgba(#fff,.07),
+    .25rem .25rem .5rem rgba(#000,.12),
+    -.75rem -.75rem 1.75rem rgba(#fff,.07),
+    .75rem .75rem 1.75rem rgba(#000,.12),
+    inset 8rem 8rem 8rem rgba(#000,.05),
+    inset -8rem -8rem 8rem rgba(#fff,.05)
+}
+
+input {
+	/*display: block;*/
+	background: transparent;
+	border: 1px solid var(--grey);
+	/*width: 95%;*/
+	padding: 10px;
+	margin: 10px auto;
+	border-radius: 2px;
+}
+
+input:focus {
+	background: transparent;
+	border: 1px solid var(--blue);
+}
+
+
+label {
+	color: var(--blue);
+	font-size: 14px;
+	padding: 10px;
+}
+
+::placeholder {
+	color: var(--placeholder);
+	opacity: 1; /*FIREFOX FIX*/
+}
+
+.baseinfo {
+>>>>>>> refs/remotes/origin/Master
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--grey);
+    padding-bottom: 1px;
 }
 
-.kundedata {
-    margin: 20px;
+.baseinfo label {
+    display: block;
+    padding: 0px;
+    
+}
+
+.ramme-wrapper{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
 }
 
-.kundedata label {
-    background-color: pink;
+.ramme {
+    grid-area: 1 / 1 / 2 / 2;
 }
 
-
-input [type=text] {
-    width: 100%;
-    padding: 12px 20px;
-    box-sizing: border-box;
+.ramme label {
+    display: block;
+    padding: 0px;
 }
+.glas {
+    grid-area: 1 / 2 / 2 / 3; 
+}
+
+.passepartout-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.ppinfo label {
+    padding: 0px;
+    padding-left: 9px;
+}
+
