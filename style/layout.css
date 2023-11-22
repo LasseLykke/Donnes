@@ -5,9 +5,9 @@
 /*LOGIN SIDE*/
 .login-wrapper {
 	margin: 0;
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
+  	display: grid;
+  	place-items: center;
+  	min-height: 100vh;
 }
 
 .loginContainer {
@@ -131,3 +131,16 @@ tbody td {
   width: 100%;
   text-align: right; /* Align text to the right within the footer */
 }
+
+
+
+/* SUCCESS */
+.success-wrapper {
+	background-color: var(--bg);
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+

@@ -75,7 +75,7 @@ $mysqli->close();
 
 
     //  Går tilbage til bekræftelses side fra form. SKAL ÆNDRES
-    header("Location: forside.php");
+    header("Location: success.php");
     exit();
 }
 
@@ -248,8 +248,5 @@ $mysqli->close();
 
 </form>
 </div>
-<script>
-      $('input[required]').prev('label').addClass('required');
-    </script>
 </body>
 </html>
