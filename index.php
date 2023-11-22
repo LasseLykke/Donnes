@@ -26,7 +26,7 @@ if(isset($_GET['error'])) {?>
         <input type="text" name="uname" placeholder="Brugernavn"></br>
         <label for="">Password</label>
         <input type="password" name="password" placeholder="Password"></br>
-        <button class="loginBtn" type="submit">Login</button>
+        <button class="loginBtn" type="submit">Login</button><br>
         <a href="register.php" class="ca">Opret konto</a>
     </form>
 </div>

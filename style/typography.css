@@ -39,9 +39,11 @@ placeholder {
 	padding: 10px;
 	text-decoration: none;
 	color: var(--grey);
+    display: none;
 }
 .ca:hover {
 	text-decoration: underline;
+    display: hidden;
 } 
 
 
