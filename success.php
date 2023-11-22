@@ -11,7 +11,7 @@ include 'header.php';
 
 
 
-    <title>DONNÉS || LOGIN</title>
+    <title>DONNÉS || SUCCESS</title>
 </head>
 <body>
     <div class="success-wrapper">

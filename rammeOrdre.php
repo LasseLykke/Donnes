@@ -74,7 +74,7 @@ $stmt2->close();
 $mysqli->close();
 
 
-    //  Går tilbage til bekræftelses side fra form. SKAL ÆNDRES
+    //  Går tilbage til bekræftelses side fra form.
     header("Location: success.php");
     exit();
 }
@@ -90,7 +90,7 @@ $mysqli->close();
      <!--classless style, ændres når det er sat korrekt op ÆNDRES NÅR CSS ER SAT OP-->
      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
    <link href="./style/forms.css" type="text/css" rel="stylesheet">
-    <title>Ramme bestilling</title>  <!-- Også det filen hedder -->
+    <title>DONNÉS || Ramme bestilling</title>  <!-- Også det filen hedder -->
 </head>
 <body>
     
