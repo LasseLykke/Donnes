@@ -69,17 +69,20 @@ button:hover{
 	border-radius: 0;
 	float: right;
 	margin: 0;
-	background-image: url(../img/x-thin.black.svg);
-	background-size: 25px 25px;
+	background-image: url(../img/log-out.svg);
+	background-size: 15px 15px;
 	padding: 50px 50px 0px 0px;
 	background-position: center;
 	background-color: transparent;
 	background-repeat: no-repeat;
-	
+	transition: 0.1s ease-in-out;
 }
+
 .signOut:hover {
-	background-image: url(../img/x-thin.hover.svg);
+	background-size: 20px 20px;
 }
+
+  
 
 .submitSearch {
 	background-color: var(--white);
