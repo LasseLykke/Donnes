@@ -3,15 +3,18 @@
 }
 
 /*LOGIN SIDE*/
+.login-wrapper {
+	margin: 0;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
 .loginContainer {
 	background-color: var(--grd-color);
 	box-shadow: 0px 10px 30px rgba(0,0,0,.1);
 	box-shadow: 0px 0px 17px -6px rgba(0,0,0,0.48);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	flex-direction: column;
+	
 }
 
 /*FORSIDE*/
@@ -120,4 +123,11 @@ tbody td {
 	text-transform: uppercase;
 	border-radius: 0;
 	float: right;
+}
+
+.footer {
+	margin-top: auto;
+  padding-right: 10px;
+  width: 100%;
+  text-align: right; /* Align text to the right within the footer */
 }
