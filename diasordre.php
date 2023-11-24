@@ -10,6 +10,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!--classless style, ændres når det er sat korrekt op ÆNDRES NÅR CSS ER SAT OP-->
+     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
    <link href="./style/forms.css" type="text/css" rel="stylesheet">
 
 
@@ -66,6 +67,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 </div>
 
 <div class="diasmedie">
+    <h6>Medie:</h6>
     <label for="USB">USB</label>
     <input type="number" id="USB" name="USB" value="USB"><br>
     <label for="DVD">DVD</label>
