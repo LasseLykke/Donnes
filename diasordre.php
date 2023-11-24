@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
-include 'header.php';
+/*include 'header.php';*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,13 +16,15 @@ include 'header.php';
     <title>DONNÉS || DIAS </title>
 </head>
 <body>
-    <div class="dias-wrapper">
-        <div class="">
-            <form class="forminput" action="" method="">
-            <div class="baseinfo">
+<div class="form-wrapper">
+<form class="forminput" action="" method="">
+<h1 class="bestillingsheader">DIAS ordre</h1>
+
+<!-- Basic infomation --> 
+<div class="baseinfo">
     <div class="dato">
         <label for="dates">Indleverings dato: *</label>
-        <input type="date" id="dates" name="Indleveringsdato" required >
+        <input type="date" id="dates" name="Indleveringsdato" reguired >
     </div>
     <div class="kundenavn">
         <label for="fornavn">Fornavn:</label>
@@ -34,11 +36,76 @@ include 'header.php';
     </div>
 </div>
 
+<!-- Dias info -->
+<div class="dias-wrapper">
+   <div class="dias">
+    <h6>Dias Type:</h6>
+    <input type="checkbox" id="diastype" name="diastype" value="Plastik">
+    <label for="Plastisk">Plastik</label><br>
+    <input type="checkbox" id="diastype" name="diastype" value="Metal">
+    <label for="Metal">Metal</label><br>
+    <input type="checkbox" id="Pap" name="diastype" value="Pap">
+    <label for="Pap">Pap</label><br>
+    <input type="checkbox" id="diastype" name="diastype" value="Glas">
+    <label for="Glas">Glas</label><br>
+    <input type="checkbox" id="diastype" name="diastype" value="Løse">
+    <label for="Løse">Løse</label><br>
+    
+</div>
 
-            </form>
-        </div>
+<div class="diasantal">
+    <label for="antal">Antal dias:</label>
+    <input type="number" id="antaldias" name="antaldias">
+<div class="diaspuds">
+    <h6>Skal dias pudses af?</h6>
+    <input type="checkbox" id="ja" name="diaspuds" value="ja">
+    <label for="diaspuds">Ja</label><br>
+    <input type="checkbox" id="nej" name="diaspuds" value="nej">
+    <label for="diaspuds">Nej</label>
+</div>
+</div>
+
+<div class="diasmedie">
+    <label for="USB">USB</label>
+    <input type="number" id="USB" name="USB" value="USB"><br>
+    <label for="DVD">DVD</label>
+    <input type="number" id="DVD" name="DVD" value="DVD"><br>
+    <label for="Print">Print</label>
+    <input type="number" id="Print" name="print" value="print"><br>
+</div>
+</div>
+
+<!-- Bemærkninger og pris -->
+
+<div class="prisogbemærkninger">
+    <div class="bemærkning">
+    <label for="bemærkninger">Bemærkninger:</label>
+            <textarea id="bemærkninger" placeholder="" name="bemærkninger"></textarea>
     </div>
+
+    <div class="diaspris">
+        <h6>Betalt?</h6>
+        <input type="radio" id="ja" name="diaspris" value="ja" required>
+        <label for="diaspris">Ja</label><br>
+        <input type="radio" id="nej" name="diaspris" value="nej" required>
+        <label for="diaspris">Nej</label>
+
+        <label for="aftaltPris">Aftalt pris</label>
+    <input type="number" id="aftaltPris" name="aftaltPris">
+        
+</div>
+</div>
+
+<div class="ekspedient">
+        <label for="ekspedient">Ekspedient:</label>
+        <input type="text" id="ekspedient" name="ekspedient" required>
+        <button class="saveBtn" onClick="window.print()">PRINT</button>
+    </div>
+
+</form>
+</div>
 </body>
+
 
 </html>
 <?php

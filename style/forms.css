@@ -83,8 +83,9 @@ label {
     grid-template-columns: repeat(2, 1fr);
     padding-top: 20px;
     padding-bottom: 10px;
-
 }
+
+
 
 .ramme {
     grid-area: 1 / 1 / 2 / 2;
@@ -147,4 +148,36 @@ label {
 
 .saveBtn:hover{
 	opacity: .7;
+}
+
+
+
+/* DIAS FORM */
+
+.dias-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.diasantal label {
+    display: block; 
+    padding: 0px;
+}
+
+.diaspuds label {
+    display: inline;
+}
+
+
+.prisogbemærkninger {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 20px;
+    padding-bottom: 10px;;
+}
+
+.diaspris {
+    padding-left: 30px;;
 }
