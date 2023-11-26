@@ -37,7 +37,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     </div>
 </div>
 
-<!-- Dias info -->
+<!-- Ordre info -->
 <div class="dias-wrapper">
    <div class="dias">
     <h6>Dias Type:</h6>

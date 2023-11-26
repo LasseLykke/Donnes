@@ -196,3 +196,13 @@ label {
     display: block;
     padding: 0px;
 }
+
+
+/* SMALFILM FORM */
+
+.smalfilm-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* REP FORM */

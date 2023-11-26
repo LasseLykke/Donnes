@@ -40,7 +40,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     </div>
 </div>
 
-<!-- Dias info -->
+<!-- Ordre info -->
 <div class="bånd-wrapper">
    <div class="båndType">
     <h6>Bånd Type:</h6>
