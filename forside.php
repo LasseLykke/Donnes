@@ -36,13 +36,13 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
         <div class="main">
             <div class="mainContent">
                 <h2>Bestillingsformular</h2><br>
-                    <a href="rammeOrdre.php">
+                    <a href="ordre_rammer.php">
                         <button>ADJ rammebestilling</button>
                     </a>
-                    <a href="båndordre.php">
+                    <a href="ordre_bånd.php">
                         <button>Bånd</button>
                     </a>
-                    <a href="diasordre.php">
+                    <a href="ordre_dias.php">
                         <button>Dias</button>
                     </a>
                     <a href="test.php">
