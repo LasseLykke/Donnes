@@ -181,3 +181,18 @@ label {
 .diaspris {
     padding-left: 30px;;
 }
+
+
+/* BÅND FORM */
+
+.bånd-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.båndType label {
+    display: block;
+    padding: 0px;
+}

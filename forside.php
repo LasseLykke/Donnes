@@ -39,8 +39,8 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                     <a href="rammeOrdre.php">
                         <button>ADJ rammebestilling</button>
                     </a>
-                    <a href="kundeOrdre.php">
-                        <button>Kunde ordre</button>
+                    <a href="båndordre.php">
+                        <button>Bånd</button>
                     </a>
                     <a href="diasordre.php">
                         <button>Dias</button>
