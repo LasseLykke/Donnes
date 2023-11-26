@@ -45,10 +45,10 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                     <a href="ordre_dias.php">
                         <button>Dias</button>
                     </a>
-                    <a href="test.php">
+                    <a href="ordre_smalfilm.php">
                         <button>Smalfilm</button>
                     </a>
-                    <a href="test.php">
+                    <a href="ordre_rep.php">
                         <button>Reperationer</button>
                     </a>
 
