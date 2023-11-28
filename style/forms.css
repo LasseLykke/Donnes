@@ -206,3 +206,54 @@ label {
 }
 
 /* REP FORM */
+.enheds-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.enheds-wrapper label {
+    display: block;
+    padding: 0;
+}
+
+.garanti {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.garanti label {
+    display: block;
+    padding: 0;
+}
+
+.garanti textarea {
+    width: 350px;
+    height: 100px;
+}
+
+.garantisag label {
+    display:inline;
+    padding: 10px;
+}
+
+.tilbehør {
+    padding-right: 20px;
+}
+
+
+.fejl {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.fejl label {
+    display: block;
+    padding: 0;
+}
+
+.fejl textarea {
+    width: 100%;
+    height: 200px;
+}
