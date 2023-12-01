@@ -49,7 +49,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                         <button>Smalfilm</button>
                     </a>
                     <a href="ordre_rep.php">
-                        <button>Reperationer</button>
+                        <button>Reparationer</button>
                     </a>
 
             </div>
