@@ -51,6 +51,9 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                     <a href="ordre_rep.php">
                         <button>Reparationer</button>
                     </a>
+                    <a href="export_rammer.php">
+                        <button>Rammer man-man</button>
+                    </a>
 
             </div>
         </div>

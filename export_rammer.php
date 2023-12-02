@@ -33,34 +33,47 @@ if (!$con) {
     die("Connection failed!" . mysqli_connect_error());
 }
 
-if (isset($_POST['submit-search'])) {
-    $search = mysqli_real_escape_string($con, $_POST['search']);
+// Get the current date and day of the week
+$currentDate = date("Y-m-d");
+$dayOfWeek = date("N"); // 1 (Monday) to 7 (Sunday)
+
+// Calculate the difference between the current day and Monday
+$daysUntilMonday = ($dayOfWeek == 1) ? 0 : (1 - $dayOfWeek);
+
+// Calculate the start and end date for the week (Monday to Monday)
+$startDate = date("Y-m-d", strtotime("$currentDate + $daysUntilMonday days"));
+$endDate = date("Y-m-d", strtotime("$startDate + 6 days"));
+
+
+
+
+
     $sql = "SELECT ramme.ordreID, ramme.profil, ramme.dates, kunder.fornavn, kunder.telefonnummer, ramme.profil, ramme.størrelse, ramme.glastype, ramme.passepartout, ramme.hulmål, 
     ramme.passepartoutFarve, ramme.antal, ramme.montering, ramme.billedetype, ramme.bemærkninger, ramme.ekspedient
     FROM ramme
-    INNER JOIN kunder
-    ON ramme.ordreID = kunder.kundeID 
-
-        WHERE kunder.kundeID LIKE '%$search' 
-        OR ramme.dates LIKE '%$search' 
-        OR kunder.fornavn LIKE '%$search'
-        OR kunder.telefonnummer LIKE '%$search'
-        OR ramme.profil LIKE '%$search'
-        OR ramme.størrelse LIKE '%$search'
-        OR ramme.glastype LIKE '%$search'
-        OR ramme.passepartout LIKE '%$search'
-        OR ramme.hulmål LIKE '%$search'
-        OR ramme.passepartoutFarve LIKE '%$search'
-        OR ramme.antal LIKE '%$search'
-        OR ramme.montering LIKE '%$search'
-        OR ramme.billedetype LIKE '%$search'
-        OR ramme.bemærkninger LIKE '%$search'
-        OR ramme.ekspedient LIKE '%$search'
-         DESC";
+    INNER JOIN kunder ON ramme.ordreID = kunder.kundeID 
+    WHERE (kunder.kundeID LIKE '%$search' 
+    OR ramme.dates LIKE '%$search' 
+    OR kunder.fornavn LIKE '%$search'
+    OR kunder.telefonnummer LIKE '%$search'
+    OR ramme.profil LIKE '%$search'
+    OR ramme.størrelse LIKE '%$search'
+    OR ramme.glastype LIKE '%$search'
+    OR ramme.passepartout LIKE '%$search'
+    OR ramme.hulmål LIKE '%$search'
+    OR ramme.passepartoutFarve LIKE '%$search'
+    OR ramme.antal LIKE '%$search'
+    OR ramme.montering LIKE '%$search'
+    OR ramme.billedetype LIKE '%$search'
+    OR ramme.bemærkninger LIKE '%$search'
+    OR ramme.ekspedient LIKE '%$search')
+    AND ramme.dates BETWEEN '$startDate' AND '$endDate'
+    ORDER BY ramme.ordreID";
 
     $result = mysqli_query($con, $sql);
     $queryResult = mysqli_num_rows($result);
-    echo '<table> <tr">
+    echo '<table>
+     <tr>
     <th> Ordre </th> 
     <th> Dato </th>
     <th> Fornavn </th> 
@@ -75,7 +88,8 @@ if (isset($_POST['submit-search'])) {
     <th> Montering </th>
     <th> Billede </th>
     <th> Bemærkninger </th>
-    <th> Ekspedient </th></tr>
+    <th> Ekspedient </th>
+    </tr>
     ';
     ?>
     <!-- Viser hvor mange resultater der er. -->
@@ -105,7 +119,7 @@ if (isset($_POST['submit-search'])) {
         }
         echo '</table>';
     } 
-} }
+} 
 
 mysqli_free_result($result);
 
