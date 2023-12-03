@@ -10,6 +10,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
     <head>
     <title>DONNÉS || FORSIDE</title>
+    <link rel="shortcut icon" href="fav.ico" type="image/x-icon"/>
     </head>
 
     <body>
