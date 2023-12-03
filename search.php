@@ -56,7 +56,7 @@ if (isset($_POST['submit-search'])) {
         OR ramme.billedetype LIKE '%$search'
         OR ramme.bemærkninger LIKE '%$search'
         OR ramme.ekspedient LIKE '%$search'
-         DESC";
+        ORDER BY ramme.ordreID DESC";
 
     $result = mysqli_query($con, $sql);
     $queryResult = mysqli_num_rows($result);

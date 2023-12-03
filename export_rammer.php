@@ -9,13 +9,13 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title>DONNÉS || Søge resultat</title>
+        <title>DONNÉS || UGELIG ORDRE</title>
         <link href="./style/layout.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <div class="søge-wrapper">
             <div class="søge-header">
-                <h1 class="søgeoverskrift">Søge Resultat</h1>
+                <h1 class="søgeoverskrift">Ugelig ordre</h1>
                 <a href="forside.php"><button class="backBtn">Tilbage</button></a>
             </div>
             <div class="søge-resultat">
@@ -33,51 +33,30 @@ if (!$con) {
     die("Connection failed!" . mysqli_connect_error());
 }
 
-// Get the current date and day of the week
-$currentDate = date("Y-m-d");
-$dayOfWeek = date("N"); // 1 (Monday) to 7 (Sunday)
+// Henter den nuværende dag på ugen (0= søndag, 1 = mandag .. , 6 = lørdag)
+$dayOfWeek = date("w");
 
-// Calculate the difference between the current day and Monday
-$daysUntilMonday = ($dayOfWeek == 1) ? 0 : (1 - $dayOfWeek);
+// Udregner forskellen mellem nuværende dag og mandag
+$daysUntilMonday = ($dayOfWeek == 0) ? 6 : ($dayOfWeek - 1);
 
-// Calculate the start and end date for the week (Monday to Monday)
-$startDate = date("Y-m-d", strtotime("$currentDate + $daysUntilMonday days"));
+// Udregner start og slut dato for ugen (mandag til søndag)
+$startDate = date("Y-m-d", strtotime("today - $daysUntilMonday days"));
 $endDate = date("Y-m-d", strtotime("$startDate + 6 days"));
 
 
 
-
-
-    $sql = "SELECT ramme.ordreID, ramme.profil, ramme.dates, kunder.fornavn, kunder.telefonnummer, ramme.profil, ramme.størrelse, ramme.glastype, ramme.passepartout, ramme.hulmål, 
+    $sql = "SELECT ramme.ordreID, ramme.profil, ramme.dates, ramme.profil, ramme.størrelse, ramme.glastype, ramme.passepartout, ramme.hulmål, 
     ramme.passepartoutFarve, ramme.antal, ramme.montering, ramme.billedetype, ramme.bemærkninger, ramme.ekspedient
-    FROM ramme
-    INNER JOIN kunder ON ramme.ordreID = kunder.kundeID 
-    WHERE (kunder.kundeID LIKE '%$search' 
-    OR ramme.dates LIKE '%$search' 
-    OR kunder.fornavn LIKE '%$search'
-    OR kunder.telefonnummer LIKE '%$search'
-    OR ramme.profil LIKE '%$search'
-    OR ramme.størrelse LIKE '%$search'
-    OR ramme.glastype LIKE '%$search'
-    OR ramme.passepartout LIKE '%$search'
-    OR ramme.hulmål LIKE '%$search'
-    OR ramme.passepartoutFarve LIKE '%$search'
-    OR ramme.antal LIKE '%$search'
-    OR ramme.montering LIKE '%$search'
-    OR ramme.billedetype LIKE '%$search'
-    OR ramme.bemærkninger LIKE '%$search'
-    OR ramme.ekspedient LIKE '%$search')
-    AND ramme.dates BETWEEN '$startDate' AND '$endDate'
-    ORDER BY ramme.ordreID";
+    FROM ramme 
+    WHERE ramme.dates BETWEEN '$startDate' AND '$endDate'";
 
     $result = mysqli_query($con, $sql);
     $queryResult = mysqli_num_rows($result);
+
     echo '<table>
      <tr>
     <th> Ordre </th> 
     <th> Dato </th>
-    <th> Fornavn </th> 
-    <th> Telefon </th>
     <th> Rammeprofil </th>
     <th> Størrelse </th>
     <th> Glas </th>
@@ -94,7 +73,7 @@ $endDate = date("Y-m-d", strtotime("$startDate + 6 days"));
     ?>
     <!-- Viser hvor mange resultater der er. -->
     <div class="resultat">
-    <?php echo "Der er " . $queryResult . " resultater";?>
+    <?php echo "Der er " . $queryResult . " ordre";?>
 </div>
 <?php
     if ($queryResult > 0) {
@@ -102,8 +81,6 @@ $endDate = date("Y-m-d", strtotime("$startDate + 6 days"));
             echo '<tr> 
             <td>' . $row["ordreID"] . '</td>
             <td>' . $row["dates"] . '</td>
-            <td> ' . $row["fornavn"] . '</td>
-            <td>' . $row["telefonnummer"] . '</td>
             <td> ' . $row["profil"] . '</td> 
             <td> ' . $row["størrelse"] . '</td> 
             <td> ' . $row["glastype"] . '</td> 
