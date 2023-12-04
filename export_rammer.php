@@ -11,11 +11,13 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     <head>
         <title>DONNÉS || UGELIG ORDRE</title>
         <link href="./style/layout.css" type="text/css" rel="stylesheet">
+        <link rel="shortcut icon" href="fav.ico" type="image/x-icon"/>
     </head>
     <body>
         <div class="søge-wrapper">
             <div class="søge-header">
-                <h1 class="søgeoverskrift">Ugelig ordre</h1>
+                <h1 class="søgeoverskrift">Ugelig ordre</h1><br>
+                <p class="småt">Mandag til mandag</p>
                 <a href="forside.php"><button class="backBtn">Tilbage</button></a>
             </div>
             <div class="søge-resultat">
@@ -105,6 +107,17 @@ mysqli_close($con);
 ?>
             </div> <!-- Lukker resultat -->
         </div> <!--Lukker wrapper-->
+        
+        <div>
+        <button onClick="window.print()">Udskriv</button>
+        </div>
+
+<!-- HOTFIX for at vende dokument udskrift i landscape -->
+<style type="text/css" media="print">
+    @page { 
+        size: landscape;
+    }
+</style>
     </body>
 
 </html>

@@ -15,6 +15,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
 
     <title>DONNÉS || REPARATION </title>
+    <link rel="shortcut icon" href="fav.ico" type="image/x-icon"/>
 </head>
 <body>
 <div class="form-wrapper">

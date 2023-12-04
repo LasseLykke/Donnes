@@ -52,11 +52,14 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                     <a href="ordre_rep.php">
                         <button>Reparationer</button>
                     </a>
-                    <a href="export_rammer.php">
-                        <button>Rammer man-man</button>
-                    </a>
-
             </div>
+
+                <div class="secContent">
+                    <h2>Export</h2><br>
+                    <a href="export_rammer.php">
+                        <button>Rammer ugelig</button>
+                    </a>
+                </div>
         </div>
 
     </body>

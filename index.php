@@ -9,6 +9,7 @@ include 'header.php';
 
 
     <title>DONNÉS || LOGIN</title>
+    <link rel="shortcut icon" href="fav.ico" type="image/x-icon"/>
 </head>
 
 <body>

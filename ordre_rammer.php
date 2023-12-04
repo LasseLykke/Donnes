@@ -91,6 +91,7 @@ $mysqli->close();
      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
    <link href="./style/forms.css" type="text/css" rel="stylesheet">
     <title>DONNÉS || Ramme bestilling</title>  <!-- Også det filen hedder -->
+    <link rel="shortcut icon" href="fav.ico" type="image/x-icon"/>
 </head>
 <body>
     

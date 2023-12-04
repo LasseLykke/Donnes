@@ -12,6 +12,7 @@ include 'header.php';
 
 
     <title>DONNÉS || SUCCESS</title>
+    <link rel="shortcut icon" href="fav.ico" type="image/x-icon"/>
 </head>
 <body>
     <div class="success-wrapper">

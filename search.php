@@ -10,6 +10,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 <html>
     <head>
         <title>DONNÉS || Søge resultat</title>
+        <link rel="shortcut icon" href="fav.ico" type="image/x-icon"/>
         <link href="./style/layout.css" type="text/css" rel="stylesheet">
     </head>
     <body>

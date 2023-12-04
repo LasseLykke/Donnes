@@ -72,4 +72,12 @@ placeholder {
 	color: var(--black);
 	font-size: 0.8rem;
 }
+
+/* For det med småt */
+.småt {
+    font-size: 0.75rem;
+    color: var(--black);
+    margin-top: -10px;
+    font-style: italic;
+}
  

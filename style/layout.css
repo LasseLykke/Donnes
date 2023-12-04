@@ -35,6 +35,8 @@
 
 .main {
 	background-color: var(--offgrey);
+	height: 100vh;
+	display: grid;
 }
 
 .main-search {
@@ -42,8 +44,14 @@
 }
 
 .mainContent {
-	height: 100vh;
-	max-width: 600px;
+	width: 600px;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+.secContent {
+	height: 50vh;
+	width: 600px;
 	margin: 0 auto;
 	padding-top: 20px;
 }

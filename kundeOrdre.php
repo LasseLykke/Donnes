@@ -69,9 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- classless style, ændres når det er sat korrekt op ÆNDRES NÅR CSS ER SAT OP-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <title>DONNÉS || Kundeordre</title>  <!-- Også det filen hedder -->
+    <link rel="shortcut icon" href="fav.ico" type="image/x-icon"/>
 </head>
 
 
