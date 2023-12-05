@@ -1,9 +1,11 @@
 <?php 
+
 session_start();
 
 if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
     include 'header.php';
+    include 'connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,9 +22,11 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                 <p class="småt">Mandag til mandag</p>
                 <a href="forside.php"><button class="backBtn">Tilbage</button></a>
             </div>
+
             <div class="søge-resultat">
             <?php
 // Åbner forbindelse til database.
+/*
 $hostname = "localhost";
 $username = "root";
 $password = "";
@@ -33,7 +37,7 @@ $con = mysqli_connect($hostname, $username, $password, $dbname);
 // Tjekker om der er forbindelse eller ej.
 if (!$con) {
     die("Connection failed!" . mysqli_connect_error());
-}
+} */ 
 
 // Henter den nuværende dag på ugen (0= søndag, 1 = mandag .. , 6 = lørdag)
 $dayOfWeek = date("w");
@@ -73,10 +77,12 @@ $endDate = date("Y-m-d", strtotime("$startDate + 6 days"));
     </tr>
     ';
     ?>
+    
     <!-- Viser hvor mange resultater der er. -->
     <div class="resultat">
     <?php echo "Der er " . $queryResult . " ordre";?>
 </div>
+
 <?php
     if ($queryResult > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
@@ -98,13 +104,15 @@ $endDate = date("Y-m-d", strtotime("$startDate + 6 days"));
         }
         echo '</table>';
     } 
-} 
+ 
 
 mysqli_free_result($result);
 
 // Lukker forbindelsen.
 mysqli_close($con);
-?>
+}
+    ?>
+
             </div> <!-- Lukker resultat -->
         </div> <!--Lukker wrapper-->
         
