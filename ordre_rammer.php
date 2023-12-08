@@ -1,6 +1,6 @@
 <?php
 
-/*include 'header.php';*/
+include 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data using POST method
@@ -20,15 +20,6 @@ $billedetype = $_POST["billedetype"];
 $bemærkninger = $_POST["bemærkninger"];
 $ekspedient = $_POST["ekspedient"];
 
-
-
-// Forbinder til database
-$mysqli = new mysqli("localhost", "root", "", "Donnes");
-
-// Tjekker forbindelsen
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
-}
 
 // Begin a transaction
 $mysqli->begin_transaction();
@@ -217,27 +208,6 @@ $mysqli->close();
             <textarea id="bemærkninger" placeholder="F.eks er ikke betalt.. eller posenummer" name="bemærkninger"></textarea>
         </div>
     </div>
-
-
-<!-- Bliver fjernet da ordre skal betales!
-
-    <div class="betaling">
-        <h4>Betaling</h4>
-            <label for="pris">Aftalt pris</label>
-            <input type="number" id="pris" name="pris">
-
-        <h4>Betalt</h4>
-            <input type="radio" id="betalt" name="betalt" value="Ja">
-            <label for="betalt">Ja</label>
-            <input type="radio" id="betalt" name="betalt" value="Nej">
-            <label for="betalt">Nej</label>
-
-        <h4>Bestilt</h4>
-            <input type="radio" id="bestilt" name="bestilt" value="Ja">
-            <label for="bestilt">Ja</label>
-            <input type="radio" id="bestilt" name="bestilt" value="Nej">
-            <label for="bestilt">Nej</label>
-    </div> -->
 
     <div class="ekspedient">
         <label for="ekspedient">Ekspedient:</label>

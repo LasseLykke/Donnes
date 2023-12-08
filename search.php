@@ -4,6 +4,7 @@ session_start();
 if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
     include 'header.php';
+    include 'connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -21,21 +22,10 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             </div>
             <div class="søge-resultat">
             <?php
-// Åbner forbindelse til database.
-$hostname = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Donnes";
 
-// Forbinder til database
-$con = mysqli_connect($hostname, $username, $password, $dbname);
-// Tjekker om der er forbindelse eller ej.
-if (!$con) {
-    die("Connection failed!" . mysqli_connect_error());
-}
 
 if (isset($_POST['submit-search'])) {
-    $search = mysqli_real_escape_string($con, $_POST['search']);
+    $search = mysqli_real_escape_string($conn, $_POST['search']);
     $sql = "SELECT ramme.ordreID, ramme.profil, ramme.dates, kunder.fornavn, kunder.telefonnummer, ramme.profil, ramme.størrelse, ramme.glastype, ramme.passepartout, ramme.hulmål, 
     ramme.passepartoutFarve, ramme.antal, ramme.montering, ramme.billedetype, ramme.bemærkninger, ramme.ekspedient
     FROM ramme
@@ -59,7 +49,7 @@ if (isset($_POST['submit-search'])) {
         OR ramme.ekspedient LIKE '%$search'
         ORDER BY ramme.ordreID DESC";
 
-    $result = mysqli_query($con, $sql);
+    $result = mysqli_query($conn, $sql);
     $queryResult = mysqli_num_rows($result);
     echo '<table> <tr">
     <th> Ordre </th> 
@@ -111,7 +101,7 @@ if (isset($_POST['submit-search'])) {
 mysqli_free_result($result);
 
 // Lukker forbindelsen.
-mysqli_close($con);
+mysqli_close($conn);
 ?>
             </div> <!-- Lukker resultat -->
         </div> <!--Lukker wrapper-->

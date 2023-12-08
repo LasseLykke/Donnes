@@ -25,19 +25,8 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
             <div class="søge-resultat">
             <?php
-// Åbner forbindelse til database.
-/*
-$hostname = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Donnes";
 
-// Forbinder til database
-$con = mysqli_connect($hostname, $username, $password, $dbname);
-// Tjekker om der er forbindelse eller ej.
-if (!$con) {
-    die("Connection failed!" . mysqli_connect_error());
-} */ 
+
 
 // Henter den nuværende dag på ugen (0= søndag, 1 = mandag .. , 6 = lørdag)
 $dayOfWeek = date("w");
@@ -56,7 +45,7 @@ $endDate = date("Y-m-d", strtotime("$startDate + 6 days"));
     FROM ramme 
     WHERE ramme.dates BETWEEN '$startDate' AND '$endDate'";
 
-    $result = mysqli_query($con, $sql);
+    $result = mysqli_query($conn, $sql);
     $queryResult = mysqli_num_rows($result);
 
     echo '<table>
@@ -109,7 +98,7 @@ $endDate = date("Y-m-d", strtotime("$startDate + 6 days"));
 mysqli_free_result($result);
 
 // Lukker forbindelsen.
-mysqli_close($con);
+mysqli_close($conn);
 }
     ?>
 

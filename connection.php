@@ -6,8 +6,9 @@ $password = "";
 
 $db_name = "Donnes";
 
-$con = mysqli_connect($sname, $uname, $password, $db_name);
+$conn = mysqli_connect($sname, $uname, $password, $db_name);
+$mysqli = new mysqli("localhost", "root", "", "Donnes");
 
-if (!$con) {
-    die( "Connection failed!" . mysqli_connect_error());
+if (!$conn) {
+    echo "Connection failed!" . mysqli_connect_error();
 }
