@@ -35,7 +35,7 @@
 
 .main {
 	background-color: var(--offgrey);
-	height: 100vh;
+	height: 50vh;
 	display: grid;
 }
 
@@ -50,10 +50,10 @@
 }
 
 .secContent {
-	height: 50vh;
+	/*height: 50vh;*/
 	width: 600px;
 	margin: 0 auto;
-	padding-top: 20px;
+	padding-top: 50px;
 }
 
 
