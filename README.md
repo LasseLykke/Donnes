@@ -1,4 +1,4 @@
-# Donnes
+# Donnés
 
 ### Building blocks: PHP and MySQL using mysqli and PDO.
 
