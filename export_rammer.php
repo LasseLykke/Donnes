@@ -11,7 +11,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title>DONNÉS || UGELIG ORDRE</title>
+        <title>DONNÉS || UGENTLIG ORDRE</title>
         <link href="./style/layout.css" type="text/css" rel="stylesheet">
         <link rel="shortcut icon" href="fav.ico" type="image/x-icon"/>
     </head>
