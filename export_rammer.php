@@ -18,7 +18,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     <body>
         <div class="søge-wrapper">
             <div class="søge-header">
-                <h1 class="søgeoverskrift">Ugelig ordre</h1><br>
+                <h1 class="søgeoverskrift">Ugentlig ordre</h1><br>
                 <p class="småt">Mandag til mandag</p>
                 <a href="forside.php"><button class="backBtn">Tilbage</button></a>
             </div>
