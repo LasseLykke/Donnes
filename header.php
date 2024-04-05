@@ -18,4 +18,6 @@ include 'connection.php';
     <meta name="keywords" content="internal tooling for ordermanagement system." />
     <meta name="description" content="Internal tooling for ordremanagement system and database" />
     <meta name="author" content="Lasse Lykke @ Lasselykke.com" />
+    <!-- LOGUD TIMER 15min -->
+    <meta http-equiv="refresh" content="900;url=logout.php" />
 </head>

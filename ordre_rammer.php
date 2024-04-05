@@ -83,6 +83,7 @@ $mysqli->close();
    <link href="./style/forms.css" type="text/css" rel="stylesheet">
     <title>DONNÉS || Ramme bestilling</title>  <!-- Også det filen hedder -->
     <link rel="shortcut icon" href="fav.ico" type="image/x-icon"/>
+    <meta http-equiv="refresh" content="900;url=logout.php" />
 </head>
 <body>
     
