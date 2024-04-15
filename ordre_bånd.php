@@ -55,11 +55,15 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     <label for="DV">DV:</label>
     <input type="number" id="DV" name="DV" value="DV"><br>
     <label for="BETA">Betamax:</label>
-    <input type="number" id="BETA" name="BETA" value="BETA"><br>    
+    <input type="number" id="BETA" name="BETA" value="BETA"><br>   
+    <label for="kassettebånd">Kassettebånd:</label>
+    <input type="number" id="kassettebånd" name="kassettebånd" value="kassettebånd"><br>   
+
 </div>
 
 <div class="medie">
     <h6>Medie:</h6>
+    <p>Husk at se bemærkninger for evt split</p>
     <label for="USB">USB</label>
     <input type="number" id="USB" name="USB" value="USB"><br>
     <label for="DVD">DVD</label>
@@ -68,7 +72,6 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 </div>
 
 <!-- Bemærkninger og pris -->
-
 <div class="prisogbemærkninger">
     <div class="bemærkning">
     <label for="bemærkninger">Bemærkninger:</label>
