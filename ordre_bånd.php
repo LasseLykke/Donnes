@@ -2,7 +2,69 @@
 session_start();
 if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
-   
+   include 'connection.php';
+
+   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $fornavn = $_POST["fornavn"];
+    $telefonnummer = $_POST["telefonnummer"];
+    $bånd_kundeID = $_POST["båndKundeID"];
+    $båndType = $_POST["båndType"];
+    $båndMedie = $_POST["båndMedie"];
+    $båndNotes = $_POST["båndBemærkninger"];
+    $båndBetalt = $_POST["båndBetalt"];
+
+
+
+// Begin a transaction
+$mysqli->begin_transaction();
+
+// Define SQL queries with placeholders for each table
+$sql1 = "INSERT INTO kunder (fornavn, telefonnummer) VALUES (?, ?)";
+$sql2 = "INSERT INTO bånd (båndkundeID, båndType, båndMedie, båndBemærkninger, båndBetalt) VALUES (?, ?, ?, ?, ?)";
+
+// Create prepared statements for each query
+$stmt1 = $mysqli->prepare($sql1);
+$stmt2 = $mysqli->prepare($sql2);
+
+if ($stmt1 === false || $stmt2 === false) {
+    die("Error: " . $mysqli->error);
+}
+
+
+// Bind parameters and their values for the first statement
+$stmt1->bind_param("si", $fornavn, $telefonnummer);
+
+// Bind parameters and their values for the second statement (leaving one row out)
+// You can decide to insert or not based on your requirements
+if ($ramme_kundeID != "value_to_skip") {
+    $stmt2->bind_param("sssss", $bånd_kundeID, $båndType, $båndMedie, $båndNotes, $båndBetalt);
+    $stmt2->execute();
+}
+
+// Execute the prepared statement for the first table
+$stmt1->execute();
+
+// Check for execution errors
+if ($stmt1->errno || $stmt2->errno) {
+    $mysqli->rollback(); // Rollback the transaction in case of an error
+    die("Error: " . $stmt1->error . " or " . $stmt2->error);
+}
+
+// Commit the transaction if the first statement executed successfully
+$mysqli->commit();
+
+// Close the statements and the database connection
+$stmt1->close();
+$stmt2->close();
+$mysqli->close();
+
+
+    //  Går tilbage til bekræftelses side fra form.
+    header("Location: success.php");
+    exit();
+
+   }
 
 
 /*include 'header.php';*/
@@ -40,6 +102,12 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
         <label for="telefonnummer">Telefonummer:</label>
         <input type="number" id="telefonnummer" name="telefonnummer" required>
     </div>
+
+    <!-- Bliver skjult -->
+    <div style="display: none;">
+        <label for="bånd_kundeID">KundeID</label>
+        <input type="number" id="båndKundeID" name="båndKundeID">
+    </div>
 </div>
 
 <!-- Ordre info -->
@@ -47,27 +115,27 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
    <div class="båndType">
     <h6>Bånd Type:</h6>
     <label for="VHS">VHS:</label>
-    <input type="number" id="VHS" name="VHS" value="VHS"><br>
+    <input type="number" id="VHS" name="båndType" value="VHS"><br>
     <label for="VHS-C">VHS-C:</label>
-    <input type="number" id="VHS-C" name="VHS-C" value="VHS-C"><br>
+    <input type="number" id="VHS-C" name="båndType" value="VHS-C"><br>
     <label for="HI8">Hi8:</label>
-    <input type="number" id="HI8" name="HI8" value="HI8"><br>
+    <input type="number" id="HI8" name="båndType" value="HI8"><br>
     <label for="DV">DV:</label>
-    <input type="number" id="DV" name="DV" value="DV"><br>
+    <input type="number" id="DV" name="båndType" value="DV"><br>
     <label for="BETA">Betamax:</label>
-    <input type="number" id="BETA" name="BETA" value="BETA"><br>   
+    <input type="number" id="BETA" name="båndType" value="BETA"><br>   
     <label for="kassettebånd">Kassettebånd:</label>
-    <input type="number" id="kassettebånd" name="kassettebånd" value="kassettebånd"><br>   
+    <input type="number" id="kassettebånd" name="båndType" value="kassettebånd"><br>   
 
 </div>
 
 <div class="medie">
     <h6>Medie:</h6>
-    <p>Husk at se bemærkninger for evt split</p>
+    <p>(Husk at se bemærkninger for evt split)</p>
     <label for="USB">USB</label>
-    <input type="number" id="USB" name="USB" value="USB"><br>
+    <input type="number" id="USB" name="båndMedie" value="USB"><br>
     <label for="DVD">DVD</label>
-    <input type="number" id="DVD" name="DVD" value="DVD"><br>
+    <input type="number" id="DVD" name="båndMedie" value="DVD"><br>
 </div>
 </div>
 
@@ -75,14 +143,14 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 <div class="prisogbemærkninger">
     <div class="bemærkning">
     <label for="bemærkninger">Bemærkninger:</label>
-            <textarea id="bemærkninger" placeholder="" name="bemærkninger"></textarea>
+            <textarea id="bemærkninger" placeholder="" name="båndBemærkninger"></textarea>
     </div>
 
     <div class="diaspris">
         <h6>Betalt?</h6>
-        <input type="radio" id="ja" name="diaspris" value="ja" required>
+        <input type="radio" id="ja" name="båndBetalt" value="ja" required>
         <label for="diaspris">Ja</label><br>
-        <input type="radio" id="nej" name="diaspris" value="nej" required>
+        <input type="radio" id="nej" name="båndBetalt" value="nej" required>
         <label for="diaspris">Nej</label>
 
         <label for="aftaltPris">Aftalt pris</label>
@@ -94,7 +162,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 <div class="ekspedient">
         <label for="ekspedient">Ekspedient:</label>
         <input type="text" id="ekspedient" name="ekspedient" required>
-        <button class="saveBtn" onClick="window.print()">PRINT</button>
+        <button class="saveBtn" onClick="window.print()">PRINT & GEM</button>
     </div>
 
 </form>

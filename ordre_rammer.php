@@ -1,4 +1,6 @@
 <?php
+session_start();
+if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
 include 'connection.php';
 
@@ -222,3 +224,10 @@ $mysqli->close();
 </div>
 </body>
 </html>
+<?php
+/* Hvis ikke logget ind bliver man sendt tilbage til login skærm */
+} else {
+    header("Location: index.php");
+    exit();
+}
+?>
