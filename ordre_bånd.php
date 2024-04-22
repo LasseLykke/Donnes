@@ -8,10 +8,10 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
     $fornavn = $_POST["fornavn"];
     $telefonnummer = $_POST["telefonnummer"];
-    $bånd_kundeID = $_POST["båndKundeID"];
+    $bånd_kundeID = $_POST["bånd_kundeID"];
     $båndType = $_POST["båndType"];
     $båndMedie = $_POST["båndMedie"];
-    $båndNotes = $_POST["båndBemærkninger"];
+    $båndNotes = $_POST["båndNotes"];
     $båndBetalt = $_POST["båndBetalt"];
 
 
@@ -21,7 +21,7 @@ $mysqli->begin_transaction();
 
 // Define SQL queries with placeholders for each table
 $sql1 = "INSERT INTO kunder (fornavn, telefonnummer) VALUES (?, ?)";
-$sql2 = "INSERT INTO bånd (båndkundeID, båndType, båndMedie, båndBemærkninger, båndBetalt) VALUES (?, ?, ?, ?, ?)";
+$sql2 = "INSERT INTO bånd (bånd_kundeID, båndType, båndMedie, båndNotes, båndBetalt) VALUES (?, ?, ?, ?, ?)";
 
 // Create prepared statements for each query
 $stmt1 = $mysqli->prepare($sql1);
@@ -37,7 +37,7 @@ $stmt1->bind_param("si", $fornavn, $telefonnummer);
 
 // Bind parameters and their values for the second statement (leaving one row out)
 // You can decide to insert or not based on your requirements
-if ($ramme_kundeID != "value_to_skip") {
+if ($bånd_kundeID != "value_to_skip") {
     $stmt2->bind_param("sssss", $bånd_kundeID, $båndType, $båndMedie, $båndNotes, $båndBetalt);
     $stmt2->execute();
 }
@@ -85,7 +85,7 @@ $mysqli->close();
 </head>
 <body>
 <div class="form-wrapper">
-<form class="forminput" action="" method="">
+<form class="forminput" action="" method="POST">
 <h1 class="bestillingsheader">Bånd Ordre</h1>
 
 <!-- Basic infomation --> 
@@ -106,7 +106,7 @@ $mysqli->close();
     <!-- Bliver skjult -->
     <div style="display: none;">
         <label for="bånd_kundeID">KundeID</label>
-        <input type="number" id="båndKundeID" name="båndKundeID">
+        <input type="number" id="bånd_kundeID" name="bånd_kundeID">
     </div>
 </div>
 
@@ -143,7 +143,7 @@ $mysqli->close();
 <div class="prisogbemærkninger">
     <div class="bemærkning">
     <label for="bemærkninger">Bemærkninger:</label>
-            <textarea id="bemærkninger" placeholder="" name="båndBemærkninger"></textarea>
+            <textarea id="bemærkninger" placeholder="" name="båndNotes"></textarea>
     </div>
 
     <div class="diaspris">
