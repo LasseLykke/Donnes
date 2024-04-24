@@ -10,6 +10,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     $telefonnummer = $_POST["telefonnummer"];
     $bånd_kundeID = $_POST["bånd_kundeID"];
     $båndType = $_POST["båndType"];
+    $båndDates = $_POST["båndDates"];
     $båndMedie = $_POST["båndMedie"];
     $båndNotes = $_POST["båndNotes"];
     $båndBetalt = $_POST["båndBetalt"];
@@ -92,7 +93,7 @@ $mysqli->close();
 <div class="baseinfo">
     <div class="dato">
         <label for="dates">Indleverings dato: *</label>
-        <input type="date" id="dates" name="Indleveringsdato" reguired >
+        <input type="date" id="dates" name="båndDates" reguired >
     </div>
     <div class="kundenavn">
         <label for="fornavn">Fornavn:</label>
