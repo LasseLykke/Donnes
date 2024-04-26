@@ -33,7 +33,7 @@ if(isset($_GET['error'])) {?>
 </div>
 
     <div class="footer">
-            <p div class="version">Version 1.0</p>
+            <p div class="version">Version 1.1</p>
         </div>
     </div>
 </body>

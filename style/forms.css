@@ -199,7 +199,7 @@ label {
 }
 
 .båndType label {
-    display: block;
+    display: inline-block;
     padding: 0px;
 }
 

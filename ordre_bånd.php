@@ -9,9 +9,11 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     $fornavn = $_POST["fornavn"];
     $telefonnummer = $_POST["telefonnummer"];
     $bånd_kundeID = $_POST["bånd_kundeID"];
-    $båndType = $_POST["båndType"];
     $båndDates = $_POST["båndDates"];
+    $båndType = $_POST["båndType"];
+    $båndAntal = $_POST["båndAntal"];
     $båndMedie = $_POST["båndMedie"];
+    $båndMedieKopi = isset($_POST["båndMedieKopi"]) ? intval($_POST["båndMedieKopi"]) : 0;
     $båndNotes = $_POST["båndNotes"];
     $båndBetalt = $_POST["båndBetalt"];
 
@@ -22,7 +24,7 @@ $mysqli->begin_transaction();
 
 // Define SQL queries with placeholders for each table
 $sql1 = "INSERT INTO kunder (fornavn, telefonnummer) VALUES (?, ?)";
-$sql2 = "INSERT INTO bånd (bånd_kundeID, båndType, båndMedie, båndNotes, båndBetalt) VALUES (?, ?, ?, ?, ?)";
+$sql2 = "INSERT INTO bånd (bånd_kundeID, båndDates, båndType, båndAntal, båndMedie, båndMedieKopi, båndNotes, båndBetalt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 // Create prepared statements for each query
 $stmt1 = $mysqli->prepare($sql1);
@@ -39,7 +41,7 @@ $stmt1->bind_param("si", $fornavn, $telefonnummer);
 // Bind parameters and their values for the second statement (leaving one row out)
 // You can decide to insert or not based on your requirements
 if ($bånd_kundeID != "value_to_skip") {
-    $stmt2->bind_param("sssss", $bånd_kundeID, $båndType, $båndMedie, $båndNotes, $båndBetalt);
+    $stmt2->bind_param("ssssssss", $bånd_kundeID, $båndDates, $båndType, $båndAntal, $båndMedie, $båndMedieKopi, $båndNotes, $båndBetalt);
     $stmt2->execute();
 }
 
@@ -115,28 +117,41 @@ $mysqli->close();
 <div class="bånd-wrapper">
    <div class="båndType">
     <h6>Bånd Type:</h6>
-    <label for="VHS">VHS:</label>
-    <input type="number" id="VHS" name="båndType" value="VHS"><br>
-    <label for="VHS-C">VHS-C:</label>
-    <input type="number" id="VHS-C" name="båndType" value="VHS-C"><br>
-    <label for="HI8">Hi8:</label>
-    <input type="number" id="HI8" name="båndType" value="HI8"><br>
-    <label for="DV">DV:</label>
-    <input type="number" id="DV" name="båndType" value="DV"><br>
-    <label for="BETA">Betamax:</label>
-    <input type="number" id="BETA" name="båndType" value="BETA"><br>   
-    <label for="kassettebånd">Kassettebånd:</label>
-    <input type="number" id="kassettebånd" name="båndType" value="kassettebånd"><br>   
+    <input type="checkbox" id="VHS" name="båndType" value="VHS">
+    <label for="VHS">VHS</label><br>
+
+    <input type="checkbox" id="VHS-C" name="båndType" value="VHS-C">
+    <label for="VHS-C">VHS-C</label><br>
+    
+    <input type="checkbox" id="HI8" name="båndType" value="HI8">
+    <label for="HI8">HI8</label><br>
+
+    <input type="checkbox" id="DV" name="båndType" value="DV">
+    <label for="DV">DV</label><br>
+
+    <input type="checkbox" id="BETAMAX" name="båndType" value="BETAMAX">
+    <label for="BETAMAX">BETAMAX</label><br>
+
+    <input type="checkbox" id="KASSETTEBÅND" name="båndType" value="KASSETTEBÅND">
+    <label for="KASSETTEBÅND">KASSETTEBÅND</label><br>
+
+    <label for="båndAntal">Antal bånd ialt</label>
+    <input type="numer" id="båndAntal" name="båndAntal">
 
 </div>
 
 <div class="medie">
-    <h6>Medie:</h6>
+    <h6>Medie Type:</h6>
     <p>(Husk at se bemærkninger for evt split)</p>
-    <label for="USB">USB</label>
-    <input type="number" id="USB" name="båndMedie" value="USB"><br>
-    <label for="DVD">DVD</label>
-    <input type="number" id="DVD" name="båndMedie" value="DVD"><br>
+    
+    <input type="checkbox" id="USB" name="båndMedie" value="USB">
+    <label for="USB">USB</label><br>
+
+    <input type="checkbox" id="DVD" name="båndMedie" value="DVD">
+    <label for="DVD">DVD</label><br>
+
+    <label for="båndMedieKopi">Kopier?</label>
+    <input type="numer" id="båndMedieKopil" name="båndMedieKopi">
 </div>
 </div>
 
@@ -154,7 +169,7 @@ $mysqli->close();
         <input type="radio" id="nej" name="båndBetalt" value="nej" required>
         <label for="diaspris">Nej</label>
 
-        <label for="aftaltPris">Aftalt pris</label>
+        <label for="aftaltPris">Aftalt samlet pris</label>
     <input type="number" id="aftaltPris" name="aftaltPris">
         
 </div>
