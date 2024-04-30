@@ -26,11 +26,11 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
 if (isset($_POST['submit-search'])) {
     $search = mysqli_real_escape_string($conn, $_POST['search']);
-    $sql = "SELECT ramme.ordreID, ramme.profil, ramme.dates, kunder.fornavn, kunder.telefonnummer, ramme.profil, ramme.størrelse, ramme.glastype, ramme.passepartout, ramme.hulmål, 
+    $sql = "SELECT ramme.rammeID, ramme.profil, ramme.dates, kunder.fornavn, kunder.telefonnummer, ramme.profil, ramme.størrelse, ramme.glastype, ramme.passepartout, ramme.hulmål, 
     ramme.passepartoutFarve, ramme.antal, ramme.montering, ramme.billedetype, ramme.bemærkninger, ramme.ekspedient
     FROM ramme
     INNER JOIN kunder
-    ON ramme.ordreID = kunder.kundeID 
+    ON ramme.rammeID = kunder.kundeID 
 
         WHERE kunder.kundeID LIKE '%$search' 
         OR ramme.dates LIKE '%$search' 

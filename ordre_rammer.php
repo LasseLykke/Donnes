@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data using POST method
 $fornavn = $_POST["fornavn"];
 $telefonnummer = $_POST["telefonnummer"];
-$ramme_kundeID =$_POST["kundeID"];
+$rammeID =$_POST["kundeID"];
 $dates = $_POST["Indleveringsdato"];
 $profil = $_POST["profil"];
 $størrelse = $_POST["størrelse"];
@@ -28,7 +28,7 @@ $mysqli->begin_transaction();
 
 // Define SQL queries with placeholders for each table
 $sql1 = "INSERT INTO kunder (fornavn, telefonnummer) VALUES (?, ?)";
-$sql2 = "INSERT INTO ramme (ramme_kundeID, dates, profil, størrelse, glastype, passepartout, hulmål, passepartoutFarve, antal, montering, billedetype, bemærkninger, ekspedient) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql2 = "INSERT INTO ramme (rammeID, dates, profil, størrelse, glastype, passepartout, hulmål, passepartoutFarve, antal, montering, billedetype, bemærkninger, ekspedient) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 // Create prepared statements for each query
 $stmt1 = $mysqli->prepare($sql1);
@@ -44,8 +44,8 @@ $stmt1->bind_param("si", $fornavn, $telefonnummer);
 
 // Bind parameters and their values for the second statement (leaving one row out)
 // You can decide to insert or not based on your requirements
-if ($ramme_kundeID != "value_to_skip") {
-    $stmt2->bind_param("sssssssssssss", $ramme_kundeID, $dates, $profil, $størrelse, $glastype, $passepartout, $hulmål, $passepartoutFarve, $antal, $montering, $billedetype, $bemærkninger, $ekspedient);
+if ($rammeID != "value_to_skip") {
+    $stmt2->bind_param("sssssssssssss", $rammeID, $dates, $profil, $størrelse, $glastype, $passepartout, $hulmål, $passepartoutFarve, $antal, $montering, $billedetype, $bemærkninger, $ekspedient);
     $stmt2->execute();
 }
 
@@ -118,8 +118,8 @@ $mysqli->close();
 
     <!-- Bliver skjult -->
     <div style="display: none;">
-        <label for="ramme_kundeID">KundeID</label>
-        <input type="number" id="ramme_kundeID" name="kundeID">
+        <label for="rammeID">KundeID</label>
+        <input type="number" id="rammeID" name="kundeID">
     </div>
 
 
