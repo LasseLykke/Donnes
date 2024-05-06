@@ -17,6 +17,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     $båndNotes = $_POST["båndNotes"];
     $båndBetalt = $_POST["båndBetalt"];
     $båndPris = $_POST["båndPris"];
+    $ekspedient = $_POST["ekspedient"];
 
 
 
@@ -25,7 +26,7 @@ $mysqli->begin_transaction();
 
 // Define SQL queries with placeholders for each table
 $sql1 = "INSERT INTO kunder (fornavn, telefonnummer) VALUES (?, ?)";
-$sql2 = "INSERT INTO bånd (båndID, båndDates, båndType, båndAntal, båndMedie, båndMedieKopi, båndNotes, båndBetalt, båndPris) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql2 = "INSERT INTO bånd (båndID, båndDates, båndType, båndAntal, båndMedie, båndMedieKopi, båndNotes, båndBetalt, båndPris, ekspedient) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 // Create prepared statements for each query
 $stmt1 = $mysqli->prepare($sql1);
@@ -42,7 +43,7 @@ $stmt1->bind_param("si", $fornavn, $telefonnummer);
 // Bind parameters and their values for the second statement (leaving one row out)
 // You can decide to insert or not based on your requirements
 if ($båndID != "value_to_skip") {
-    $stmt2->bind_param("sssssssss", $båndID, $båndDates, $båndType, $båndAntal, $båndMedie, $båndMedieKopi, $båndNotes, $båndBetalt, $båndPris);
+    $stmt2->bind_param("ssssssssss", $båndID, $båndDates, $båndType, $båndAntal, $båndMedie, $båndMedieKopi, $båndNotes, $båndBetalt, $båndPris, $ekspedient);
     $stmt2->execute();
 }
 

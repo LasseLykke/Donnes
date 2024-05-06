@@ -45,7 +45,7 @@ $stmt1->bind_param("si", $fornavn, $telefonnummer);
 // Bind parameters and their values for the second statement (leaving one row out)
 // You can decide to insert or not based on your requirements
 if ($rammeID != "value_to_skip") {
-    $stmt2->bind_param("sssssssssssss", $rammeID, $dates, $profil, $størrelse, $glastype, $passepartout, $hulmål, $passepartoutFarve, $antal, $montering, $billedetype, $bemærkninger, $ekspedient);
+    $stmt2->bind_param("issssssssssss", $rammeID, $dates, $profil, $størrelse, $glastype, $passepartout, $hulmål, $passepartoutFarve, $antal, $montering, $billedetype, $bemærkninger, $ekspedient);
     $stmt2->execute();
 }
 

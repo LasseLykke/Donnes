@@ -41,7 +41,7 @@ $endDate = date("Y-m-d", strtotime("$startDate + 6 days"));
 
 
 
-    $sql = "SELECT ramme.ordreID, ramme.profil, ramme.dates, ramme.profil, ramme.størrelse, ramme.glastype, ramme.passepartout, ramme.hulmål, 
+    $sql = "SELECT ramme.rammeID, ramme.profil, ramme.dates, ramme.profil, ramme.størrelse, ramme.glastype, ramme.passepartout, ramme.hulmål, 
     ramme.passepartoutFarve, ramme.antal, ramme.montering, ramme.billedetype, ramme.bemærkninger, ramme.ekspedient
     FROM ramme 
     WHERE ramme.dates BETWEEN '$startDate' AND '$endDate'";

@@ -23,8 +23,8 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     <div class="søge-resultat">
 <?php
     if (isset($_POST['submit-search'])) {
-    $search = mysqli_real_escape_string($conn, $_POST['search']);
-    $sql = "SELECT 
+        $search = mysqli_real_escape_string($conn, $_POST['search']);
+        $sql = "SELECT 
             ramme.rammeID, 
             ramme.dates, 
             kunder.fornavn, 
@@ -39,7 +39,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             ramme.montering, 
             ramme.billedetype, 
             ramme.bemærkninger, 
-            ramme.ekspedient,
+            ramme.ekspedient AS ekspedient,
             NULL AS båndID,
             NULL AS båndDates,
             NULL AS båndType,
@@ -48,7 +48,8 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             NULL AS båndMedieKopi,
             NULL AS båndNotes,
             NULL AS båndBetalt,
-            NULL AS båndPris
+            NULL AS båndPris,
+            NULL AS ekspedient
         FROM 
             ramme 
         INNER JOIN 
@@ -94,7 +95,8 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             bånd.båndMedieKopi,
             bånd.båndNotes,
             bånd.båndBetalt,
-            bånd.båndPris
+            bånd.båndPris,
+            bånd.ekspedient AS ekspedient
         FROM 
             bånd 
         INNER JOIN 
@@ -111,99 +113,122 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             OR bånd.båndNotes LIKE '%$search%'
             OR bånd.båndBetalt LIKE '%$search%'
             OR bånd.båndPris LIKE '%$search%'
+            OR bånd.ekspedient LIKE '%$search%'
         ORDER BY rammeID DESC";
 
 
-    $result = mysqli_query($conn, $sql);
-    $queryResult = mysqli_num_rows($result);
-    echo '<table> <tr>';
-    if (!empty($row["rammeID"])) {
-        // Ramme ordre
-        echo '
-            <th> Ordre </th> 
-            <th> Dato </th>
-            <th> Fornavn </th> 
-            <th> Telefon </th>
-            <th> Rammeprofil </th>
-            <th> Størrelse </th>
-            <th> Glas </th>
-            <th> Passepartout </th>
-            <th> Hulmål </th>
-            <th> PP Farve </th>
-            <th> Antal </th>
-            <th> Montering </th>
-            <th> Billede </th>
-            <th> Bemærkninger </th>
-            <th> Ekspedient </th>
-        ';
-    } else {
-        // Bånd ordre
-        echo '
-            <th> Ordre </th> 
-            <th> Dato </th>
-            <th> Fornavn </th> 
-            <th> Telefon </th>
-            <th> Bånd Type </th>
-            <th> Bånd Antal </th>
-            <th> Medie Type </th>
-            <th> Kopi </th>
-            <th> Bemærkning </th>
-            <th> Betalt </th>
-            <th> Samlet pris </th>
-        ';
-    }
-    echo '</tr>';
-    
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo '<tr>';
-        if (!empty($row["rammeID"])) {
+
+
+
+
+        $result = mysqli_query($conn, $sql);
+        $queryResult = mysqli_num_rows($result);
+        echo '<table> <tr>';
+        
+        // Check hvilken tabel søgningen kommer fra
+        $isRamme = false;
+        $isBånd = false;
+        
+        while ($row = mysqli_fetch_assoc($result)) {
+            if (!empty($row["rammeID"])) {
+                $isRamme = true;
+            }
+            if (!empty($row["båndID"])) {
+                $isBånd = true;
+            }
+        }
+        
+        // Vis kolonner baseret på hvilken tabel søgningen kommer fra
+        if ($isRamme) {
             // Ramme ordre
             echo '
-                <td>' . $row["rammeID"] . '</td> 
-                <td>' . $row["dates"] . '</td> 
-                <td>' . $row["fornavn"] . '</td> 
-                <td>' . $row["telefonnummer"] . '</td> 
-                <td>' . $row["størrelse"] . '</td> 
-                <td>' . $row["glastype"] . '</td> 
-                <td>' . $row["passepartout"] . '</td> 
-                <td>' . $row["hulmål"] . '</td> 
-                <td>' . $row["passepartoutFarve"] . '</td> 
-                <td>' . $row["antal"] . '</td> 
-                <td>' . $row["montering"] . '</td> 
-                <td>' . $row["billedetype"] . '</td> 
-                <td>' . $row["bemærkninger"] . '</td> 
-                <td>' . $row["ekspedient"] . '</td>
+                <th> Ordre </th> 
+                <th> Dato </th>
+                <th> Fornavn </th> 
+                <th> Telefon </th>
+                <th> Rammeprofil </th>
+                <th> Størrelse </th>
+                <th> Glas </th>
+                <th> Passepartout </th>
+                <th> Hulmål </th>
+                <th> PP Farve </th>
+                <th> Antal </th>
+                <th> Montering </th>
+                <th> Billede </th>
+                <th> Bemærkninger </th>
+                <th> Ekspedient </th>
             ';
-        } else {
+        } elseif ($isBånd) {
             // Bånd ordre
             echo '
-                <td>' . $row["båndID"] . '</td> 
-                <td>' . $row["båndDates"] . '</td> 
-                <td>' . $row["fornavn"] . '</td> 
-                <td>' . $row["telefonnummer"] . '</td> 
-                <td>' . $row["båndType"] . '</td> 
-                <td>' . $row["båndAntal"] . '</td> 
-                <td>' . $row["båndMedie"] . '</td> 
-                <td>' . $row["båndMedieKopi"] . '</td> 
-                <td>' . $row["båndNotes"] . '</td> 
-                <td>' . $row["båndBetalt"] . '</td> 
-                <td>' . $row["båndPris"] . '</td> 
+                <th> Ordre </th> 
+                <th> Dato </th>
+                <th> Fornavn </th> 
+                <th> Telefon </th>
+                <th> Bånd Type </th>
+                <th> Bånd Antal </th>
+                <th> Medie Type </th>
+                <th> Kopi </th>
+                <th> Bemærkning </th>
+                <th> Betalt </th>
+                <th> Samlet pris </th>
+                <th> Ekspedient </th>
             ';
         }
+        
         echo '</tr>';
-    }
-    echo '</table>';
+        
+        // Vis data baseret på hvilken tabel søgningen kommer fra
+        mysqli_data_seek($result, 0);
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo '<tr>';
+            if (!empty($row["rammeID"])) {
+                // Ramme ordre
+                echo '
+                    <td>' . $row["rammeID"] . '</td> 
+                    <td>' . $row["dates"] . '</td> 
+                    <td>' . $row["fornavn"] . '</td> 
+                    <td>' . $row["telefonnummer"] . '</td> 
+                    <td>' . $row["profil"] . '</td> 
+                    <td>' . $row["størrelse"] . '</td> 
+                    <td>' . $row["glastype"] . '</td> 
+                    <td>' . $row["passepartout"] . '</td> 
+                    <td>' . $row["hulmål"] . '</td> 
+                    <td>' . $row["passepartoutFarve"] . '</td> 
+                    <td>' . $row["antal"] . '</td> 
+                    <td>' . $row["montering"] . '</td> 
+                    <td>' . $row["billedetype"] . '</td> 
+                    <td>' . $row["bemærkninger"] . '</td> 
+                    <td>' . $row["ekspedient"] . '</td>
+                ';
+            } elseif (!empty($row["båndID"])) {
+                // Bånd ordre
+                echo '
+                    <td>' . $row["båndID"] . '</td> 
+                    <td>' . $row["båndDates"] . '</td> 
+                    <td>' . $row["fornavn"] . '</td> 
+                    <td>' . $row["telefonnummer"] . '</td> 
+                    <td>' . $row["båndType"] . '</td> 
+                    <td>' . $row["båndAntal"] . '</td> 
+                    <td>' . $row["båndMedie"] . '</td> 
+                    <td>' . $row["båndMedieKopi"] . '</td> 
+                    <td>' . $row["båndNotes"] . '</td> 
+                    <td>' . $row["båndBetalt"] . '</td> 
+                    <td>' . $row["båndPris"] . '</td> 
+                    <td>' . $row["ekspedient"] . '</td>
+                ';
+            }
+            echo '</tr>';
+        }
+        echo '</table>';
     } else {
         echo "Ingen resultater fundet.";
-    }
-} 
-
+    } }
 
     // Luk forbindelsen til databasen
     mysqli_close($conn);
 
 ?>
-
     </div> <!-- Lukker resultat -->
 </div> <!--Lukker wrapper-->
 </body>
