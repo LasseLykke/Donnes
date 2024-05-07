@@ -156,9 +156,9 @@ $mysqli->close();
     <div class="passepartout-wrapper">
         <div class="ppinfo">
             <h6>Passepartout:</h6>
-            <input type="radio" id="passepartout_ja" name="passepartout" value="Ja">
+            <input type="radio" id="passepartout_ja" name="passepartout" value="Ja" required>
             <label for="passepartout_ja">Ja</label>
-            <input type="radio" id="passepartout_nej" name="passepartout" value="Nej">
+            <input type="radio" id="passepartout_nej" name="passepartout" value="Nej" required>
             <label for="passepartout_nej">Nej</label><br>
             <h6>Hulmål:</h6>
             <label for="hulmål"></label>
@@ -196,9 +196,9 @@ $mysqli->close();
     <div class="monteringsinfo">
         <div class="montering">
             <h6>Skal billedet monteres?</h6>
-            <input type="radio" id="montering_JA" name="montering" value="Ja">
+            <input type="radio" id="montering_JA" name="montering" value="Ja" required>
             <label for="montering_JA">Ja</label>
-            <input type="radio" id="montering_NEJ" name="montering" value="Nej">
+            <input type="radio" id="montering_NEJ" name="montering" value="Nej" required>
             <label for="montering_NEJ">Nej</label>
             <br>
             <input type="radio" id="kundens_Billede" name="billedetype" value="Vi har fået billede fra kunde">
