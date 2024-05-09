@@ -98,7 +98,7 @@ $mysqli->close();
 
 
 <div class="form-wrapper">
-<form class="forminput" action="" method="POST">
+<form class="forminput" action="" method="POST"  onsubmit="return validateForm()">
 <h1 class="bestillingsheader">Ramme bestilling</h1>
 <!-- Basic infomation -->
 <div class="baseinfo">
@@ -215,39 +215,24 @@ $mysqli->close();
     <div class="ekspedient">
     <label for="ekspedient">Ekspedient:</label>
     <input type="text" id="ekspedient" name="ekspedient" required>
-    <button class="saveBtn" onclick="validateAndPrint()">PRINT & GEM</button>
+    <button type="submit" class="saveBtn">PRINT & GEM</button>
 </div>
 
-
-<!-- Validere om alle punkter er udfyldt inden der sendes til printer -->
-<script>
-function validateAndPrint() {
-    // Tjek om hvert element er gyldigt
-    var fornavnIsValid = document.getElementById('fornavn').checkValidity();
-    var telefonnummerIsValid = document.getElementById('telefonnummer').checkValidity();
-    var profilIsValid = document.getElementById('profil').checkValidity();
-    var størrelseIsValid = document.getElementById('størrelse').checkValidity();
-    var glastypeIsValid = document.getElementById('glastype').checkValidity();
-    var passepartoutIsValid = document.getElementById('passepartout').checkValidity();
-    var antalIsValid = document.getElementById('antal').checkValidity();
-    var monteringIsValid = document.getElementById('montering').checkValidity();
-    var ekspedientIsValid = document.getElementById('ekspedient').checkValidity();
-    var billedtypeIsValid = document.getElementById('billedtype').checkValidity();
-
-    // Hvis begge felter er gyldige, udskriv og gem - tilføj variable her!
-    if (ekspedientIsValid && billedtypeIsValid && fornavnIsValid && telefonnummerIsValid && profilIsValid && størrelseIsValid && glastypeIsValid
-    && passepartoutIsValid && antalIsValid && monteringIsValid) {
-        window.print();
-    } else {
-        // Hvis mindst ét felt ikke er gyldigt, vis en besked til brugeren
-        alert("Udfyld venligst alle påkrævede felter.");
-    }
-}
-</script>
-
+<?php if(isset($error_message)) { ?>
+            <div class="error"><?php echo $error_message; ?></div>
+        <?php } ?>
 
 
 </form>
+
+<script>
+    function validateForm() {
+        window.print();
+        return true; // Tillad formularen at blive sendt, hvis valideringen er vellykket
+    }
+</script>
+
+
 </div>
 </body>
 </html>
