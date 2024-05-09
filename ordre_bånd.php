@@ -2,78 +2,74 @@
 session_start();
 if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
-   include 'connection.php';
+    include 'connection.php';
 
-   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Din eksisterende PHP-kode for behandling af formdata
 
-    $fornavn = $_POST["fornavn"];
-    $telefonnummer = $_POST["telefonnummer"];
-    $båndID = $_POST["båndID"];
-    $båndDates = $_POST["båndDates"];
-    $båndType = $_POST["båndType"];
-    $båndAntal = $_POST["båndAntal"];
-    $båndMedie = $_POST["båndMedie"];
-    $båndMedieKopi = isset($_POST["båndMedieKopi"]) ? intval($_POST["båndMedieKopi"]) : 0;
-    $båndNotes = $_POST["båndNotes"];
-    $båndBetalt = $_POST["båndBetalt"];
-    $båndPris = $_POST["båndPris"];
-    $ekspedient = $_POST["ekspedient"];
+        // Tjek om mindst én båndtype er valgt
+        if (!isset($_POST['båndType'])) {
+            $error_message = "Du skal vælge mindst én båndtype.";
+        } else {
+            $fornavn = $_POST["fornavn"];
+            $telefonnummer = $_POST["telefonnummer"];
+            $båndID = $_POST["båndID"];
+            $båndDates = $_POST["båndDates"];
+            $båndType = $_POST["båndType"];
+            $båndAntal = $_POST["båndAntal"];
+            $båndMedie = $_POST["båndMedie"];
+            $båndMedieKopi = isset($_POST["båndMedieKopi"]) ? intval($_POST["båndMedieKopi"]) : 0;
+            $båndNotes = $_POST["båndNotes"];
+            $båndBetalt = $_POST["båndBetalt"];
+            $båndPris = $_POST["båndPris"];
+            $ekspedient = $_POST["ekspedient"];
 
+            // Begin a transaction
+            $mysqli->begin_transaction();
 
+            // Define SQL queries with placeholders for each table
+            $sql1 = "INSERT INTO kunder (fornavn, telefonnummer) VALUES (?, ?)";
+            $sql2 = "INSERT INTO bånd (båndID, båndDates, båndType, båndAntal, båndMedie, båndMedieKopi, båndNotes, båndBetalt, båndPris, ekspedient) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-// Begin a transaction
-$mysqli->begin_transaction();
+            // Create prepared statements for each query
+            $stmt1 = $mysqli->prepare($sql1);
+            $stmt2 = $mysqli->prepare($sql2);
 
-// Define SQL queries with placeholders for each table
-$sql1 = "INSERT INTO kunder (fornavn, telefonnummer) VALUES (?, ?)";
-$sql2 = "INSERT INTO bånd (båndID, båndDates, båndType, båndAntal, båndMedie, båndMedieKopi, båndNotes, båndBetalt, båndPris, ekspedient) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            if ($stmt1 === false || $stmt2 === false) {
+                die("Error: " . $mysqli->error);
+            }
 
-// Create prepared statements for each query
-$stmt1 = $mysqli->prepare($sql1);
-$stmt2 = $mysqli->prepare($sql2);
+            // Bind parameters and their values for the first statement
+            $stmt1->bind_param("si", $fornavn, $telefonnummer);
 
-if ($stmt1 === false || $stmt2 === false) {
-    die("Error: " . $mysqli->error);
-}
+            // Bind parameters and their values for the second statement
+            $stmt2->bind_param("isssssssss", $båndID, $båndDates, $båndType, $båndAntal, $båndMedie, $båndMedieKopi, $båndNotes, $båndBetalt, $båndPris, $ekspedient);
 
+            // Execute the prepared statements
+            $stmt1->execute();
+            $stmt2->execute();
 
-// Bind parameters and their values for the first statement
-$stmt1->bind_param("si", $fornavn, $telefonnummer);
+            // Check for execution errors
+            if ($stmt1->errno || $stmt2->errno) {
+                $mysqli->rollback(); // Rollback the transaction in case of an error
+                die("Error: " . $stmt1->error . " or " . $stmt2->error);
+            }
 
-// Bind parameters and their values for the second statement (leaving one row out)
-// You can decide to insert or not based on your requirements
-if ($båndID != "value_to_skip") {
-    $stmt2->bind_param("isssssssss", $båndID, $båndDates, $båndType, $båndAntal, $båndMedie, $båndMedieKopi, $båndNotes, $båndBetalt, $båndPris, $ekspedient);
-    $stmt2->execute();
-}
+            // Commit the transaction if the first statement executed successfully
+            $mysqli->commit();
 
-// Execute the prepared statement for the first table
-$stmt1->execute();
+            // Close the statements and the database connection
+            $stmt1->close();
+            $stmt2->close();
+            $mysqli->close();
 
-// Check for execution errors
-if ($stmt1->errno || $stmt2->errno) {
-    $mysqli->rollback(); // Rollback the transaction in case of an error
-    die("Error: " . $stmt1->error . " or " . $stmt2->error);
-}
-
-// Commit the transaction if the first statement executed successfully
-$mysqli->commit();
-
-// Close the statements and the database connection
-$stmt1->close();
-$stmt2->close();
-$mysqli->close();
-
-
-    //  Går tilbage til bekræftelses side fra form.
-    header("Location: success.php");
-    exit();
-
-   }
-
-
-/*include 'header.php';*/
+            // Redirect to the success page after form submission
+            header("Location: success.php");
+            exit();
+        }
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,7 +86,7 @@ $mysqli->close();
 </head>
 <body>
 <div class="form-wrapper">
-<form class="forminput" action="" method="POST">
+<form class="forminput" action="" method="POST" onsubmit="return validateForm()">
 <h1 class="bestillingsheader">Bånd Ordre</h1>
 
 <!-- Basic infomation --> 
@@ -104,7 +100,7 @@ $mysqli->close();
         <input type="text" id="fornavn" name="fornavn" required>
     </div>
     <div class="kundenummer">
-        <label for="telefonnummer">Telefonummer:</label>
+        <label for="telefonnummer">Telefonnummer:</label>
         <input type="number" id="telefonnummer" name="telefonnummer" required>
     </div>
 
@@ -153,7 +149,7 @@ $mysqli->close();
     <label for="DVD">DVD</label><br>
 
     <label for="båndMedieKopi">Kopier?</label>
-    <input type="numer" id="båndMedieKopil" name="båndMedieKopi">
+    <input type="number" id="båndMedieKopil" name="båndMedieKopi">
 </div>
 </div>
 
@@ -180,64 +176,26 @@ $mysqli->close();
 <div class="ekspedient">
         <label for="ekspedient">Ekspedient:</label>
         <input type="text" id="ekspedient" name="ekspedient" required>
-        <button class="saveBtn" onclick="validateAndPrint()">PRINT & GEM</button>
+         <button type="submit" class="saveBtn">PRINT & GEM</button>
     </div>
 
+    <?php if(isset($error_message)) { ?>
+            <div class="error"><?php echo $error_message; ?></div>
+        <?php } ?>
 
-    <!-- Validere om alle punkter er udfyldt inden der sendes til printer -->
-    <script>
-    function validateAndPrint() {
-    // Check if at least one checkbox for båndType is checked
-    var båndTypeCheckboxes = document.querySelectorAll('input[name="båndType"]:checked');
-    var båndTypeIsValid = båndTypeCheckboxes.length > 0;
-
-    // Check if at least one checkbox for båndMedie is checked
-    var båndMedieCheckboxes = document.querySelectorAll('input[name="båndMedie"]:checked');
-    var båndMedieIsValid = båndMedieCheckboxes.length > 0;
-
-    // Tjek om hvert element er gyldigt
-    var båndDatesIsValid = document.getElementById('båndDates').checkValidity();
-    var fornavnIsValid = document.getElementById('fornavn').checkValidity();
-    var telefonnummerIsValid = document.getElementById('telefonnummer').checkValidity();
-    var båndAntalIsValid = document.getElementById('båndAntal').checkValidity();
-    var båndBetaltlIsValid = document.getElementById('båndBetalt').checkValidity();
-    var ekspedientIsValid = document.getElementById('ekspedient').checkValidity();
-    
-    // Tjek om både båndType og båndMedie er gyldige
-    var bothBåndTypeAndMedieAreValid = båndTypeIsValid && båndMedieIsValid;
-
-    // Hvis begge felter er gyldige, udskriv og gem - tilføj variable her!
-    if (ekspedientIsValid && båndDatesIsValid && fornavnIsValid && telefonnummerIsValid
-    && båndAntalIsValid && båndBetaltlIsValid && bothBåndTypeAndMedieAreValid) {
-        window.print();
-        
-        // Gem dataene ved at foretage en HTTP POST-anmodning
-        var form = document.querySelector('.forminput');
-        var formData = new FormData(form);
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'gem_data.php', true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Håndter succes
-                console.log(xhr.responseText);
-            } else {
-                // Håndter fejl
-                console.error('Fejl ved gemning af data: ' + xhr.statusText);
-            }
-        };
-        xhr.onerror = function () {
-            // Håndter netværksfejl
-            console.error('Netværksfejl under gemning af data');
-        };
-        xhr.send(formData);
-    } else {
-        // Hvis mindst ét felt ikke er gyldigt, vis en besked til brugeren
-        alert("Udfyld venligst alle påkrævede felter.");
-    }
-}
-</script>
 
 </form>
+<script>
+        function validateForm() {
+            var checkboxes = document.querySelectorAll('input[name="båndType"]:checked');
+            if (checkboxes.length === 0) {
+                alert('Du skal vælge mindst én båndtype.');
+                return false;
+            }window.print();
+            return true; // Tillad formularen at blive sendt, hvis valideringen er vellykket
+            
+        }
+    </script>
 </div>
 </body>
 
