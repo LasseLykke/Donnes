@@ -213,10 +213,37 @@ $mysqli->close();
     </div>
 
     <div class="ekspedient">
-        <label for="ekspedient">Ekspedient:</label>
-        <input type="text" id="ekspedient" name="ekspedient" required>
-        <button class="saveBtn" onClick="window.print()">PRINT & GEM</button>
-    </div>
+    <label for="ekspedient">Ekspedient:</label>
+    <input type="text" id="ekspedient" name="ekspedient" required>
+    <button class="saveBtn" onclick="validateAndPrint()">PRINT & GEM</button>
+</div>
+
+
+<!-- Validere om alle punkter er udfyldt inden der sendes til printer -->
+<script>
+function validateAndPrint() {
+    // Tjek om hvert element er gyldigt
+    var fornavnIsValid = document.getElementById('fornavn').checkValidity();
+    var telefonnummerIsValid = document.getElementById('telefonnummer').checkValidity();
+    var profilIsValid = document.getElementById('profil').checkValidity();
+    var størrelseIsValid = document.getElementById('størrelse').checkValidity();
+    var glastypeIsValid = document.getElementById('glastype').checkValidity();
+    var passepartoutIsValid = document.getElementById('passepartout').checkValidity();
+    var antalIsValid = document.getElementById('antal').checkValidity();
+    var monteringIsValid = document.getElementById('montering').checkValidity();
+    var ekspedientIsValid = document.getElementById('ekspedient').checkValidity();
+    var billedtypeIsValid = document.getElementById('billedtype').checkValidity();
+
+    // Hvis begge felter er gyldige, udskriv og gem - tilføj variable her!
+    if (ekspedientIsValid && billedtypeIsValid && fornavnIsValid && telefonnummerIsValid && profilIsValid && størrelseIsValid && glastypeIsValid
+    && passepartoutIsValid && antalIsValid && monteringIsValid) {
+        window.print();
+    } else {
+        // Hvis mindst ét felt ikke er gyldigt, vis en besked til brugeren
+        alert("Udfyld venligst alle påkrævede felter.");
+    }
+}
+</script>
 
 
 

@@ -43,7 +43,7 @@ $stmt1->bind_param("si", $fornavn, $telefonnummer);
 // Bind parameters and their values for the second statement (leaving one row out)
 // You can decide to insert or not based on your requirements
 if ($båndID != "value_to_skip") {
-    $stmt2->bind_param("ssssssssss", $båndID, $båndDates, $båndType, $båndAntal, $båndMedie, $båndMedieKopi, $båndNotes, $båndBetalt, $båndPris, $ekspedient);
+    $stmt2->bind_param("isssssssss", $båndID, $båndDates, $båndType, $båndAntal, $båndMedie, $båndMedieKopi, $båndNotes, $båndBetalt, $båndPris, $ekspedient);
     $stmt2->execute();
 }
 
@@ -97,7 +97,7 @@ $mysqli->close();
 <div class="baseinfo">
     <div class="dato">
         <label for="dates">Indleverings dato: *</label>
-        <input type="date" id="dates" name="båndDates" reguired >
+        <input type="date" id="dates" name="båndDates" required >
     </div>
     <div class="kundenavn">
         <label for="fornavn">Fornavn:</label>
@@ -111,7 +111,7 @@ $mysqli->close();
     <!-- Bliver skjult -->
     <div style="display: none;">
         <label for="båndID">KundeID</label>
-        <input type="number" id="båndID" name="bånd_kundeID">
+        <input type="number" id="båndID" name="båndID">
     </div>
 </div>
 
@@ -138,7 +138,7 @@ $mysqli->close();
     <label for="KASSETTEBÅND">KASSETTEBÅND</label><br>
 
     <label for="båndAntal">Antal bånd ialt</label>
-    <input type="numer" id="båndAntal" name="båndAntal">
+    <input type="number" id="båndAntal" name="båndAntal" required>
 
 </div>
 
@@ -180,8 +180,62 @@ $mysqli->close();
 <div class="ekspedient">
         <label for="ekspedient">Ekspedient:</label>
         <input type="text" id="ekspedient" name="ekspedient" required>
-        <button class="saveBtn" onClick="window.print()">PRINT & GEM</button>
+        <button class="saveBtn" onclick="validateAndPrint()">PRINT & GEM</button>
     </div>
+
+
+    <!-- Validere om alle punkter er udfyldt inden der sendes til printer -->
+    <script>
+    function validateAndPrint() {
+    // Check if at least one checkbox for båndType is checked
+    var båndTypeCheckboxes = document.querySelectorAll('input[name="båndType"]:checked');
+    var båndTypeIsValid = båndTypeCheckboxes.length > 0;
+
+    // Check if at least one checkbox for båndMedie is checked
+    var båndMedieCheckboxes = document.querySelectorAll('input[name="båndMedie"]:checked');
+    var båndMedieIsValid = båndMedieCheckboxes.length > 0;
+
+    // Tjek om hvert element er gyldigt
+    var båndDatesIsValid = document.getElementById('båndDates').checkValidity();
+    var fornavnIsValid = document.getElementById('fornavn').checkValidity();
+    var telefonnummerIsValid = document.getElementById('telefonnummer').checkValidity();
+    var båndAntalIsValid = document.getElementById('båndAntal').checkValidity();
+    var båndBetaltlIsValid = document.getElementById('båndBetalt').checkValidity();
+    var ekspedientIsValid = document.getElementById('ekspedient').checkValidity();
+    
+    // Tjek om både båndType og båndMedie er gyldige
+    var bothBåndTypeAndMedieAreValid = båndTypeIsValid && båndMedieIsValid;
+
+    // Hvis begge felter er gyldige, udskriv og gem - tilføj variable her!
+    if (ekspedientIsValid && båndDatesIsValid && fornavnIsValid && telefonnummerIsValid
+    && båndAntalIsValid && båndBetaltlIsValid && bothBåndTypeAndMedieAreValid) {
+        window.print();
+        
+        // Gem dataene ved at foretage en HTTP POST-anmodning
+        var form = document.querySelector('.forminput');
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'gem_data.php', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Håndter succes
+                console.log(xhr.responseText);
+            } else {
+                // Håndter fejl
+                console.error('Fejl ved gemning af data: ' + xhr.statusText);
+            }
+        };
+        xhr.onerror = function () {
+            // Håndter netværksfejl
+            console.error('Netværksfejl under gemning af data');
+        };
+        xhr.send(formData);
+    } else {
+        // Hvis mindst ét felt ikke er gyldigt, vis en besked til brugeren
+        alert("Udfyld venligst alle påkrævede felter.");
+    }
+}
+</script>
 
 </form>
 </div>
