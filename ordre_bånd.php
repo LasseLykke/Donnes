@@ -11,18 +11,24 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
         if (!isset($_POST['båndType'])) {
             $error_message = "Du skal vælge mindst én båndtype.";
         } else {
-            $fornavn = $_POST["fornavn"];
-            $telefonnummer = $_POST["telefonnummer"];
-            $båndID = $_POST["båndID"];
-            $båndDates = $_POST["båndDates"];
-            $båndType = $_POST["båndType"];
-            $båndAntal = $_POST["båndAntal"];
-            $båndMedie = $_POST["båndMedie"];
-            $båndMedieKopi = isset($_POST["båndMedieKopi"]) ? intval($_POST["båndMedieKopi"]) : 0;
-            $båndNotes = $_POST["båndNotes"];
-            $båndBetalt = $_POST["båndBetalt"];
-            $båndPris = $_POST["båndPris"];
-            $ekspedient = $_POST["ekspedient"];
+            if (!isset($_POST['båndMedie'])) {
+                $error_message = "Du skal vælge mindst én båndmedie.";
+            } else {
+                $fornavn = $_POST["fornavn"];
+                $telefonnummer = $_POST["telefonnummer"];
+                $båndID = $_POST["båndID"];
+                $båndDates = $_POST["båndDates"];
+                $båndType = $_POST["båndType"];
+                $båndAntal = $_POST["båndAntal"];
+                $båndMedie = $_POST["båndMedie"];
+                $båndMedieKopi = isset($_POST["båndMedieKopi"]) ? intval($_POST["båndMedieKopi"]) : 0;
+                $båndNotes = $_POST["båndNotes"];
+                $båndBetalt = $_POST["båndBetalt"];
+                $båndPris = $_POST["båndPris"];
+                $ekspedient = $_POST["ekspedient"];
+            }
+        
+        
 
             // Begin a transaction
             $mysqli->begin_transaction();
@@ -187,14 +193,23 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 </form>
 <script>
         function validateForm() {
-            var checkboxes = document.querySelectorAll('input[name="båndType"]:checked');
-            if (checkboxes.length === 0) {
-                alert('Du skal vælge mindst én båndtype.');
-                return false;
-            }window.print();
-            return true; // Tillad formularen at blive sendt, hvis valideringen er vellykket
+    var checkboxesBåndType = document.querySelectorAll('input[name="båndType"]:checked');
+    var checkboxesBåndMedie = document.querySelectorAll('input[name="båndMedie"]:checked');
+    
+    if (checkboxesBåndType.length === 0) {
+        alert('Du skal vælge mindst én båndtype.');
+        return false;
+    }
+    
+    if (checkboxesBåndMedie.length === 0) {
+        alert('Du skal vælge mindst ét Medie.');
+        return false;
+    }
+    
+    window.print();
+    return true; // Tillad formularen at blive sendt, hvis valideringen er vellykket
+}
             
-        }
     </script>
 </div>
 </body>
