@@ -1,8 +1,10 @@
 <?php
 session_start();
 
+// Kontroller om brugeren er logget ind
 if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
+    // Inkluder headeren
     include 'header.php';
 
 ?>
@@ -22,8 +24,12 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     </div>
     <div class="søge-resultat">
 <?php
+    // Hvis søgeformularen er blevet indsendt
     if (isset($_POST['submit-search'])) {
+        // Søgeteksten
         $search = mysqli_real_escape_string($conn, $_POST['search']);
+
+        // SQL-forespørgsel for at hente data fra både ramme- og bånd-tabellerne
         $sql = "SELECT 
             ramme.rammeID, 
             ramme.dates, 
@@ -52,8 +58,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             NULL AS ekspedient
         FROM 
             ramme 
-        INNER JOIN 
-            kunder ON ramme.rammeID = kunder.kundeID 
+        INNER JOIN kunder ON ramme.rammeID = kunder.kundeID
         WHERE 
             kunder.kundeID LIKE '%$search%' 
             OR ramme.dates LIKE '%$search%' 
@@ -100,7 +105,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
         FROM 
             bånd 
         INNER JOIN 
-            kunder ON bånd.båndID = kunder.kundeID 
+        kunder ON bånd.båndID = kunder.kundeID 
         WHERE 
             kunder.kundeID LIKE '%$search%' 
             OR bånd.båndDates LIKE '%$search%' 
@@ -116,19 +121,13 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             OR bånd.ekspedient LIKE '%$search%'
         ORDER BY rammeID DESC";
 
-
-
-
-
-
+        // Udfør forespørgslen
         $result = mysqli_query($conn, $sql);
         $queryResult = mysqli_num_rows($result);
-        echo '<table> <tr>';
         
         // Check hvilken tabel søgningen kommer fra
         $isRamme = false;
         $isBånd = false;
-        
         while ($row = mysqli_fetch_assoc($result)) {
             if (!empty($row["rammeID"])) {
                 $isRamme = true;
@@ -137,8 +136,9 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                 $isBånd = true;
             }
         }
-        
+
         // Vis kolonner baseret på hvilken tabel søgningen kommer fra
+        echo '<table> <tr>';
         if ($isRamme) {
             // Ramme ordre
             echo '
@@ -175,9 +175,8 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                 <th> Ekspedient </th>
             ';
         }
-        
         echo '</tr>';
-        
+
         // Vis data baseret på hvilken tabel søgningen kommer fra
         mysqli_data_seek($result, 0);
         while ($row = mysqli_fetch_assoc($result)) {
@@ -223,8 +222,8 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
         echo '</table>';
     } else {
         echo "Ingen resultater fundet.";
-    } }
-
+    }
+}
     // Luk forbindelsen til databasen
     mysqli_close($conn);
 
