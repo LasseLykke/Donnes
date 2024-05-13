@@ -23,6 +23,7 @@ $bemærkninger = $_POST["bemærkninger"];
 $ekspedient = $_POST["ekspedient"];
 
 
+
 // Begin a transaction
 $mysqli->begin_transaction();
 
@@ -118,9 +119,11 @@ $mysqli->close();
 
     <!-- Bliver skjult -->
     <div style="display: none;">
-        <label for="rammeID">KundeID</label>
+        <label for="rammeID">rammeID</label>
         <input type="number" id="rammeID" name="kundeID">
     </div>
+    
+
 
 
     <!-- Ramme information -->
