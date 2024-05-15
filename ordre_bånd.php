@@ -14,8 +14,8 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             if (!isset($_POST['båndMedie'])) {
                 $error_message = "Du skal vælge mindst én båndmedie.";
             } else {
-                $fornavn = $_POST["fornavn"];
-                $telefonnummer = $_POST["telefonnummer"];
+                $bk_fornavn = $_POST["bk_fornavn"];
+                $bk_telefonnummer = $_POST["bk_telefonnummer"];
                 $båndID = $_POST["båndID"];
                 $båndDates = $_POST["båndDates"];
                 $båndType = $_POST["båndType"];
@@ -34,7 +34,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             $mysqli->begin_transaction();
 
             // Define SQL queries with placeholders for each table
-            $sql1 = "INSERT INTO kunder (fornavn, telefonnummer) VALUES (?, ?)";
+            $sql1 = "INSERT INTO bånd_kunder (bk_fornavn, bk_telefonnummer) VALUES (?, ?)";
             $sql2 = "INSERT INTO bånd (båndID, båndDates, båndType, båndAntal, båndMedie, båndMedieKopi, båndNotes, båndBetalt, båndPris, ekspedient) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             // Create prepared statements for each query
@@ -46,7 +46,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             }
 
             // Bind parameters and their values for the first statement
-            $stmt1->bind_param("si", $fornavn, $telefonnummer);
+            $stmt1->bind_param("si", $bk_fornavn, $bk_telefonnummer);
 
             // Bind parameters and their values for the second statement
             $stmt2->bind_param("isssssssss", $båndID, $båndDates, $båndType, $båndAntal, $båndMedie, $båndMedieKopi, $båndNotes, $båndBetalt, $båndPris, $ekspedient);
@@ -103,11 +103,11 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     </div>
     <div class="kundenavn">
         <label for="fornavn">Fornavn:</label>
-        <input type="text" id="fornavn" name="fornavn" required>
+        <input type="text" id="fornavn" name="bk_fornavn" required>
     </div>
     <div class="kundenummer">
         <label for="telefonnummer">Telefonnummer:</label>
-        <input type="number" id="telefonnummer" name="telefonnummer" required>
+        <input type="number" id="telefonnummer" name="bk_telefonnummer" required>
     </div>
 
     <!-- Bliver skjult -->

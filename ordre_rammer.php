@@ -6,8 +6,8 @@ include 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data using POST method
-$fornavn = $_POST["fornavn"];
-$telefonnummer = $_POST["telefonnummer"];
+$rk_fornavn = $_POST["rk_fornavn"];
+$rk_telefonnummer = $_POST["rk_telefonnummer"];
 $rammeID =$_POST["kundeID"];
 $dates = $_POST["Indleveringsdato"];
 $profil = $_POST["profil"];
@@ -28,7 +28,7 @@ $ekspedient = $_POST["ekspedient"];
 $mysqli->begin_transaction();
 
 // Define SQL queries with placeholders for each table
-$sql1 = "INSERT INTO kunder (fornavn, telefonnummer) VALUES (?, ?)";
+$sql1 = "INSERT INTO ramme_kunder (rk_fornavn, rk_telefonnummer) VALUES (?, ?)";
 $sql2 = "INSERT INTO ramme (rammeID, dates, profil, størrelse, glastype, passepartout, hulmål, passepartoutFarve, antal, montering, billedetype, bemærkninger, ekspedient) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 // Create prepared statements for each query
@@ -41,7 +41,7 @@ if ($stmt1 === false || $stmt2 === false) {
 
 
 // Bind parameters and their values for the first statement
-$stmt1->bind_param("si", $fornavn, $telefonnummer);
+$stmt1->bind_param("si", $rk_fornavn, $rk_telefonnummer);
 
 // Bind parameters and their values for the second statement (leaving one row out)
 // You can decide to insert or not based on your requirements
@@ -109,11 +109,11 @@ $mysqli->close();
     </div>
     <div class="kundenavn">
         <label for="fornavn">Fornavn:</label>
-        <input type="text" id="fornavn" name="fornavn" required>
+        <input type="text" id="fornavn" name="rk_fornavn" required>
     </div>
     <div class="kundenummer">
         <label for="telefonnummer">Telefonummer:</label>
-        <input type="number" id="telefonnummer" name="telefonnummer" required>
+        <input type="number" id="telefonnummer" name="rk_telefonnummer" required>
     </div>
 </div>
 
