@@ -67,6 +67,10 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                     <a href="output_rammer.php">
                         <button>Ramme ordre</button>
                     </a>
+
+                    <a href="output_bånd.php">
+                        <button>Bånd ordre</button>
+                    </a>
                 </div>
         </div>
 
