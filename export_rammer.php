@@ -5,7 +5,6 @@ session_start();
 if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
     include 'header.php';
-    include 'connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +76,7 @@ $endDate = date("Y-m-d", strtotime("$startDate + 6 days"));
     if ($queryResult > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             echo '<tr> 
-            <td>' . $row["ordreID"] . '</td>
+            <td>' . $row["rammeID"] . '</td>
             <td>' . $row["dates"] . '</td>
             <td> ' . $row["profil"] . '</td> 
             <td> ' . $row["størrelse"] . '</td> 
