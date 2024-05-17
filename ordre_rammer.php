@@ -6,6 +6,7 @@ include 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data using POST method
+
 $rk_fornavn = $_POST["rk_fornavn"];
 $rk_telefonnummer = $_POST["rk_telefonnummer"];
 $rammeID =$_POST["kundeID"];
@@ -15,10 +16,10 @@ $størrelse = $_POST["størrelse"];
 $glastype = $_POST["glastype"];
 $passepartout = $_POST["passepartout"];
 $hulmål = $_POST["hulmål"];
-$passepartoutFarve = $_POST["passepartoutFarve"];
+$passepartoutFarve = isset($_POST["passepartoutFarve"]) ? htmlspecialchars($_POST["passepartoutFarve"]) : '';
 $antal = $_POST["antal"];
 $montering = $_POST["montering"];
-$billedetype = $_POST["billedetype"];
+$billedetype = isset($_POST["billedetype"]) ? htmlspecialchars($_POST["billedetype"]) : '';
 $bemærkninger = $_POST["bemærkninger"];
 $ekspedient = $_POST["ekspedient"];
 
@@ -46,7 +47,7 @@ $stmt1->bind_param("si", $rk_fornavn, $rk_telefonnummer);
 // Bind parameters and their values for the second statement (leaving one row out)
 // You can decide to insert or not based on your requirements
 if ($rammeID != "value_to_skip") {
-    $stmt2->bind_param("issssssssssss", $rammeID, $dates, $profil, $størrelse, $glastype, $passepartout, $hulmål, $passepartoutFarve, $antal, $montering, $billedetype, $bemærkninger, $ekspedient);
+    $stmt2->bind_param("issssssisssss", $rammeID, $dates, $profil, $størrelse, $glastype, $passepartout, $hulmål, $passepartoutFarve, $antal, $montering, $billedetype, $bemærkninger, $ekspedient);
     $stmt2->execute();
 }
 
@@ -131,7 +132,7 @@ $mysqli->close();
     <div class="ramme">
     <h6>Ramme oplysninger:</h6>
         <label for="profil">Ramme Profil:</label>
-        <input type="number" id="profil" name="profil" required>
+        <input type="text" id="profil" name="profil" required>
         <label for="størrelse">Ramme Størrelse:</label>
         <input type="text" id="størrelse" name="størrelse" required>
         <label for="antal">Antal rammer:</label>
