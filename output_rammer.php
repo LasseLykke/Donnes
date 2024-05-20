@@ -24,7 +24,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
     <div class="søge-resultat">
 
-        <form method="POST" action="output_rammer.php">
+        <form class="søgeform" method="POST" action="output_rammer.php">
             <input type="text" name="søgeord" placeholder="Søg efter ordre">
             <button type="submit" name="søg">Søg</button>
         </form>

@@ -58,7 +58,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             NULL AS ekspedient
         FROM 
             ramme 
-        INNER JOIN kunder ON ramme.rammeID = kunder.kundeID
+        INNER JOIN ramme_kunder ON ramme.rammeID = kunder.kundeID
         WHERE 
             kunder.kundeID LIKE '%$search%' 
             OR ramme.dates LIKE '%$search%' 
@@ -105,7 +105,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
         FROM 
             bånd 
         INNER JOIN 
-        kunder ON bånd.båndID = kunder.kundeID 
+        bånd_kunder ON bånd.båndID = kunder.kundeID 
         WHERE 
             kunder.kundeID LIKE '%$search%' 
             OR bånd.båndDates LIKE '%$search%' 

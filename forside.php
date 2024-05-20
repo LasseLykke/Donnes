@@ -19,6 +19,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             <a href="logout.php"><button class="signOut" alt="LogOut"></button>
         </a>
         </nav>
+        <!-- Velkommen div -->
         <div class="header">
             <h1>Hej 
                 <?php
@@ -26,21 +27,12 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                 echo $_SESSION['name'];
                 ?> 👋🏻</h1>
         
-        <br>
-        
-        <form action="search2.php" method="POST">
-        <input type="text" name="search" placeholder="Hvad vil du søge efter?">
-        <button class="submitSearch" type="submit" name="submit-search">Søg</button>
-         </form>
-
-
-        
         </div>
 
 
         <div class="main">
             <div class="mainContent">
-                <h2>Bestillingsformular</h2><br>
+                <h2>Bestilling:</h2><br>
                     <a href="ordre_rammer.php">
                         <button>ADJ rammebestilling</button>
                     </a>
@@ -58,12 +50,9 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                     </a>
 
             </div>
-                <div class="secContent">
-                    <h2>Export</h2><br>
-                    <a href="export_rammer.php">
-                        <button>Rammer ugelig</button>
-                    </a>
 
+            <div class="secContent">
+                <h2>Ordre:</h2><br>
                     <a href="output_rammer.php">
                         <button>Ramme ordre</button>
                     </a>
@@ -72,6 +61,14 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                         <button>Bånd ordre</button>
                     </a>
                 </div>
+
+                <div class="secContent">
+                    <h2>Export:</h2><br>
+                    <a href="export_rammer.php">
+                        <button>Rammer ugelig</button>
+                    </a>
+                </div>
+                
         </div>
 
     </body>

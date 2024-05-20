@@ -23,11 +23,11 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     </div>
 
     <div class="søge-resultat">
-
-        <form method="POST" action="output_bånd.php">
+        <form class="søgeform" method="POST" action="output_bånd.php">
             <input type="text" name="søgeord" placeholder="Søg efter ordre">
             <button type="submit" name="søg">Søg</button>
         </form>
+    </div>
         <?php
 
         // Standard SQL-forespørgsel for at hente alle ordre

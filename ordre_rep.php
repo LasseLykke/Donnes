@@ -21,7 +21,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 <body>
 <div class="form-wrapper">
 <form class="forminput" action="" method="">
-<h1 class="bestillingsheader">Reparations formular:</h1>
+<h1 class="bestillingsheader">Reparations formular</h1>
 
 <!-- Basic infomation --> 
 <div class="baseinfo">
