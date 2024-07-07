@@ -1,3 +1,4 @@
+<!-- REMEMBER TO INPUT OWN CREDS -->
 <?php
 
 $sname = "localhost";
