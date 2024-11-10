@@ -33,7 +33,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
         <div class="main">
             <div class="mainContent">
                 <h2>Bestilling:</h2><br>
-                    <a href="ordre_rammer.php">
+                    <a href="importRamme.php">
                         <button>ADJ rammebestilling</button>
                     </a>
                     <a href="ordre_bånd.php">
