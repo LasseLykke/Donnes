@@ -7,9 +7,6 @@
 <body>
 
 <form action="insertDataRammer.php" method="post">
-    <h2>Ordre Information</h2>
-    <label for="ordreDate">Ordre Dato:</label>
-    <input type="date" id="ordreDate" name="ordreDate" required><br><br>
 
     <h2>Kunde Information</h2>
     <label for="kundeNavn">Navn:</label>

@@ -5,8 +5,10 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     include 'connection.php';  // Forbindelsen til databasen
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Sæt ordreDate automatisk til dagens dato
+        $ordreDate = date('Y-m-d');
+
         // Modtag data fra formularen
-        $ordreDate = $_POST['ordreDate'];
         $kundeNavn = $_POST['kundeNavn'];
         $kundeTelefon = $_POST['kundeTelefon'];
         $profil = $_POST['profil'];
@@ -17,7 +19,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
         $passepartoutFarve = $_POST['passepartoutFarve'];
         $antal = $_POST['antal'];
         $montering = $_POST['montering'];
-        $billedtype = $_POST['billedtype'];
+        $billedtype = isset($_POST["billedtype"]) ? htmlspecialchars($_POST["billedtype"]) : '';
         $bemærkninger = $_POST['bemærkninger'];
         $pris = $_POST['pris'];
 
@@ -31,7 +33,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             $stmt_kunde->execute();
             $kundeID = $conn->insert_id;
 
-            // Indsæt data i ordre-tabellen
+            // Indsæt data i ordre-tabellen med den automatisk genererede dato
             $stmt_ordre = $conn->prepare("INSERT INTO ordre (ordreDate, kundeID) VALUES (?, ?)");
             $stmt_ordre->bind_param("si", $ordreDate, $kundeID);
             $stmt_ordre->execute();
