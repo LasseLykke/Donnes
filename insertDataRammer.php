@@ -16,7 +16,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
         $glastype = $_POST['glastype'];
         $passepartout = $_POST['passepartout'];
         $hulmål = $_POST['hulmål'];
-        $passepartoutFarve = $_POST['passepartoutFarve'];
+        $passepartoutFarve = isset($_POST["passepartoutFarve"]) ? htmlspecialchars($_POST["passepartoutFarve"]) : '';
         $antal = $_POST['antal'];
         $montering = $_POST['montering'];
         $billedtype = isset($_POST["billedtype"]) ? htmlspecialchars($_POST["billedtype"]) : '';
