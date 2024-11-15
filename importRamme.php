@@ -1,5 +1,9 @@
 <?php
-//    include 'header.php';
+session_start();
+if (!isset($_SESSION['user_name'])) {
+    die('Du skal være logget ind for at bruge denne side.');
+}
+$logged_in_user = $_SESSION['user_name'];
 ?>
 
 <!DOCTYPE html>
@@ -54,9 +58,32 @@
         <input type="text" id="hulmål" name="hulmål"><br><br>
 
         <label for="passepartoutFarve">Passepartout Farve:</label>
-        <input type="text" id="passepartoutFarve" name="passepartoutFarve"><br><br>
+        <div class="ppfarve1">
+            <input type="radio" id="8001" name="passepartoutFarve" value="8001">
+            <label for="profil_8001">Hvidt med hvid kerne</label><br>
+            <input type="radio" id="8213" name="passepartoutFarve" value="8213">
+            <label for="profil_8213">Knækket hvid med hvid kerne</label><br>
+            <input type="radio" id="profil_8011" name="passepartoutFarve" value="8011">
+            <label for="profil_8011">Sort med hvid kerne</label><br>
+            <input type="radio" id="7011" name="passepartoutFarve" value="7011">
+            <label for="profil_7011">Sort med sort kerne</label><br>
+            <input type="radio" id="8051" name="passepartoutFarve" value="8051">
+            <label for="profil_8051">Lyseblå med hvid kerne</label><br>
+        </div>
+        <div class="ppfarve2">
+            <input type="radio" id="8071" name="passepartoutFarve" value="8071">
+            <label for="profil_8071">Mørkeblå med hvid kerne</label><br>
+            <input type="radio" id="8816" name="passepartoutFarve" value="8816">
+            <label for="profil_8816">Bordeaux med hvid kerne</label><br>
+            <input type="radio" id="8611" name="passepartoutFarve" value="8611">
+            <label for="profil_8611">Karry gul med hvid kerne</label><br>
+            <input type="radio" id="8411" name="passepartoutFarve" value="8411">
+            <label for="profil_8411">Olivengrøn med hvid kerne</label><br>
+            <input type="radio" id="8009" name="passepartoutFarve" value="8009">
+            <label for="profil_8009">Lysebrun med hvid kerne</label><br>
+        </div>
 
-        <label for="antal">Antal:</label>
+        <label for="antal">Antal rammer:</label>
         <input type="number" id="antal" name="antal" required><br><br>
 
         <div class="montering">
@@ -77,6 +104,13 @@
 
         <label for="pris">Pris:</label>
         <input type="number" step="0.01" id="pris" name="pris" required><br><br>
+
+        <label for="ekspedient">Ekspedient:</label>
+        <input type="text" id="ekspedient" name="ekspedient" value="<?php echo htmlspecialchars($logged_in_user); ?>"
+            readonly>
+
+
+
 
         <button type="submit">Gem data</button>
     </form>
