@@ -15,7 +15,7 @@
 
     <form action="insertDataRammer.php" method="post">
 
-        <h2>Kunde Information</h2>
+        <h2>Kunde Information:</h2>
         <div class="kundenavn">
             <label for="kundeNavn">Navn:</label>
             <input type="text" id="kundeNavn" name="kundeNavn" required><br><br>
