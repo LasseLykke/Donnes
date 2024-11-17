@@ -1,46 +1,148 @@
-:root {
-	background: linear-gradient(180deg, rgba(32,32,37,1) 0%, rgba(0,0,133,1) 24%, rgba(242,242,245,1) 100%);
-}
+/* LOGIN */
 
-/*LOGIN SIDE*/
-.login-wrapper {
-	margin: 0;
-  	display: grid;
-  	place-items: center;
-  	min-height: 100vh;
+.loginWrapper {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    rgba(32, 32, 37, 1) 0%,
+    rgba(0, 0, 133, 1) 24%,
+    rgba(242, 242, 245, 1) 100%
+  );
 }
 
 .loginContainer {
-	background-color: var(--grd-color);
-	box-shadow: 0px 10px 30px rgba(0,0,0,.1);
-	box-shadow: 0px 0px 17px -6px rgba(0,0,0,0.48);
-	
+  background-color: var(--grd-color);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 17px -6px rgba(0, 0, 0, 0.48);
 }
 
-/*FORSIDE*/
-
-.nav {
-	width: 100%;
-	background-color: var(--grd-color);
+/* Login btn*/
+.loginBtn {
+  background-color: var(--white);
+  border: 1px solid var(--offgrey);
+  color: var(--blue);
+  float: left;
+  background: var(--deepblue);
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 5px;
+  margin-right: 10px;
+  border: none;
+}
+.loginBtn:hover {
+  opacity: 0.7;
 }
 
-.header {
-	background-color: var(--grd-color);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 30vh;
-	flex-direction: column;
+/*Login form */
+form {
+  width: 500px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255);
+  border-radius: 15px;
+  backdrop-filter: blur(1.5rem);
+  box-shadow: -0.25rem -0.25rem 0.5rem rgba(#fff, 0.07),
+    0.25rem 0.25rem 0.5rem rgba(#000, 0.12),
+    -0.75rem -0.75rem 1.75rem rgba(#fff, 0.07),
+    0.75rem 0.75rem 1.75rem rgba(#000, 0.12),
+    inset 8rem 8rem 8rem rgba(#000, 0.05),
+    inset -8rem -8rem 8rem rgba(#fff, 0.05);
 }
+
+input {
+  display: block;
+  background: transparent;
+  border: 1px solid var(--grey);
+  width: 95%;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 2px;
+}
+
+input:focus {
+  background: transparent;
+  border: 1px solid var(--blue);
+}
+
+label {
+  color: var(--blue);
+  font-size: 18px;
+  padding: 10px;
+}
+
+::placeholder {
+  color: var(--placeholder);
+  opacity: 1; /*FIREFOX FIX*/
+}
+
+.footer {
+  margin-top: auto;
+  padding-right: 10px;
+  width: 100%;
+  text-align: right; 
+}
+
+
+/* Forside */
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Placerer elementer i hver sin ende */
+    align-items: center; /* Centrerer dem vertikalt */
+    padding: 0 20px; /* Tilføj lidt luft omkring indholdet */
+    top: 0;
+    left: 0;
+    width: 100%; /* Fylder hele bredden */
+    box-shadow: var(--shadow-xs);
+}
+
+.logo {
+    height: 35px; 
+    display: block; 
+}
+
+.signOut {
+    border: none; /* Fjern eventuelle grænser */
+    border-radius: 0;
+    margin: 0;
+    width: 40px; 
+    height: 40px;
+    background-image: url(../img/log-out.svg);
+    background-size: 20px 20px;
+    background-position: center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    transition: background-size 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+.signOut:hover {
+    background-size: 25px 25px;
+}
+
+
+/*.header {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    flex-direction: column;
+    background: linear-gradient(
+        180deg,
+        rgba(32, 32, 37, 1) 0%,
+        rgba(0, 0, 133, 1) 24%,
+        rgb(255, 255, 255) 100%
+    );
+}*/
+
 
 .main {
-	background-color: var(--offgrey);
+	background-color: var(--white);
 	height: 70vh;
 	display: grid;
-}
-
-.main-search {
-	background-color: var(--bg);
 }
 
 .mainContent {
@@ -55,131 +157,3 @@
 	margin: 0 auto;
 	padding-top: 50px;
 }
-
-
-/* Har allerede en konto? - findes under register */
-.ca {
-	font-size: 14px;
-	display: inline-block;
-	padding: 10px;
-	text-decoration: none;
-	color: #444;
-}
-.ca:hover {
-	text-decoration: underline;
-} 
-
-/*Søge side. */
-.søge-wrapper {
-	min-height: 100vh;
-	background-color: var(--offgrey);
-}
-
-.søge-header {
-	background-color: white;
-	padding: 20px;
-}
-
-/*Container som holder table*/
-.søge-resultat {
-	margin: 20px;
-	overflow-x: auto;
-}
-
-.søge-resultat input[type="text"] {
-	color: pink;
-}
-
-.søgeform {
-	width: 500px;
-	padding: 50px;
-	background-color: rgba(255,255,255);
-	border-radius: 15px;
-	backdrop-filter: blur(1.5rem);
-	box-shadow:
-    -.25rem -.25rem .5rem rgba(#fff,.07),
-    .25rem .25rem .5rem rgba(#000,.12),
-    -.75rem -.75rem 1.75rem rgba(#fff,.07),
-    .75rem .75rem 1.75rem rgba(#000,.12),
-    inset 8rem 8rem 8rem rgba(#000,.05),
-    inset -8rem -8rem 8rem rgba(#fff,.05);
-	margin: 0 auto;
-}
-
-.søgeform button[type="submit"] {
-	margin-left: 10px;
-	padding: 10px 20px;
-
-}
-
-.resultat {
-	margin-left: 25px;
-}
-
-
-
-/*Tables */
-
-table {
-	width: 100%;
-  	border-collapse: collapse;
-  	overflow: hidden;
-	background-color: var(--bg);
-  	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-	font-size: 0.9rem;
-	border-radius: 5px;
-}
-
-th,
-td {
-  padding: 15px;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: var(--black);
-  border-bottom: 0.5px solid var(--placeholder);
-}
-th {
-  text-align: left;
-}
-thead th {
-  background-color: #55608f;
-}
-
-tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-  background-color: var(--lightblue);
-}
-
-tbody td {
-  position: relative;
-}
-
-.retur_btn {
-	background-color: #d67D19;
-	/*padding: 20px 30px;
-	margin-bottom: 10px;*/
-	margin-right: 10px;
-	border: 1px solid black;
-	text-transform: uppercase;
-	border-radius: 0;
-	float: right;
-}
-
-.footer {
-	margin-top: auto;
-  padding-right: 10px;
-  width: 100%;
-  text-align: right; /* Align text to the right within the footer */
-}
-
-
-
-/* SUCCESS */
-.success-wrapper {
-	background-color: var(--bg);
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-

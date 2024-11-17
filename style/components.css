@@ -1,70 +1,9 @@
-/* Login form */
-form {
-	width: 500px;
-	padding: 30px;
-	background-color: rgba(255,255,255);
-	border-radius: 15px;
-	backdrop-filter: blur(1.5rem);
-	box-shadow:
-    -.25rem -.25rem .5rem rgba(#fff,.07),
-    .25rem .25rem .5rem rgba(#000,.12),
-    -.75rem -.75rem 1.75rem rgba(#fff,.07),
-    .75rem .75rem 1.75rem rgba(#000,.12),
-    inset 8rem 8rem 8rem rgba(#000,.05),
-    inset -8rem -8rem 8rem rgba(#fff,.05)
-}
-
-input {
-	display: block;
-	background: transparent;
-	border: 1px solid var(--grey);
-	width: 95%;
-	padding: 10px;
-	margin: 10px auto;
-	border-radius: 2px;
-}
-
-input:focus {
-	background: transparent;
-	border: 1px solid var(--blue);
-}
-
-
-label {
-	color: var(--blue);
-	font-size: 18px;
-	padding: 10px;
-}
-
-::placeholder {
-	color: var(--placeholder);
-	opacity: 1; /*FIREFOX FIX*/
-}
-
-button { /* SKAL GØRES STØRRE */
-	float: left;
-	background: var(--deepblue);
-	padding: 10px 15px;
-	color: #fff;
-	border-radius: 5px;
-	margin-right: 10px;
-	border: none;
-}
-button:hover{
-	opacity: .7;
-}
 
 
 .backBtn {
 	float: right;
 }
 
-/* Login btn*/
-.loginBtn {
-	background-color: var(--white);
-	border: 1px solid var(--offgrey);
-	color: var(--blue);
-}
 
 .signOut {
 	border-radius: 0;

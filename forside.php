@@ -11,14 +11,15 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     <head>
     <title>DONNÉS || FORSIDE</title>
     <link rel="shortcut icon" href="fav.ico" type="image/x-icon"/>
-    <meta http-equiv="refresh" content="900;url=logout.php" />
     </head>
 
     <body>
-        <nav class="nav">
+        <nav class="navbar">
+            <img src="./img/hflogo.png" class="logo" alt="logo">
             <a href="logout.php"><button class="signOut" alt="LogOut"></button>
         </a>
         </nav>
+
         <!-- Velkommen div -->
         <div class="header">
             <h1>Hej 

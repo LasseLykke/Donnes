@@ -13,7 +13,7 @@ include 'header.php';
 </head>
 
 <body>
-    <div class="login-wrapper">
+    <div class="loginWrapper">
     <div class="loginContainer">
     <form action="login.php" method="POST">
         <h2 class="loginHeader">LOGIN</h2>
@@ -33,7 +33,7 @@ if(isset($_GET['error'])) {?>
 </div>
 
     <div class="footer">
-            <p div class="version">Version 1.1</p>
+            <p div class="version">Version 2.0</p>
         </div>
     </div>
 </body>
