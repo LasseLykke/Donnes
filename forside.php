@@ -9,75 +9,77 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     <html>
 
     <head>
-    <title>DONNÉS || FORSIDE</title>
-    <link rel="shortcut icon" href="fav.ico" type="image/x-icon"/>
+        <title>DONNÉS || FORSIDE</title>
+        <link rel="shortcut icon" href="fav.ico" type="image/x-icon" />
     </head>
 
     <body>
         <nav class="navbar">
             <img src="./img/hflogo.png" class="logo" alt="logo">
-            <a href="logout.php"><button class="signOut" alt="LogOut"></button>
-        </a>
-        </nav>
-
-        <!-- Velkommen div -->
-        <div class="header">
-            <h1>Hej 
+            <h3>Hej
                 <?php
                 /* Trækker login bruger ind*/
                 echo $_SESSION['name'];
-                ?> 👋🏻</h1>
-        
-        </div>
+                ?> 👋🏻
+            </h3>
+            <a href="logout.php"><button class="signOut" alt="LogOut"></button>
+            </a>
+        </nav>
 
 
-        <div class="main">
+        <div class="wrapper">
+            <!-- GRAF div -->
+            <div class="header">
+
+                <p>Indsæt graf her</p>
+            </div>
+
             <div class="mainContent">
                 <h2>Bestilling:</h2><br>
-                    <a href="importRamme.php">
-                        <button>ADJ rammebestilling</button>
-                    </a>
-                    <a href="ordre_bånd.php">
-                        <button>Bånd</button>
-                    </a>
-                    <a href="ordre_dias.php">
-                        <button>Dias</button>
-                    </a>
-                    <a href="ordre_smalfilm.php">
-                        <button>Smalfilm</button>
-                    </a>
-                    <a href="ordre_rep.php">
-                        <button>Reparationer</button>
-                    </a>
+                <a href="importRamme.php">
+                    <button class="mainBtn">ADJ ramme</button>
+                </a>
+                <a href="ordre_bånd.php">
+                    <button class="mainBtn">Bånd</button>
+                </a>
+                <a href="ordre_dias.php">
+                    <button class="mainBtn">Dias</button>
+                </a>
+                <a href="ordre_smalfilm.php">
+                    <button class="mainBtn">Smalfilm</button>
+                </a>
+                <a href="ordre_rep.php">
+                    <button class="mainBtn">Reparationer</button>
+                </a>
 
             </div>
 
             <div class="secContent">
                 <h2>Ordre:</h2><br>
-                    <a href="output_rammer.php">
-                        <button>Ramme ordre</button>
-                    </a>
+                <a href="output_rammer.php">
+                    <button class="mainBtn">Ramme ordre</button>
+                </a>
 
-                    <a href="output_bånd.php">
-                        <button>Bånd ordre</button>
-                    </a>
-                </div>
+                <a href="output_bånd.php">
+                    <button class="mainBtn">Bånd ordre</button>
+                </a>
+            </div>
 
-                <div class="secContent">
-                    <h2>Export:</h2><br>
-                    <a href="export_rammer.php">
-                        <button>Rammer ugelig</button>
-                    </a>
-                </div>
-                
+            <div class="secContent">
+                <h2>Export:</h2><br>
+                <a href="export_rammer.php">
+                    <button class="mainBtn">Rammer ugelig</button>
+                </a>
+            </div>
+
         </div>
 
     </body>
 
     </html>
 
-<?php
-/* Hvis ikke logget ind bliver man sendt tilbage til login skærm */
+    <?php
+    /* Hvis ikke logget ind bliver man sendt tilbage til login skærm */
 } else {
     header("Location: index.php");
     exit();

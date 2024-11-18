@@ -123,6 +123,27 @@ label {
 }
 
 
+.wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 20px;
+    border-radius: 5px;
+    box-shadow: var(--shadow-xs);
+    margin-top: 50px;
+
+    
+}
+
+.mainContent {
+    margin: 20px;
+    padding: 20px;
+}
+
+.secContent {
+    margin: 20px;
+    padding: 20px;
+}
+
 /*.header {
     margin-top: 50px;
     display: flex;
@@ -139,21 +160,4 @@ label {
 }*/
 
 
-.main {
-	background-color: var(--white);
-	height: 70vh;
-	display: grid;
-}
 
-.mainContent {
-	width: 600px;
-	margin: 0 auto;
-	padding-top: 20px;
-}
-
-.secContent {
-	/*height: 50vh;*/
-	width: 600px;
-	margin: 0 auto;
-	padding-top: 50px;
-}

@@ -18,4 +18,5 @@
     --blackhole: #202025;
 
     --shadow-xs: 0px 3px 8px -3px rgba(0,0,0,0.52);
+    --shadow-xxs: 0px 3px 8px -3px rgba(0,0,0,0.10);
 }
