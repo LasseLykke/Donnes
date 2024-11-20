@@ -14,6 +14,15 @@ include 'header.php';
 <head>
     <meta charset="UTF-8">
     <title>Ramme ordre</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
+    <style>
+        /* Simpel styling til statusbeskeden */
+        #statusMessage {
+            display: none;
+            margin-top: 10px;
+            color: green;
+        }
+    </style>
 </head>
 
 <body>
@@ -22,17 +31,14 @@ include 'header.php';
         <a href="forside.php">
             <img src="./img/hflogo.png" class="logo" alt="logo"></a>
         <h3>Hej
-            <?php
-            echo $_SESSION['name'];
-            ?> 👋🏻
+            <?php echo $_SESSION['name']; ?> 👋🏻
         </h3>
         <a href="logout.php"><button class="signOut" alt="LogOut"></button>
         </a>
     </nav>
 
     <div class="wrapperOrdre">
-        <form action="insertDataRammer.php" method="post">
-
+        <form id="ordreForm">
             <!-- KUNDE INFORMATION -->
             <h2 class="ordreSection">Kunde Information:</h2>
             <div class="grid2">
@@ -40,7 +46,6 @@ include 'header.php';
                     <label for="kundeNavn">Navn:</label>
                     <input type="text" id="kundeNavn" name="kundeNavn" required>
                 </div>
-
 
                 <div class="kundenummer">
                     <label for="kundeTelefon">Telefon:</label>
@@ -163,9 +168,60 @@ include 'header.php';
 
 
 
-                <button class="mainBtn" type="submit">Gem ordre</button>
-        </form>
-    </div> <!-- Afslut af form wrapper -->
+
+                <button id="submitButton" class="mainBtn" type="submit">Gem ordre</button>
+                <button id="printButton" disabled>Print Ordre</button>
+                <div id="statusMessage"></div>
+
+
+                <script>
+                    $(document).ready(function () {
+                        $("#ordreForm").on("submit", function (e) {
+                            e.preventDefault(); // Forhindrer standard formularindsendelse
+
+                            const submitButton = $("#submitButton");
+                            const printButton = $("#printButton");
+                            const statusMessage = $("#statusMessage");
+
+                            const formData = $(this).serialize(); // Saml alle formularfelter
+
+                            // Start knapanimation
+                            submitButton.prop("disabled", true).text("Gemmer...");
+
+                            // AJAX-opkald
+                            $.ajax({
+                                url: "insertDataRammer.php", // Dit PHP-script til at gemme data
+                                type: "POST",
+                                data: formData,
+                                success: function (response) {
+                                    // Opdater knappen til succes-tilstand
+                                    submitButton.text("Ordre gemt").addClass("saved");
+
+                                    // Fjern successtil efter en tid
+                                    setTimeout(() => {
+                                        submitButton.removeClass("saved").text("Gem ordre").prop("disabled", false);
+                                    }, 2000);
+
+                                    // Vis succesmeddelelse
+                                    //statusMessage.html("<p>Ordren er gemt!</p>").fadeIn().delay(3000).fadeOut();
+
+                                    // Aktiver printknap
+                                    printButton.prop("disabled", false);
+                                },
+                                error: function (xhr, status, error) {
+                                    // Håndter fejl
+                                    submitButton.text("Gem ordre").prop("disabled", false);
+                                    statusMessage.html("<p>Fejl: Kunne ikke gemme ordren.</p>").fadeIn().delay(3000).fadeOut();
+                                }
+                            });
+                        });
+
+                        // Printknap funktion
+                        $("#printButton").on("click", function () {
+                            window.location.href = "printPage.php"; // Henvisning til print-siden
+                        });
+                    });
+                </script>
 
 </body>
 

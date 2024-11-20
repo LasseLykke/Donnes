@@ -156,25 +156,38 @@
     border: 1px solid var(--grey);
     color: var(--deepblue);
     padding: 12px 24px;
-    border-radius: 5px; /* Runde hjørner */
+    border-radius: 5px;
     font-weight: bold;
     box-shadow: var(--shadow-xxs);
     cursor: pointer;
-    transition: all 0.2s ease; /* Glat overgang ved hover */
-    text-transform: uppercase; /* Gør teksten mere markant */
+    transition: all 0.2s ease;
+    text-transform: uppercase;
 }
 
 .mainBtn:hover {
     background-color: var(--deepblue);
     color: var(--white);
-    transform: translateY(-2px); /* Let løfteeffekt */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Fremhæv skyggen */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .mainBtn:active {
-    transform: translateY(0); /* Tilbage ved klik */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Neutral skygge */
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+.mainBtn.saved {
+    background-color: #4caf50; /* Grøn farve for succes */
+    color: white;
+    transform: scale(1.1);
+}
+
+.mainBtn.saved:after {
+    content: " ✓"; /* Tilføjer fluebenet */
+    margin-left: 8px;
+    font-size: 1rem;
+}
+
 
 /* Fjern mellemrummet mellem knapper */
 a {
