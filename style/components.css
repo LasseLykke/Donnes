@@ -1,3 +1,95 @@
+/* Forms */
+
+
+/*Login form */
+.loginForm {
+	width: 500px;
+	padding: 30px;
+	background-color: rgba(255, 255, 255);
+	border-radius: 15px;
+	backdrop-filter: blur(1.5rem);
+	box-shadow: -0.25rem -0.25rem 0.5rem rgba(#fff, 0.07),
+	  0.25rem 0.25rem 0.5rem rgba(#000, 0.12),
+	  -0.75rem -0.75rem 1.75rem rgba(#fff, 0.07),
+	  0.75rem 0.75rem 1.75rem rgba(#000, 0.12),
+	  inset 8rem 8rem 8rem rgba(#000, 0.05),
+	  inset -8rem -8rem 8rem rgba(#fff, 0.05);
+  }
+
+  .login input {
+	display: block;
+	background: transparent;
+	border: 1px solid var(--grey);
+	width: 95%;
+	padding: 10px;
+	margin: 10px auto;
+	border-radius: 2px;
+  }
+  
+  .login input:focus {
+	background: transparent;
+	border: 1px solid var(--blue);
+  }
+  
+  .login label {
+	color: var(--blue);
+	font-size: 18px;
+	padding: 10px;
+  }
+
+
+
+  .grid2{
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	padding-top: 10px;
+	margin: 20px;
+  }
+
+  .grid3 {
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+	padding-top: 10px;
+	margin: 20px;
+  }
+
+  .grid4 {
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+	padding-top: 10px;
+	margin: 20px;
+  }
+
+  .grid2 input, .grid3 input{
+	display: block;
+	background: transparent;
+	border: 1px solid var(--grey);
+	width: 95%;
+	padding: 10px;
+	margin: 10px auto;
+	border-radius: 2px;
+  }
+
+  .grid2 label, .grid3 label {
+	color: var(--blue);
+	font-size: 18px;
+	padding: 10px;
+	margin-left: 5px;
+  }
+
+  .grid2 input:focus {
+	border: 1px solid var(--deepblue);
+  }
+
+  .glas label, .glas input {
+    display: inline-block; /* Sørger for, at de er på samme linje */
+    vertical-align: middle; /* Justerer, så tekst og input er alignet */
+	font-size: 18px;
+}
+
+
+
+  /* Buttons */
 
 
 .backBtn {

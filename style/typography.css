@@ -15,6 +15,11 @@ h2 {
     color: var(--deepblue);
 }
 
+.ordreSection {
+    margin: 20px;
+    padding-top: 20px;
+}
+
 h3 {
     font-weight: 700;
 }
