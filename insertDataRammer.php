@@ -14,7 +14,6 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
         $profil = $_POST['profil'];
         $størrelse = $_POST['størrelse'];
         $glastype = $_POST['glastype'];
-        $passepartout = $_POST['passepartout'];
         $hulmål = $_POST['hulmål'];
         $passepartoutFarve = isset($_POST["passepartoutFarve"]) ? htmlspecialchars($_POST["passepartoutFarve"]) : '';
         $antal = $_POST['antal'];
@@ -41,10 +40,10 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             $stmt_ordre->execute();
             $ordreID = $conn->insert_id;
 
-            // Indsæt data i ramme-tabellen med alle felter
-            $stmt_ramme = $conn->prepare("INSERT INTO ramme (ordreID, profil, størrelse, glastype, passepartout, hulmål, passepartoutFarve, antal, montering, billedtype, bemærkninger, pris, ekspedient) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt_ramme->bind_param("issssssisssds", $ordreID, $profil, $størrelse, $glastype, $passepartout, $hulmål, $passepartoutFarve, $antal, $montering, $billedtype, $bemærkninger, $pris);
+            $stmt_ramme = $conn->prepare("INSERT INTO ramme (ordreID, profil, størrelse, glastype, hulmål, passepartoutFarve, antal, montering, billedtype, bemærkninger, pris, ekspedient) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt_ramme->bind_param("isssssisssds", $ordreID, $profil, $størrelse, $glastype, $hulmål, $passepartoutFarve, $antal, $montering, $billedtype, $bemærkninger, $pris, $ekspedient);
             $stmt_ramme->execute();
+
 
             // Commit transaktionen
             $conn->commit();

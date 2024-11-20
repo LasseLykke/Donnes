@@ -33,6 +33,7 @@ include 'header.php';
     <div class="wrapperOrdre">
         <form action="insertDataRammer.php" method="post">
 
+            <!-- KUNDE INFORMATION -->
             <h2 class="ordreSection">Kunde Information:</h2>
             <div class="grid2">
                 <div class="kundenavn">
@@ -47,7 +48,7 @@ include 'header.php';
                 </div>
             </div>
 
-
+            <!-- RAMME INFORMATION -->
             <h2 class="ordreSection">Ramme Information:</h2>
             <div class="grid3">
                 <div class="profil">
@@ -64,9 +65,9 @@ include 'header.php';
                 </div>
             </div>
 
+            <!-- GLAS -->
+            <h2 class="ordreSection">Glastype:</h2>
             <div class="grid4">
-                <!-- glas -->
-                <h2 class="ordreSection">Glastype:</h2>
                 <div class="glas">
                     <input type="radio" id="klart" name="glastype" value="Klart glas" required>
                     <label for="klart">Klart Glas</label><br>
@@ -86,70 +87,83 @@ include 'header.php';
 
                     <input type="radio" id="tom_uden_bagplade_og_fligner" name="glastype"
                         value="Tom uden bagplade og fligner" required>
-                    <label for="tom">Uden glas og bagplade og fligner</label>
+                    <label for="tom">Uden glas, bagplade og fligner</label>
                 </div>
             </div>
 
-            <label for="passepartout">Passepartout:</label>
-            <input type="text" id="passepartout" name="passepartout"><br><br>
 
-            <label for="hulmål">Hulmål:</label>
-            <input type="text" id="hulmål" name="hulmål"><br><br>
+            <!-- PASSEPARTOUT -->
+            <h2 class="ordreSection">Passepartout:</h2>
+            <div class="grid4">
+                <div class="hulmål">
+                    <label for="hulmål">Hulmål:</label><br>
+                    <input type="text" id="hulmål" name="hulmål"><br>
+                    <p>Hulmålet er -1 cm fra rammemålet</p>
+                </div>
 
-            <label for="passepartoutFarve">Passepartout Farve:</label>
-            <div class="ppfarve1">
-                <input type="radio" id="8001" name="passepartoutFarve" value="8001">
-                <label for="profil_8001">Hvidt med hvid kerne</label><br>
-                <input type="radio" id="8213" name="passepartoutFarve" value="8213">
-                <label for="profil_8213">Knækket hvid med hvid kerne</label><br>
-                <input type="radio" id="profil_8011" name="passepartoutFarve" value="8011">
-                <label for="profil_8011">Sort med hvid kerne</label><br>
-                <input type="radio" id="7011" name="passepartoutFarve" value="7011">
-                <label for="profil_7011">Sort med sort kerne</label><br>
-                <input type="radio" id="8051" name="passepartoutFarve" value="8051">
-                <label for="profil_8051">Lyseblå med hvid kerne</label><br>
-            </div>
-            <div class="ppfarve2">
-                <input type="radio" id="8071" name="passepartoutFarve" value="8071">
-                <label for="profil_8071">Mørkeblå med hvid kerne</label><br>
-                <input type="radio" id="8816" name="passepartoutFarve" value="8816">
-                <label for="profil_8816">Bordeaux med hvid kerne</label><br>
-                <input type="radio" id="8611" name="passepartoutFarve" value="8611">
-                <label for="profil_8611">Karry gul med hvid kerne</label><br>
-                <input type="radio" id="8411" name="passepartoutFarve" value="8411">
-                <label for="profil_8411">Olivengrøn med hvid kerne</label><br>
-                <input type="radio" id="8009" name="passepartoutFarve" value="8009">
-                <label for="profil_8009">Lysebrun med hvid kerne</label><br>
-            </div>
-
-
-            <div class="montering">
-                <h6>Skal billedet monteres?</h6>
-                <input type="radio" id="montering_JA" name="montering" value="Ja" required>
-                <label for="montering_JA">Ja</label>
-                <input type="radio" id="montering_NEJ" name="montering" value="Nej" required>
-                <label for="montering_NEJ">Nej</label>
-                <br>
-                <input type="radio" id="kundens_Billede" name="billedtype" value="Kundens billede">
-                <label for="kundens_Billede">Kundens billede</label>
-                <input type="radio" id="print_Billede" name="billedtype" value="Vi skal printe">
-                <label for="print_Billede">Vi skal printe billede</label>
+                <div class="passepartout">
+                    <input type="radio" id="8001" name="passepartoutFarve" value="8001">
+                    <label for="profil_8001">Hvidt med hvid kerne (8001)</label><br>
+                    <input type="radio" id="8213" name="passepartoutFarve" value="8213">
+                    <label for="profil_8213">Knækket hvid med hvid kerne (8213)</label><br>
+                    <input type="radio" id="profil_8011" name="passepartoutFarve" value="8011">
+                    <label for="profil_8011">Sort med hvid kerne (8011)</label><br>
+                    <input type="radio" id="7011" name="passepartoutFarve" value="7011">
+                    <label for="profil_7011">Sort med sort kerne (7011)</label><br>
+                    <input type="radio" id="8051" name="passepartoutFarve" value="8051">
+                    <label for="profil_8051">Lyseblå med hvid kerne (8051)</label><br>
+                </div>
+                <div class="passepartout">
+                    <input type="radio" id="8071" name="passepartoutFarve" value="8071">
+                    <label for="profil_8071">Mørkeblå med hvid kerne (8071)</label><br>
+                    <input type="radio" id="8816" name="passepartoutFarve" value="8816">
+                    <label for="profil_8816">Bordeaux med hvid kerne (8816)</label><br>
+                    <input type="radio" id="8611" name="passepartoutFarve" value="8611">
+                    <label for="profil_8611">Karry gul med hvid kerne (8611)</label><br>
+                    <input type="radio" id="8411" name="passepartoutFarve" value="8411">
+                    <label for="profil_8411">Olivengrøn med hvid kerne (8411)</label><br>
+                    <input type="radio" id="8009" name="passepartoutFarve" value="8009">
+                    <label for="profil_8009">Lysebrun med hvid kerne (8009)</label>
+                </div>
             </div>
 
-            <label for="bemærkninger">Bemærkninger:</label>
-            <textarea id="bemærkninger" name="bemærkninger"></textarea><br><br>
 
-            <label for="pris">Pris:</label>
-            <input type="number" step="0.01" id="pris" name="pris" required><br><br>
+            <!-- MONTERING & PRIS -->
+            <h2 class="ordreSection">Montering & pris:</h6>
+                <div class="grid4">
+                    <div class="montering">
+                        <h5>Skal vi montere?</h5><br>
+                        <input type="radio" id="montering_JA" name="montering" value="Ja" required>
+                        <label for="montering_JA">Ja</label>
+                        <input type="radio" id="montering_NEJ" name="montering" value="Nej" required>
+                        <label for="montering_NEJ">Nej</label>
+                        <br><br>
+                        <input type="radio" id="kundens_Billede" name="billedtype" value="Kundens billede">
+                        <label for="kundens_Billede">Kundens billede</label><br>
+                        <input type="radio" id="print_Billede" name="billedtype" value="Vi skal printe">
+                        <label for="print_Billede">Vi skal printe billede</label>
+                    </div>
 
-            <label for="ekspedient">Ekspedient:</label>
-            <input type="text" id="ekspedient" name="ekspedient"
-                value="<?php echo htmlspecialchars($logged_in_user); ?>" readonly>
+                    <div class="bemærkning">
+                        <label for="bemærkninger">Bemærkninger:</label><br>
+                        <textarea id="bemærkninger" name="bemærkninger"></textarea>
+                    </div>
+
+                    <div class="pris">
+                        <label for="pris">Pris:</label>
+                        <input type="number" step="0.01" id="pris" name="pris" required><br>
+                    </div>
+                </div>
+
+                <div class="ghost">
+                    <label for="ekspedient">Ekspedient:</label>
+                    <input type="text" id="ekspedient" name="ekspedient"
+                        value="<?php echo htmlspecialchars($logged_in_user); ?>" readonly>
+                </div>
 
 
 
-
-            <button type="submit">Gem data</button>
+                <button class="mainBtn" type="submit">Gem ordre</button>
         </form>
     </div> <!-- Afslut af form wrapper -->
 

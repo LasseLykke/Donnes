@@ -60,7 +60,10 @@
 	margin: 20px;
   }
 
-  .grid2 input, .grid3 input{
+  .grid2 input, 
+  .grid3 input, 
+  .bemærkning input, 
+  .pris input{
 	display: block;
 	background: transparent;
 	border: 1px solid var(--grey);
@@ -81,10 +84,48 @@
 	border: 1px solid var(--deepblue);
   }
 
-  .glas label, .glas input {
+  .glas label, 
+  .glas input, 
+  .hulmål label, 
+  .hulmål input, 
+  .passepartout label, 
+  .passepartout input,
+  .montering label, 
+  .montering input
+  {
     display: inline-block; /* Sørger for, at de er på samme linje */
     vertical-align: middle; /* Justerer, så tekst og input er alignet */
 	font-size: 18px;
+}
+
+.bemærkning {
+	padding-right: 10px;
+}
+.bemærkning textarea {
+	width: 100%;
+	height: 150px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 1px solid var(--grey);
+	border-radius: 5px;
+	font-size: 16px;
+	resize: none;
+}
+
+.bemærkning label {
+	font-size: 18px;
+}
+
+.pris label {
+	font-size: 18px;
+}
+
+.pris input {
+	margin: 0;
+}
+
+.ghost {
+	display: none;
 }
 
 
