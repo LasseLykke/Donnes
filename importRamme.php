@@ -15,14 +15,6 @@ include 'header.php';
     <meta charset="UTF-8">
     <title>Ramme ordre</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
-    <style>
-        /* Simpel styling til statusbeskeden */
-        #statusMessage {
-            display: none;
-            margin-top: 10px;
-            color: green;
-        }
-    </style>
 </head>
 
 <body>
@@ -103,7 +95,7 @@ include 'header.php';
                 <div class="hulmål">
                     <label for="hulmål">Hulmål:</label><br>
                     <input type="text" id="hulmål" name="hulmål"><br>
-                    <p>Hulmålet er -1 cm fra rammemålet</p>
+                    <p class="note">Hulmål: Fratræk 1cm fra billedmålet</p>
                 </div>
 
                 <div class="passepartout">
@@ -151,7 +143,8 @@ include 'header.php';
 
                     <div class="bemærkning">
                         <label for="bemærkninger">Bemærkninger:</label><br>
-                        <textarea id="bemærkninger" name="bemærkninger"></textarea>
+                        <textarea id="bemærkninger" name="bemærkninger"
+                            placeholder="Indsæt posenummer eller andre bemærkninger"></textarea>
                     </div>
 
                     <div class="pris">
@@ -169,8 +162,8 @@ include 'header.php';
 
 
 
-                <button id="submitButton" class="mainBtn" type="submit">Gem ordre</button>
-                <button id="printButton" disabled>Print Ordre</button>
+                <button id="submitButton" class="saveBtn" type="submit">Gem ordre</button>
+                <button id="printButton" class="printBtn" disabled>Print Ordre</button>
                 <div id="statusMessage"></div>
 
 
@@ -186,7 +179,7 @@ include 'header.php';
                             const formData = $(this).serialize(); // Saml alle formularfelter
 
                             // Start knapanimation
-                            submitButton.prop("disabled", true).text("Gemmer...");
+                            submitButton.prop("disabled", true).addClass("saving").text("Gemmer...");
 
                             // AJAX-opkald
                             $.ajax({
@@ -194,23 +187,22 @@ include 'header.php';
                                 type: "POST",
                                 data: formData,
                                 success: function (response) {
-                                    // Opdater knappen til succes-tilstand
-                                    submitButton.text("Ordre gemt").addClass("saved");
+                                    // Opdater gem-knappen til succes-tilstand
+                                    submitButton.text("Ordre gemt").removeClass("saving").addClass("saved");
 
                                     // Fjern successtil efter en tid
                                     setTimeout(() => {
                                         submitButton.removeClass("saved").text("Gem ordre").prop("disabled", false);
                                     }, 2000);
 
-                                    // Vis succesmeddelelse
-                                    //statusMessage.html("<p>Ordren er gemt!</p>").fadeIn().delay(3000).fadeOut();
+                                    $("body").addClass("orderSaved");
 
-                                    // Aktiver printknap
-                                    printButton.prop("disabled", false);
+                                    // Aktiver printknap og tilføj CSS-klassen "printBtn"
+                                    printButton.prop("disabled", false).addClass("printBtn");
                                 },
                                 error: function (xhr, status, error) {
                                     // Håndter fejl
-                                    submitButton.text("Gem ordre").prop("disabled", false);
+                                    submitButton.text("Gem ordre").removeClass("saving").prop("disabled", false);
                                     statusMessage.html("<p>Fejl: Kunne ikke gemme ordren.</p>").fadeIn().delay(3000).fadeOut();
                                 }
                             });
@@ -218,7 +210,7 @@ include 'header.php';
 
                         // Printknap funktion
                         $("#printButton").on("click", function () {
-                            window.location.href = "printPage.php"; // Henvisning til print-siden
+                            window.location.href = "exportToPrint.php"; // Henvisning til print-siden
                         });
                     });
                 </script>

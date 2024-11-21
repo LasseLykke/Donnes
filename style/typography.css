@@ -33,6 +33,11 @@ p {
     font-size: 10px;
 }
 
+.note {
+    font-size: 12px;
+    font-style: italic;
+}
+
 .version {
     color: var(--placeholder);
     float: right;
