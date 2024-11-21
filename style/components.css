@@ -1,430 +1,435 @@
 /* Forms */
 
-
 /*Login form */
 .loginForm {
-	width: 500px;
-	padding: 30px;
-	background-color: rgba(255, 255, 255);
-	border-radius: 15px;
-	backdrop-filter: blur(1.5rem);
-	box-shadow: -0.25rem -0.25rem 0.5rem rgba(#fff, 0.07),
-	  0.25rem 0.25rem 0.5rem rgba(#000, 0.12),
-	  -0.75rem -0.75rem 1.75rem rgba(#fff, 0.07),
-	  0.75rem 0.75rem 1.75rem rgba(#000, 0.12),
-	  inset 8rem 8rem 8rem rgba(#000, 0.05),
-	  inset -8rem -8rem 8rem rgba(#fff, 0.05);
-  }
+  width: 500px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255);
+  border-radius: 15px;
+  backdrop-filter: blur(1.5rem);
+  box-shadow: -0.25rem -0.25rem 0.5rem rgba(#fff, 0.07),
+    0.25rem 0.25rem 0.5rem rgba(#000, 0.12),
+    -0.75rem -0.75rem 1.75rem rgba(#fff, 0.07),
+    0.75rem 0.75rem 1.75rem rgba(#000, 0.12),
+    inset 8rem 8rem 8rem rgba(#000, 0.05),
+    inset -8rem -8rem 8rem rgba(#fff, 0.05);
+}
 
-  .login input {
-	display: block;
-	background: transparent;
-	border: 1px solid var(--grey);
-	width: 95%;
-	padding: 10px;
-	margin: 10px auto;
-	border-radius: 2px;
-  }
-  
-  .login input:focus {
-	background: transparent;
-	border: 1px solid var(--blue);
-  }
-  
-  .login label {
-	color: var(--blue);
-	font-size: 18px;
-	padding: 10px;
-  }
+.login input {
+  display: block;
+  background: transparent;
+  border: 1px solid var(--grey);
+  width: 95%;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 2px;
+}
 
+.login input:focus {
+  background: transparent;
+  border: 1px solid var(--blue);
+}
 
+.login label {
+  color: var(--blue);
+  font-size: 18px;
+  padding: 10px;
+}
 
-  .grid2{
-	display: grid;
-	grid-template-columns: repeat(2,1fr);
-	padding-top: 10px;
-	margin: 20px;
-  }
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-top: 10px;
+  margin: 20px;
+}
 
-  .grid3 {
-	display: grid;
-	grid-template-columns: repeat(3,1fr);
-	padding-top: 10px;
-	margin: 20px;
-  }
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-top: 10px;
+  margin: 20px;
+}
 
-  .grid4 {
-	display: grid;
-	grid-template-columns: repeat(3,1fr);
-	padding-top: 10px;
-	margin: 20px;
-  }
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-top: 10px;
+  margin: 20px;
+}
 
-  .grid2 input, 
-  .grid3 input, 
-  .bemærkning input, 
-  .pris input{
-	display: block;
-	background: transparent;
-	border: 1px solid var(--grey);
-	width: 95%;
-	padding: 10px;
-	margin: 10px auto;
-	border-radius: 2px;
-  }
+.grid2 input,
+.grid3 input,
+.bemærkning input,
+.pris input {
+  display: block;
+  background: transparent;
+  border: 1px solid var(--grey);
+  width: 95%;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 2px;
+}
 
-  .grid2 label, .grid3 label {
-	color: var(--blue);
-	font-size: 18px;
-	padding: 10px;
-	margin-left: 5px;
-  }
+.grid2 label,
+.grid3 label {
+  color: var(--blue);
+  font-size: 18px;
+  padding: 10px;
+  margin-left: 5px;
+}
 
-  .grid2 input:focus {
-	border: 1px solid var(--deepblue);
-  }
+.grid2 input:focus {
+  border: 1px solid var(--deepblue);
+}
 
-  .glas label, 
-  .glas input, 
-  .hulmål label, 
-  .hulmål input, 
-  .passepartout label, 
-  .passepartout input,
-  .montering label, 
-  .montering input
-  {
-    display: inline-block; /* Sørger for, at de er på samme linje */
-    vertical-align: middle; /* Justerer, så tekst og input er alignet */
-	font-size: 18px;
+.glas label,
+.glas input,
+.hulmål label,
+.hulmål input,
+.passepartout label,
+.passepartout input,
+.montering label,
+.montering input {
+  display: inline-block; /* Sørger for, at de er på samme linje */
+  vertical-align: middle; /* Justerer, så tekst og input er alignet */
+  font-size: 18px;
 }
 
 .bemærkning {
-	padding-right: 10px;
+  padding-right: 10px;
 }
 .bemærkning textarea {
-	width: 100%;
-	height: 150px;
-	padding: 12px 20px;
-	box-sizing: border-box;
-	border: 1px solid var(--grey);
-	border-radius: 5px;
-	font-size: 16px;
-	resize: none;
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 1px solid var(--grey);
+  border-radius: 5px;
+  font-size: 16px;
+  resize: none;
 }
 
 .bemærkning label {
-	font-size: 18px;
+  font-size: 18px;
 }
 
 .pris label {
-	font-size: 18px;
+  font-size: 18px;
 }
 
 .pris input {
-	margin: 0;
+  margin: 0;
 }
 
 .ghost {
-	display: none;
+  display: none;
 }
 
-
-
-  /* Buttons */
-
+/* Buttons */
 
 .backBtn {
-	float: right;
+  float: right;
 }
 
 .signOut {
-	border-radius: 0;
-	float: right;
-	margin: 0;
-	background-image: url(../img/log-out.svg);
-	background-size: 15px 15px;
-	padding: 50px 50px 0px 0px;
-	background-position: center;
-	background-color: transparent;
-	background-repeat: no-repeat;
-	transition: 0.1s ease-in-out;
+  border-radius: 0;
+  float: right;
+  margin: 0;
+  background-image: url(../img/log-out.svg);
+  background-size: 15px 15px;
+  padding: 50px 50px 0px 0px;
+  background-position: center;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  transition: 0.1s ease-in-out;
 }
 
-
 .mainBtn {
-    background-color: var(--white);
-    border: 1px solid var(--grey);
-    color: var(--deepblue);
-    padding: 12px 24px;
-    border-radius: 5px;
-    font-weight: bold;
-    box-shadow: var(--shadow-xxs);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-transform: uppercase;
+  background-color: var(--white);
+  border: 1px solid var(--grey);
+  color: var(--deepblue);
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: var(--shadow-xxs);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
 }
 
 .mainBtn:hover {
-    background-color: var(--deepblue);
-    color: var(--white);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  background-color: var(--deepblue);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .mainBtn:active {
-    transform: translateY(0);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
 .printBtn {
-	background-color: var(--white);
-	border: 1px solid var(--grey);
-	padding: 12px 24px;
-    border-radius: 5px;
-    font-weight: bold;
-    box-shadow: var(--shadow-xxs);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-	cursor: not-allowed;
+  background-color: var(--white);
+  border: 1px solid var(--grey);
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: var(--shadow-xxs);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  cursor: not-allowed;
 }
 
 /* Når ordren er gemt */
 body.orderSaved .printBtn {
-    background-color: #28a745; /* Grøn baggrund */
-    color: white;
-    cursor: pointer; /* Gør den klikbar */
-    opacity: 1; /* Fuld synlighed */
+  background-color: #28a745; /* Grøn baggrund */
+  color: white;
+  cursor: pointer; /* Gør den klikbar */
+  opacity: 1; /* Fuld synlighed */
 }
 
-
-
 .saveBtn {
-    background-color: var(--white);
-    border: 1px solid var(--grey);
-    color: var(--deepblue);
-    padding: 12px 24px;
-    border-radius: 5px;
-    font-weight: bold;
-    box-shadow: var(--shadow-xxs);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-transform: uppercase;
+  background-color: var(--white);
+  border: 1px solid var(--grey);
+  color: var(--deepblue);
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: var(--shadow-xxs);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
 }
 
 .saveBtn:hover {
-    background-color: var(--deepblue);
-    color: var(--white);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  background-color: var(--deepblue);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .saveBtn:active {
-    transform: translateY(0);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .saveBtn.saved {
-    background-color: #4caf50; /* Grøn farve for succes */
-    color: white;
-    transform: scale(1.1);
+  background-color: #4caf50; /* Grøn farve for succes */
+  color: white;
+  transform: scale(1.1);
 }
 
 .saveBtn.saved:after {
-    content: " ✓"; /* Tilføjer fluebenet */
-    margin-left: 8px;
-    font-size: 1rem;
+  content: " ✓"; /* Tilføjer fluebenet */
+  margin-left: 8px;
+  font-size: 1rem;
 }
-
 
 /* Fjern mellemrummet mellem knapper */
 a {
-    display: inline-block;
-    margin: 0 4px; /* Afstand mellem knapper */
+  display: inline-block;
+  margin: 0 4px; /* Afstand mellem knapper */
 }
 
 a:first-child {
-    margin-left: 0; /* Ingen margin til venstre for første knap */
+  margin-left: 0; /* Ingen margin til venstre for første knap */
 }
 
 a:last-child {
-    margin-right: 0; /* Ingen margin til højre for sidste knap */
+  margin-right: 0; /* Ingen margin til højre for sidste knap */
 }
 
-
 .signOut:hover {
-	background-size: 20px 20px;
+  background-size: 20px 20px;
 }
 
 .successBtn {
-	background-color: var(--deepblue);
-	color: var(--offgrey);
-	text-transform: uppercase;
-	border: 2px solid var(--offgrey);
-	transition: 0.3s ease-in-out;
+  background-color: var(--deepblue);
+  color: var(--offgrey);
+  text-transform: uppercase;
+  border: 2px solid var(--offgrey);
+  transition: 0.3s ease-in-out;
 }
 
 .successBtn:hover {
-	background-color: var(--bg);
-	color: var(--deepblue);
-
+  background-color: var(--bg);
+  color: var(--deepblue);
 }
-  
 
 .submitSearch {
-	background-color: var(--white);
-	border: 1px solid var(--grey);
-	color: var(--blue);
-	float: right;
+  background-color: var(--white);
+  border: 1px solid var(--grey);
+  color: var(--blue);
+  float: right;
 }
-
 
 /*SUCCESS ANIMATION */
 .success-checkmark {
-	height: 200px;
-	width: 200px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	
+  height: 200px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .success-checkmark .check-icon {
-	width: 80px;
-	height: 80px;
-	position: relative;
-	border-radius: 50%;
-	box-sizing: content-box;
-	border: 4px solid #4CAF50;
+  width: 80px;
+  height: 80px;
+  position: relative;
+  border-radius: 50%;
+  box-sizing: content-box;
+  border: 4px solid #4caf50;
+}
+.success-checkmark .check-icon::before {
+  top: 3px;
+  left: -2px;
+  width: 30px;
+  transform-origin: 100% 50%;
+  border-radius: 100px 0 0 100px;
+}
+.success-checkmark .check-icon::after {
+  top: 0;
+  left: 30px;
+  width: 60px;
+  transform-origin: 0 50%;
+  border-radius: 0 100px 100px 0;
+  animation: rotate-circle 4.25s ease-in;
+}
+.success-checkmark .check-icon::before,
+.success-checkmark .check-icon::after {
+  content: "";
+  height: 100px;
+  position: absolute;
+  background: var(--bg);
+  transform: rotate(-45deg);
+}
+.success-checkmark .check-icon .icon-line {
+  height: 5px;
+  background-color: #4caf50;
+  display: block;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+}
+.success-checkmark .check-icon .icon-line.line-tip {
+  top: 46px;
+  left: 14px;
+  width: 25px;
+  transform: rotate(45deg);
+  animation: icon-line-tip 0.75s;
+}
+.success-checkmark .check-icon .icon-line.line-long {
+  top: 38px;
+  right: 8px;
+  width: 47px;
+  transform: rotate(-45deg);
+  animation: icon-line-long 0.75s;
+}
+.success-checkmark .check-icon .icon-circle {
+  top: -4px;
+  left: -4px;
+  z-index: 10;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-sizing: content-box;
+  border: 4px solid rgba(76, 175, 80, 0.5);
+}
+.success-checkmark .check-icon .icon-fix {
+  top: 8px;
+  width: 5px;
+  left: 26px;
+  z-index: 1;
+  height: 85px;
+  position: absolute;
+  transform: rotate(-45deg);
+  background-color: var(--bg);
+}
+
+@keyframes rotate-circle {
+  0% {
+    transform: rotate(-45deg);
   }
-  .success-checkmark .check-icon::before {
-	top: 3px;
-	left: -2px;
-	width: 30px;
-	transform-origin: 100% 50%;
-	border-radius: 100px 0 0 100px;
+  5% {
+    transform: rotate(-45deg);
   }
-  .success-checkmark .check-icon::after {
-	top: 0;
-	left: 30px;
-	width: 60px;
-	transform-origin: 0 50%;
-	border-radius: 0 100px 100px 0;
-	animation: rotate-circle 4.25s ease-in;
+  12% {
+    transform: rotate(-405deg);
   }
-  .success-checkmark .check-icon::before, .success-checkmark .check-icon::after {
-	content: "";
-	height: 100px;
-	position: absolute;
-	background: var(--bg);
-	transform: rotate(-45deg);
+  100% {
+    transform: rotate(-405deg);
   }
-  .success-checkmark .check-icon .icon-line {
-	height: 5px;
-	background-color: #4CAF50;
-	display: block;
-	border-radius: 2px;
-	position: absolute;
-	z-index: 10;
+}
+@keyframes icon-line-tip {
+  0% {
+    width: 0;
+    left: 1px;
+    top: 19px;
   }
-  .success-checkmark .check-icon .icon-line.line-tip {
-	top: 46px;
-	left: 14px;
-	width: 25px;
-	transform: rotate(45deg);
-	animation: icon-line-tip 0.75s;
+  54% {
+    width: 0;
+    left: 1px;
+    top: 19px;
   }
-  .success-checkmark .check-icon .icon-line.line-long {
-	top: 38px;
-	right: 8px;
-	width: 47px;
-	transform: rotate(-45deg);
-	animation: icon-line-long 0.75s;
+  70% {
+    width: 50px;
+    left: -8px;
+    top: 37px;
   }
-  .success-checkmark .check-icon .icon-circle {
-	top: -4px;
-	left: -4px;
-	z-index: 10;
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	position: absolute;
-	box-sizing: content-box;
-	border: 4px solid rgba(76, 175, 80, 0.5);
+  84% {
+    width: 17px;
+    left: 21px;
+    top: 48px;
   }
-  .success-checkmark .check-icon .icon-fix {
-	top: 8px;
-	width: 5px;
-	left: 26px;
-	z-index: 1;
-	height: 85px;
-	position: absolute;
-	transform: rotate(-45deg);
-	background-color: var(--bg);
+  100% {
+    width: 25px;
+    left: 14px;
+    top: 45px;
   }
-  
-  @keyframes rotate-circle {
-	0% {
-	  transform: rotate(-45deg);
-	}
-	5% {
-	  transform: rotate(-45deg);
-	}
-	12% {
-	  transform: rotate(-405deg);
-	}
-	100% {
-	  transform: rotate(-405deg);
-	}
+}
+@keyframes icon-line-long {
+  0% {
+    width: 0;
+    right: 46px;
+    top: 54px;
   }
-  @keyframes icon-line-tip {
-	0% {
-	  width: 0;
-	  left: 1px;
-	  top: 19px;
-	}
-	54% {
-	  width: 0;
-	  left: 1px;
-	  top: 19px;
-	}
-	70% {
-	  width: 50px;
-	  left: -8px;
-	  top: 37px;
-	}
-	84% {
-	  width: 17px;
-	  left: 21px;
-	  top: 48px;
-	}
-	100% {
-	  width: 25px;
-	  left: 14px;
-	  top: 45px;
-	}
+  65% {
+    width: 0;
+    right: 46px;
+    top: 54px;
   }
-  @keyframes icon-line-long {
-	0% {
-	  width: 0;
-	  right: 46px;
-	  top: 54px;
-	}
-	65% {
-	  width: 0;
-	  right: 46px;
-	  top: 54px;
-	}
-	84% {
-	  width: 55px;
-	  right: 0px;
-	  top: 35px;
-	}
-	100% {
-	  width: 47px;
-	  right: 8px;
-	  top: 38px;
-	}
+  84% {
+    width: 55px;
+    right: 0px;
+    top: 35px;
   }
+  100% {
+    width: 47px;
+    right: 8px;
+    top: 38px;
+  }
+}
+
+/* TABEL */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+th {
+  background-color: #f4f4f4;
+}

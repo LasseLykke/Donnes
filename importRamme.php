@@ -149,7 +149,7 @@ include 'header.php';
 
                     <div class="pris">
                         <label for="pris">Pris:</label>
-                        <input type="number" step="0.01" id="pris" name="pris" required><br>
+                        <input type="number" step="0.01" id="pris" name="pris" placeholder="Ordre total" required><br>
                     </div>
                 </div>
 
