@@ -414,10 +414,14 @@ a:last-child {
   }
 }
 
+.logoWrapper {
+  display: flex;
+  justify-content: center; /* Centrerer vandret */
+}
+
 .printLogo {
-	display: block;
-	height: 100px;
-	margin: 0 auto;
+  display: block;
+  height: 100px; /* Sørg for, at højden på logoet er fast */
 }
 
 /* TABEL */
@@ -438,10 +442,9 @@ td {
 }
 
 table td:first-child {
-    width: 40%; 
+  width: 40%;
 }
 
 table td:last-child {
-    width: 60%;
+  width: 60%;
 }
-

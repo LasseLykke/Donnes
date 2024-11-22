@@ -1,6 +1,16 @@
 <?php
+// Start session
+session_start();
+
+// Tjek om brugeren er logget ind
+if (!isset($_SESSION['users_id']) || !isset($_SESSION['user_name'])) {
+    // Hvis ikke logget ind, omdiriger til login-siden
+    header("Location: login.php");
+    exit();
+}
+
 // Forbind til databasen
-include 'connection.php'; // Sørg for at have din connection-fil klar
+include 'connection.php';
 include 'header.php';
 
 // Hent den seneste ordre fra databasen
@@ -44,16 +54,20 @@ if (!$orderDetails) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ordrebekræftelse</title>
-    <!--<script>
+    <script>
         // Automatisk print, når siden er indlæst
         window.onload = function () {
             window.print();
         };
-    </script> -->
+    </script>
 </head>
 
 <body>
-    <img src="img/hflogoUp.png" class="printLogo" alt="logo">
+    <div class="logoWrapper">
+        <a href="forside.php">
+            <img src="img/hflogoUp.png" class="printLogo" alt="Logo">
+        </a>
+    </div>
     <div class="wrapper">
         <h2>Tak for din ordre</h2>
         <p class="ordreText">Kære <?php echo htmlspecialchars($orderDetails['Navn']); ?>, <br>Tusinde tak for din
@@ -124,10 +138,9 @@ if (!$orderDetails) {
         </table><br>
 
         <h2>Hvad sker der nu?</h2>
-        <p class="ordreText">Vi får sat din ordre i produktion. Så snart rammen kommer fra vores værksted, montere vi
-            dit billede hvis
-            dette er aftalt, hvor vi pudser glasset af og sørger for at billedet er lige til at hænge op på væggen.
-            Du modtager en SMS lige så snart din ordre er klar. </p><br><br>
+        <p class="ordreText">Din ordre sættes straks i produktion. Når rammen er færdiggjort på værkstedet, monterer vi
+            dit billede, hvis dette er aftalt. Vi sørger samtidig for at pudse glasset og sikre, at billedet er klar til
+            ophængning. Du vil modtage en SMS, så snart din ordre er klar til afhentning. </p><br><br>
 
 
     </div>
