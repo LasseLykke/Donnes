@@ -414,6 +414,12 @@ a:last-child {
   }
 }
 
+.printLogo {
+	display: block;
+	height: 100px;
+	margin: 0 auto;
+}
+
 /* TABEL */
 table {
   width: 100%;
@@ -423,13 +429,19 @@ table {
 table,
 th,
 td {
-  border: 1px solid #ddd;
+  border: 1px solid var(--grey);
 }
 th,
 td {
   padding: 10px;
   text-align: left;
 }
-th {
-  background-color: #f4f4f4;
+
+table td:first-child {
+    width: 40%; 
 }
+
+table td:last-child {
+    width: 60%;
+}
+

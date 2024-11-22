@@ -39,97 +39,98 @@ if (!$orderDetails) {
 
 <!DOCTYPE html>
 <html lang="da">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ordrebekræftelse</title>
-    <link rel="stylesheet" href="styles.css">
-    <--<script>
+    <!--<script>
         // Automatisk print, når siden er indlæst
         window.onload = function () {
             window.print();
         };
     </script> -->
 </head>
+
 <body>
+    <img src="img/hflogoUp.png" class="printLogo" alt="logo">
     <div class="wrapper">
-    <h1>Tak for din ordre</h1>
-    <p>Kære <?php echo htmlspecialchars($orderDetails['Navn']); ?>, tak fordi du har handlet hos os. Her er en oversigt over din ordre:</p>
+        <h2>Tak for din ordre</h2>
+        <p class="ordreText">Kære <?php echo htmlspecialchars($orderDetails['Navn']); ?>, <br>Tusinde tak for din
+            bestilling. Her kan du
+            se en oversigt over din ordre: </p><br><br>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Felt</th>
-                <th>Detaljer</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Ordre:</td>
-                <td><?php echo htmlspecialchars($orderDetails['ordreID']); ?></td>
-            </tr>
-            <tr>
-                <td>Dato:</td>
-                <td><?php echo htmlspecialchars($orderDetails['ordreDate']); ?></td>
-            </tr>
-            <tr>
-                <td>Kunde Navn:</td>
-                <td><?php echo htmlspecialchars($orderDetails['Navn']); ?></td>
-            </tr>
-            <tr>
-                <td>Telefon:</td>
-                <td><?php echo htmlspecialchars($orderDetails['Telefon']); ?></td>
-            </tr>
-            <tr>
-                <td>Ramme Profil:</td>
-                <td><?php echo htmlspecialchars($orderDetails['profil']); ?></td>
-            </tr>
-            <tr>
-                <td>Ramme Størrelse:</td>
-                <td><?php echo htmlspecialchars($orderDetails['størrelse']); ?></td>
-            </tr>
-            <tr>
-                <td>Glastype:</td>
-                <td><?php echo htmlspecialchars($orderDetails['glastype']); ?></td>
-            </tr>
-            <tr>
-                <td>Hulmål:</td>
-                <td><?php echo htmlspecialchars($orderDetails['hulmål']); ?></td>
-            </tr>
-            <tr>
-                <td>Passepartout Farve:</td>
-                <td><?php echo htmlspecialchars($orderDetails['passepartoutFarve']); ?></td>
-            </tr>
-            <tr>
-                <td>Antal Rammer:</td>
-                <td><?php echo htmlspecialchars($orderDetails['antal']); ?></td>
-            </tr>
-            <tr>
-                <td>Montering:</td>
-                <td><?php echo htmlspecialchars($orderDetails['montering']); ?></td>
-            </tr>
-            <tr>
-                <td>Billedtype:</td>
-                <td><?php echo htmlspecialchars($orderDetails['billedtype']); ?></td>
-            </tr>
-            <tr>
-                <td>Bemærkninger:</td>
-                <td><?php echo htmlspecialchars($orderDetails['bemærkninger']); ?></td>
-            </tr>
-            <tr>
-                <td>Pris:</td>
-                <td><?php echo htmlspecialchars($orderDetails['pris']); ?> DKK</td>
-            </tr>
-            <tr>
-                <td>Ekspedient</td>
-                <td><?php echo htmlspecialchars($orderDetails['ekspedient']); ?></td>
-            </tr>
-        </tbody>
-    </table>
+        <p class="ordreText">
+            <strong>Ordrenr:</strong> <?php echo htmlspecialchars($orderDetails['ordreID']); ?><br>
+            <strong>Ordredato:</strong>
+            <?php
+            $formattedDate = date("d/m-Y", strtotime($orderDetails['ordreDate']));
+            echo htmlspecialchars($formattedDate);
+            ?><br>
+            <strong>Kunde navn:</strong> <?php echo htmlspecialchars($orderDetails['Navn']); ?><br>
+            <strong>Telefonnummer:</strong> <?php echo htmlspecialchars($orderDetails['Telefon']); ?>
 
-    <div class="footer">
-        <p>Vi ser frem til at handle med dig igen!</p>
-    </div>
+        </p>
+        <table>
+            <thead>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ramme Profil:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['profil']); ?></td>
+                </tr>
+                <tr>
+                    <td>Ramme Størrelse:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['størrelse']); ?></td>
+                </tr>
+                <tr>
+                    <td>Glastype:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['glastype']); ?></td>
+                </tr>
+                <tr>
+                    <td>Hulmål:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['hulmål']); ?></td>
+                </tr>
+                <tr>
+                    <td>Passepartout Farve:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['passepartoutFarve']); ?></td>
+                </tr>
+                <tr>
+                    <td>Antal Rammer:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['antal']); ?></td>
+                </tr>
+                <tr>
+                    <td>Montering af billede:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['montering']); ?></td>
+                </tr>
+                <tr>
+                    <td>Dit eget billede eller skal vi printe:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['billedtype']); ?></td>
+                </tr>
+                <tr>
+                    <td>Bemærkninger:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['bemærkninger']); ?></td>
+                </tr>
+                <tr>
+                    <td>Pris:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['pris']); ?> DKK</td>
+                </tr>
+                <tr>
+                    <td>Du er blevet ekspederet af:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['ekspedient']); ?></td>
+                </tr>
+            </tbody>
+        </table><br>
+
+        <h2>Hvad sker der nu?</h2>
+        <p class="ordreText">Vi får sat din ordre i produktion. Så snart rammen kommer fra vores værksted, montere vi
+            dit billede hvis
+            dette er aftalt, hvor vi pudser glasset af og sørger for at billedet er lige til at hænge op på væggen.
+            Du modtager en SMS lige så snart din ordre er klar. </p><br><br>
+
+
     </div>
 </body>
+
 </html>

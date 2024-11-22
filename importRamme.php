@@ -163,7 +163,7 @@ include 'header.php';
 
 
                 <button id="submitButton" class="saveBtn" type="submit">Gem ordre</button>
-                <button id="printButton" class="printBtn" disabled>Print Ordre</button>
+                <button id="printButton" class="printBtn" disabled>Print Ordre x2!</button>
                 <div id="statusMessage"></div>
 
 
