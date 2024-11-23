@@ -85,7 +85,7 @@ if (!$orderDetails) {
             <strong>Telefonnummer:</strong> <?php echo htmlspecialchars($orderDetails['Telefon']); ?>
 
         </p>
-        <table>
+        <table class="confTabel">
             <thead>
 
             </thead>

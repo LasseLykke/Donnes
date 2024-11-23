@@ -429,22 +429,29 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
+  box-shadow: var(--shadow-xxs);
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  background-color: var(--offgrey);
 }
 table,
 th,
 td {
   border: 1px solid var(--grey);
 }
+
 th,
 td {
   padding: 10px;
   text-align: left;
 }
 
-table td:first-child {
+.confTabel table td:first-child {
   width: 40%;
 }
 
-table td:last-child {
+.confTabel table td:last-child {
   width: 60%;
 }

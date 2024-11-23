@@ -103,6 +103,16 @@
   padding: 20px;
 }
 
+.wrapperOversigt {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-top: 20px;
+  border-radius: 5px;
+  box-shadow: var(--shadow-xxs);
+  margin-top: 20px;
+  padding: 20px;
+}
+
 .mainContent {
     margin: 20px;
     padding: 20px;
@@ -120,5 +130,46 @@
 }
 
 
+/* OVERSIGT SIDER */
 
+/*Søgefunction*/
+/*Søge side. */
+.søge-wrapper {
+	min-height: 100vh;
+}
+
+.søge-header {
+	background-color: white;
+	padding: 20px;
+}
+
+/*Container som holder table*/
+.søge-resultat {
+	margin: 20px;
+	overflow-x: auto;
+}
+
+.søge-resultat input[type="text"] {
+	color: var(--blue);
+}
+
+.søgeform {
+	width: 500px;
+	padding: 50px;
+	background-color: var(--blue);
+	border-radius: 15px;
+	backdrop-filter: blur(1.5rem);
+	box-shadow: var(--shadow-xxs);
+	margin: 0 auto;
+}
+
+.søgeform button[type="submit"] {
+	margin-left: 10px;
+	padding: 10px 20px;
+background-color: white;
+}
+
+.resultat {
+	margin-left: 25px;
+}
 
