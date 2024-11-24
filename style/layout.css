@@ -36,61 +36,58 @@
   opacity: 0.7;
 }
 
-
 .footer {
   margin-top: auto;
   padding-right: 10px;
   width: 100%;
-  text-align: right; 
+  text-align: right;
 }
-
 
 /* Forside */
 
 .navbar {
-    display: flex;
-    justify-content: space-between; /* Placerer elementer i hver sin ende */
-    align-items: center; /* Centrerer dem vertikalt */
-    padding: 0 20px; /* Tilføj lidt luft omkring indholdet */
-    top: 0;
-    left: 0;
-    width: 100%; /* Fylder hele bredden */
-    box-shadow: var(--shadow-xs);
+  display: flex;
+  justify-content: space-between; /* Placerer elementer i hver sin ende */
+  align-items: center; /* Centrerer dem vertikalt */
+  padding: 0 20px; /* Tilføj lidt luft omkring indholdet */
+  top: 0;
+  left: 0;
+  width: 100%; /* Fylder hele bredden */
+  box-shadow: var(--shadow-xs);
 }
 
 .logo {
-    height: 35px; 
-    display: block; 
+  height: 35px;
+  display: block;
 }
 
 .signOut {
-    border: none; 
-    border-radius: 0;
-    margin: 0;
-    width: 40px; 
-    height: 40px;
-    background-image: url(../img/log-out.svg);
-    background-size: 20px 20px;
-    background-position: center;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    transition: background-size 0.1s ease-in-out;
-    cursor: pointer;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  width: 40px;
+  height: 40px;
+  background-image: url(../img/log-out.svg);
+  background-size: 20px 20px;
+  background-position: center;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  transition: background-size 0.1s ease-in-out;
+  cursor: pointer;
 }
 
 .signOut:hover {
-    background-size: 25px 25px;
+  background-size: 25px 25px;
 }
 
-
 .wrapper {
-    max-width: 800px;
-    margin: 0 auto;
-    padding-top: 20px;
-    border-radius: 5px;
-    box-shadow: var(--shadow-xxs);
-    margin-top: 50px;
-    padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 20px;
+  border-radius: 5px;
+  box-shadow: var(--shadow-xxs);
+  margin-top: 50px;
+  padding: 20px;
 }
 
 .wrapperOrdre {
@@ -103,24 +100,14 @@
   padding: 20px;
 }
 
-.wrapperOversigt {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding-top: 20px;
-  border-radius: 5px;
-  box-shadow: var(--shadow-xxs);
-  margin-top: 20px;
+.mainContent {
+  margin: 20px;
   padding: 20px;
 }
 
-.mainContent {
-    margin: 20px;
-    padding: 20px;
-}
-
 .secContent {
-    margin: 20px;
-    padding: 20px;
+  margin: 20px;
+  padding: 20px;
 }
 
 .header {
@@ -129,47 +116,79 @@
   padding: 20px;
 }
 
-
 /* OVERSIGT SIDER */
 
-/*Søgefunction*/
-/*Søge side. */
+/* Wrapper */
+.wrapperOversigt {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: var(--shadow-xxs);
+  margin-top: 20px;
+}
+
+/* Søge-wrapper */
 .søge-wrapper {
-	min-height: 100vh;
+  min-height: 100vh;
+  position: relative;
 }
 
+/* Overskrift og resultater */
 .søge-header {
-	background-color: white;
-	padding: 20px;
-}
-
-/*Container som holder table*/
-.søge-resultat {
-	margin: 20px;
-	overflow-x: auto;
-}
-
-.søge-resultat input[type="text"] {
-	color: var(--blue);
-}
-
-.søgeform {
-	width: 500px;
-	padding: 50px;
-	background-color: var(--blue);
-	border-radius: 15px;
-	backdrop-filter: blur(1.5rem);
-	box-shadow: var(--shadow-xxs);
-	margin: 0 auto;
-}
-
-.søgeform button[type="submit"] {
-	margin-left: 10px;
-	padding: 10px 20px;
-background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .resultat {
-	margin-left: 25px;
+  color: var(--blue);
+  font-size: 16px;
 }
 
+/* Søgeform */
+.søgeform {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.søgeform input[type="text"] {
+  padding: 10px;
+  border: 1px solid var(--offgrey);
+  border-radius: 5px;
+  width: 250px;
+}
+
+.søgeform button[type="submit"] {
+  /* padding: 10px; */
+  background-color: var(--dark);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+/* Søge-resultat (tabel-container) */
+.søge-resultat {
+  overflow-x: auto;
+}
+
+.søge-resultat table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.søge-resultat table th,
+.søge-resultat table td {
+  padding: 10px;
+  border: 1px solid var(--offgrey);
+  text-align: left;
+}
+
+.søge-resultat table th {
+  background-color: var(--lightgrey);
+}

@@ -17,30 +17,36 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     </head>
 
     <body>
-    <nav class="navbar">
-        <a href="forside.php">
-            <img src="./img/hflogo.png" class="logo" alt="logo"></a>
-        <h3>Hej
-            <?php echo $_SESSION['name']; ?> 👋🏻
-        </h3>
-        <a href="logout.php"><button class="signOut" alt="LogOut"></button>
-        </a>
-    </nav>
+        <nav class="navbar">
+            <a href="forside.php">
+                <img src="./img/hflogo.png" class="logo" alt="logo"></a>
+            <h3>Hej
+                <?php echo $_SESSION['name']; ?> 👋🏻
+            </h3>
+            <a href="logout.php"><button class="signOut" alt="LogOut"></button>
+            </a>
+        </nav>
 
-    <div class="wrapperOversigt">
+        <div class="wrapperOversigt">
+            <div class="søge-wrapper">
+                <!-- Header med resultat og søgefunktion -->
+                <div class="søge-header">
+                    <!-- Query result til venstre -->
+                    <div class="resultat">
 
+                    </div>
 
-        <div class="søge-wrapper">
-            <div class="søge-header">
-                <h2 class="ordreSection">Rammeordre oversigt</h2>
-            </div>
+                    <!-- Søgefunktion til højre -->
+                    <form class="søgeform" method="POST" action="output_rammer.php">
+                        <div class="input-wrapper">
+                            <input type="text" name="søgeord" placeholder="Søg efter ordre">
+                            <button type="submit" name="søg">
+                                <img src="./img/search.svg" class="search" alt="Søg">
+                            </button>
+                        </div>
+                    </form>
 
-            <div class="søge-resultat">
-
-                <form class="søgeform" method="POST" action="output_rammer.php">
-                    <input type="text" name="søgeord" placeholder="Søg efter ordre">
-                    <button type="submit" name="søg">Søg</button>
-                </form>
+                </div>
                 <?php
 
                 // Standard SQL-forespørgsel for at hente alle ordre med DESC rækkefølge
@@ -49,7 +55,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                         INNER JOIN ordre ON ramme.ordreID = ordre.ordreID
                         INNER JOIN kunde ON ordre.kundeID = kunde.kundeID
                         ORDER BY ramme.rammeID DESC"; // Sortér standard efter rammeID DESC
-
+            
                 // Check if search form is submitted
                 if (isset($_POST['søg'])) {
                     $search = mysqli_real_escape_string($conn, $_POST['søgeord']);
@@ -82,6 +88,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                 echo "Der er " . $queryResult . " ordre";
                 echo '</div>';
 
+
                 // Vis tabel med alle ordre
                 echo '<div class="søge-resultat">';
                 echo '<table>
@@ -113,7 +120,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                             <td>
                                 <form method="POST" action="vis_ordredetaljer.php" target="_blank">
                                     <input type="hidden" name="ordreID" value="' . $row["ordreID"] . '">
-                                    <button type="submit">Åbn</button>
+                                    <button type="submit" class="btn-åbn">Åbn</button>
                                 </form>
                             </td>
                         </tr>';
@@ -128,11 +135,11 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                 ?>
             </div> <!-- Lukker resultat -->
         </div> <!-- Lukker wrapper -->
-    </div>
+        </div>
 
     </body>
 
     </html>
-<?php
+    <?php
 }
 ?>

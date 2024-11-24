@@ -182,6 +182,60 @@
   cursor: not-allowed;
 }
 
+/*Åbn ordre knap*/
+.btn-åbn {
+  background-color: var(--deepblue);
+  color: var(--white);
+  padding: 7px 15px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: var(--shadow-xxs);
+  cursor: pointer;
+}
+
+/*Search Btn*/
+/* Wrapper der holder input og knap samlet */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%; /* Tilpas bredde */
+}
+
+/* Styling til inputfeltet */
+.input-wrapper input {
+  width: 100%;
+  padding: 10px 40px; /* Plads til søgeikon */
+  border: 1px solid var(--offgrey);
+  border-radius: 20px; /* Rundede hjørner */
+  outline: none;
+  box-shadow: var(--shadow-xxs);
+  font-size: 1rem;
+}
+
+/* Styling til søgeknappen */
+.input-wrapper button {
+  position: absolute;
+  right: 10px; /* Placer søgeikonet inde i feltet */
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-wrapper button img {
+  width: 20px; /* Tilpas ikonstørrelse */
+  height: 20px;
+}
+
+/* Tilføj hover-effekt, hvis ønsket */
+.input-wrapper button:hover img {
+  opacity: 0.8; /* Gør ikonet lidt lysere */
+}
+
 /* Når ordren er gemt */
 body.orderSaved .printBtn {
   background-color: #28a745; /* Grøn baggrund */
