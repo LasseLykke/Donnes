@@ -193,6 +193,19 @@
   cursor: pointer;
 }
 
+.btn-slet {
+    background-color: red;
+    color: white;
+    padding: 7px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-slet:hover {
+    background-color: darkred;
+}
+
 /*Search Btn*/
 /* Wrapper der holder input og knap samlet */
 .input-wrapper {

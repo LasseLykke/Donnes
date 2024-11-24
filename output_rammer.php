@@ -11,9 +11,9 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
     <head>
         <title>DONNÉS || ALLE RAMME ORDRE</title>
-        <link href="./style/layout.css" type="text/css" rel="stylesheet">
         <link rel="shortcut icon" href="fav.ico" type="image/x-icon" />
         <meta http-equiv="refresh" content="900;url=logout.php" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
 
     <body>
@@ -29,14 +29,9 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
         <div class="wrapperOversigt">
             <div class="søge-wrapper">
-                <!-- Header med resultat og søgefunktion -->
                 <div class="søge-header">
-                    <!-- Query result til venstre -->
-                    <div class="resultat">
+                    <div class="resultat"></div>
 
-                    </div>
-
-                    <!-- Søgefunktion til højre -->
                     <form class="søgeform" method="POST" action="output_rammer.php">
                         <div class="input-wrapper">
                             <input type="text" name="søgeord" placeholder="Søg efter ordre">
@@ -45,21 +40,17 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                             </button>
                         </div>
                     </form>
-
                 </div>
-                <?php
 
-                // Standard SQL-forespørgsel for at hente alle ordre med DESC rækkefølge
+                <?php
                 $sql = "SELECT ramme.*, kunde.navn AS kunde_navn, kunde.telefon AS kunde_telefon, ordre.ordreDate
                         FROM ramme
                         INNER JOIN ordre ON ramme.ordreID = ordre.ordreID
                         INNER JOIN kunde ON ordre.kundeID = kunde.kundeID
-                        ORDER BY ramme.rammeID DESC"; // Sortér standard efter rammeID DESC
-            
-                // Check if search form is submitted
+                        ORDER BY ramme.rammeID DESC";
+
                 if (isset($_POST['søg'])) {
                     $search = mysqli_real_escape_string($conn, $_POST['søgeord']);
-                    // Modify the SQL query to filter results based on search criteria
                     $sql = "SELECT ramme.*, kunde.navn AS kunde_navn, kunde.telefon AS kunde_telefon, ordre.ordreDate
                             FROM ramme
                             INNER JOIN ordre ON ramme.ordreID = ordre.ordreID
@@ -77,19 +68,33 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                             OR ramme.billedtype LIKE '%$search%' 
                             OR ramme.bemærkninger LIKE '%$search%' 
                             OR ramme.ekspedient LIKE '%$search%' 
-                            ORDER BY ramme.rammeID DESC"; // Sortér stadig efter rammeID DESC
+                            ORDER BY ramme.rammeID DESC";
                 }
 
                 $result = mysqli_query($conn, $sql);
                 $queryResult = mysqli_num_rows($result);
 
-                // Vis antallet af resultater
+                if (isset($_POST['sletOrdre'])) {
+                    $ordreID = intval($_POST['ordreID']);
+                    $sletSQL = "DELETE FROM ordre WHERE ordreID = ?";
+                    
+                    if ($stmt = mysqli_prepare($conn, $sletSQL)) {
+                        mysqli_stmt_bind_param($stmt, "i", $ordreID);
+                        if (mysqli_stmt_execute($stmt)) {
+                            echo '<p class="success">Ordre med ID ' . $ordreID . ' blev slettet.</p>';
+                        } else {
+                            echo '<p class="error">Der opstod en fejl under sletning af ordren.</p>';
+                        }
+                        mysqli_stmt_close($stmt);
+                    } else {
+                        echo '<p class="error">Kunne ikke forberede forespørgslen.</p>';
+                    }
+                }
+
                 echo '<div class="resultat">';
                 echo "Der er " . $queryResult . " ordre";
                 echo '</div>';
 
-
-                // Vis tabel med alle ordre
                 echo '<div class="søge-resultat">';
                 echo '<table>
                 <tr>
@@ -103,9 +108,9 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                     <th>Bemærkning</th>
                     <th>Ekspedient</th>
                     <th>Vis ordre</th>
+                    <th>Slet ordre</th>
                 </tr>';
 
-                // Vis hver ordre som en række i tabellen
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo '<tr>
                             <td>' . $row["ordreID"] . '</td>
@@ -123,22 +128,50 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                                     <button type="submit" class="btn-åbn">Åbn</button>
                                 </form>
                             </td>
+                            <td>
+                                <button type="button" class="btn-slet" onclick="bekræftSletning(' . $row['ordreID'] . ')">Slet</button>
+                            </td>
                         </tr>';
                 }
 
                 echo '</table>';
-                echo '</div>'; // Lukker søge-resultat
-                echo '</div>'; // Lukker søge-wrapper
+                echo '</div>';
+                echo '</div>';
             
                 mysqli_free_result($result);
                 mysqli_close($conn);
                 ?>
-            </div> <!-- Lukker resultat -->
-        </div> <!-- Lukker wrapper -->
+            </div>
         </div>
 
-    </body>
+        <script>
+            function bekræftSletning(ordreID) {
+                Swal.fire({
+                    title: 'Er du sikker?',
+                    text: "Du kan ikke fortryde denne handling!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ja, slet ordren!',
+                    cancelButtonText: 'Annuller'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const form = document.createElement('form');
+                        form.method = 'POST';
+                        form.action = '';
+                        form.innerHTML = `
+                            <input type="hidden" name="ordreID" value="${ordreID}">
+                            <input type="hidden" name="sletOrdre" value="1">
+                        `;
+                        document.body.appendChild(form);
+                        form.submit();
+                    }
+                });
+            }
+        </script>
 
+    </body>
     </html>
     <?php
 }
