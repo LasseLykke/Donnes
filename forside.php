@@ -60,7 +60,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
             <div class="mainContent">
                 <h2>Bestilling:</h2><br>
-                <a href="importRamme.php">
+                <a href="./import/importRamme.php">
                     <button class="mainBtn">ADJ ramme</button>
                 </a>
                 <a href="ordre_bånd.php">
@@ -79,7 +79,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
             <div class="secContent">
                 <h2>Ordre:</h2><br>
-                <a href="output_rammer.php">
+                <a href="./export/output_rammer.php">
                     <button class="mainBtn">Ramme ordre</button>
                 </a>
 

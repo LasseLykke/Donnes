@@ -3,7 +3,7 @@ session_start();
 
 if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
-    include 'header.php';
+    include '../header.php';
     ?>
 
     <!DOCTYPE html>
@@ -18,12 +18,12 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
     <body>
         <nav class="navbar">
-            <a href="forside.php">
-                <img src="./img/hflogo.png" class="logo" alt="logo"></a>
+            <a href="../forside.php">
+                <img src="../img/hflogo.png" class="logo" alt="logo"></a>
             <h3>Hej
                 <?php echo $_SESSION['name']; ?> 👋🏻
             </h3>
-            <a href="logout.php"><button class="signOut" alt="LogOut"></button>
+            <a href="../logout.php"><button class="signOut" alt="LogOut"></button>
             </a>
         </nav>
 
@@ -36,7 +36,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                         <div class="input-wrapper">
                             <input type="text" name="søgeord" placeholder="Søg efter ordre">
                             <button type="submit" name="søg">
-                                <img src="./img/search.svg" class="search" alt="Søg">
+                                <img src="../img/search.svg" class="search" alt="Søg">
                             </button>
                         </div>
                     </form>

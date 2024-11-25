@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
-    include 'connection.php';
+    include '../connection.php';
 
     if (isset($_POST['ordreID'])) {
         $ordreID = mysqli_real_escape_string($conn, $_POST['ordreID']);

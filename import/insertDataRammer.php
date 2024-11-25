@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
-    include 'connection.php';  // Forbindelsen til databasen
+    include '../connection.php';  // Forbindelsen til databasen
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Sæt ordreDate automatisk til dagens dato

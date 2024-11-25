@@ -10,8 +10,8 @@ if (!isset($_SESSION['users_id']) || !isset($_SESSION['user_name'])) {
 }
 
 // Forbind til databasen
-include 'connection.php';
-include 'header.php';
+include '../connection.php';
+include '../header.php';
 
 // Hent den seneste ordre fra databasen
 $query = "
@@ -64,8 +64,8 @@ if (!$orderDetails) {
 
 <body>
     <div class="logoWrapper">
-        <a href="forside.php">
-            <img src="img/hflogoUp.png" class="printLogo" alt="Logo">
+        <a href="../forside.php">
+            <img src="../img/hflogoUp.png" class="printLogo" alt="Logo">
         </a>
     </div>
     <div class="wrapper">

@@ -5,7 +5,7 @@ if (!isset($_SESSION['user_name'])) {
 }
 $logged_in_user = $_SESSION['user_name'];
 
-include 'header.php';
+include '../header.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,12 +20,12 @@ include 'header.php';
 <body>
 
     <nav class="navbar">
-        <a href="forside.php">
-            <img src="./img/hflogo.png" class="logo" alt="logo"></a>
+        <a href="../forside.php">
+            <img src="../img/hflogo.png" class="logo" alt="logo"></a>
         <h3>Hej
             <?php echo $_SESSION['name']; ?> 👋🏻
         </h3>
-        <a href="logout.php"><button class="signOut" alt="LogOut"></button>
+        <a href="../logout.php"><button class="signOut" alt="LogOut"></button>
         </a>
     </nav>
 
@@ -210,7 +210,7 @@ include 'header.php';
 
                         // Printknap funktion
                         $("#printButton").on("click", function () {
-                            window.location.href = "exportToPrint.php"; // Henvisning til print-siden
+                            window.location.href = "../export/exportToPrint.php"; // Henvisning til print-siden
                         });
                     });
                 </script>
