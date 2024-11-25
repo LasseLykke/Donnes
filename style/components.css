@@ -102,11 +102,18 @@
 .medie input,
 .kopier label,
 .kopier input,
-.bemærkning label {
+.bemærkning label,
+.diasType label,
+.diasType input,
+.diasmedie label,
+.diasmedie input,
+.prøve label, 
+.prøve input {
   display: inline-block; /* Sørger for, at de er på samme linje */
   vertical-align: middle; /* Justerer, så tekst og input er alignet */
   font-size: 18px;
 }
+
 
 .bemærkning {
   padding-right: 10px;

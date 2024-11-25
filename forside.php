@@ -66,10 +66,10 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                 <a href="./import/importBånd.php">
                     <button class="mainBtn">Bånd</button>
                 </a>
-                <a href="ordre_dias.php">
+                <a href="./import/importDias.php">
                     <button class="mainBtn">Dias</button>
                 </a>
-                <a href="ordre_smalfilm.php">
+                <a href="./import/importSmalfilm.php">
                     <button class="mainBtn">Smalfilm</button>
                 </a>
                 <a href="ordre_rep.php">
@@ -85,6 +85,10 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
                 <a href="./export/output_bånd.php">
                     <button class="mainBtn">Bånd ordre</button>
+                </a>
+
+                <a href="./export/output_dias.php">
+                    <button class="mainBtn">Dias ordre</button>
                 </a>
             </div>
 
