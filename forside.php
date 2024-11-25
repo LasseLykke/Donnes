@@ -63,7 +63,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                 <a href="./import/importRamme.php">
                     <button class="mainBtn">ADJ ramme</button>
                 </a>
-                <a href="ordre_bånd.php">
+                <a href="./import/importBånd.php">
                     <button class="mainBtn">Bånd</button>
                 </a>
                 <a href="ordre_dias.php">
@@ -83,7 +83,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                     <button class="mainBtn">Ramme ordre</button>
                 </a>
 
-                <a href="output_bånd.php">
+                <a href="./export/output_bånd.php">
                     <button class="mainBtn">Bånd ordre</button>
                 </a>
             </div>

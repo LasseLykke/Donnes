@@ -36,6 +36,8 @@
   padding: 10px;
 }
 
+
+
 .grid2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -60,7 +62,9 @@
 .grid2 input,
 .grid3 input,
 .bemærkning input,
-.pris input {
+.pris input,
+.antal input,
+.kopier input {
   display: block;
   background: transparent;
   border: 1px solid var(--grey);
@@ -89,7 +93,16 @@
 .passepartout label,
 .passepartout input,
 .montering label,
-.montering input {
+.montering input,
+.båndType label,
+.båndType input,
+.antal label, 
+.antal input,
+.medie label, 
+.medie input,
+.kopier label,
+.kopier input,
+.bemærkning label {
   display: inline-block; /* Sørger for, at de er på samme linje */
   vertical-align: middle; /* Justerer, så tekst og input er alignet */
   font-size: 18px;
