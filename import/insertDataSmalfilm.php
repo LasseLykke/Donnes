@@ -11,13 +11,10 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
         // Modtag data fra formularen
         $kundeNavn = $_POST['kundeNavn'];
         $kundeTelefon = $_POST['kundeTelefon'];
-        $båndTyper = isset($_POST['båndType']) ? $_POST['båndType'] : [];
-        $båndTypeString = implode(',', $båndTyper); // Kombiner valgte båndtyper til en kommasepareret streng
-        $båndAntal = $_POST['båndAntal'];
-        $båndMedie = $_POST['båndMedie'];
-        $båndMedieKopi = isset($_POST["båndMedieKopi"]) ? intval($_POST["båndMedieKopi"]) : 0;
-        $båndNotes = $_POST["båndNotes"];
-        $båndPris = $_POST["båndPris"];
+        $antal =$_POST['antal'];
+        $medieTyper = isset($_POST['medieType']) ? $_POST['medieType'] : [];
+        $medieTypeString = !empty($medieTyper) ? implode(',', $medieTyper) : null;
+        $bemærkninger = $_POST['bemærkninger'];
         $ekspedient = $_POST['ekspedient'];
 
 
@@ -38,8 +35,8 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             $ordreID = $conn->insert_id;
 
             // Indsæt hver båndType i bånd-tabellen
-            $stmt_bånd = $conn->prepare("INSERT INTO bånd (ordreID, båndType, båndAntal, båndMedie, båndMedieKopi, båndNotes, båndPris, ekspedient) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt_bånd->bind_param("isisssds", $ordreID, $båndTypeString, $båndAntal, $båndMedie, $båndMedieKopi, $båndNotes, $båndPris, $ekspedient);
+            $stmt_bånd = $conn->prepare("INSERT INTO smalfilm (ordreID, antal, medieType, bemærkninger, ekspedient) VALUES (?, ?, ?, ?, ?)");
+            $stmt_bånd->bind_param("iisss", $ordreID, $antal, $medieTypeString, $bemærkninger, $ekspedient);
             $stmt_bånd->execute();
 
             // Commit transaktionen

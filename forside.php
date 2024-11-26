@@ -72,13 +72,13 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                 <a href="./import/importSmalfilm.php">
                     <button class="mainBtn">Smalfilm</button>
                 </a>
-                <a href="ordre_rep.php">
+                <!-- <a href="ordre_rep.php">
                     <button class="mainBtn">Reparationer</button>
-                </a>
+                </a> -->
             </div>
 
             <div class="secContent">
-                <h2>Ordre:</h2><br>
+                <h2>Ordre Oversigt:</h2><br>
                 <a href="./export/output_rammer.php">
                     <button class="mainBtn">Ramme ordre</button>
                 </a>
@@ -90,11 +90,15 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                 <a href="./export/output_dias.php">
                     <button class="mainBtn">Dias ordre</button>
                 </a>
+
+                <a href="./export/output_smalfilm.php">
+                    <button class="mainBtn">Smalfilm ordre</button>
+                </a>
             </div>
 
             <div class="secContent">
                 <h2>Export:</h2><br>
-                <a href="export_rammer.php">
+                <a href="./export/exportToADJ.php">
                     <button class="mainBtn">Rammer ugelig</button>
                 </a>
             </div>
