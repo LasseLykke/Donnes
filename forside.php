@@ -103,7 +103,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
             <div class="secContent">
                 <h2>Export:</h2><br>
                 <a href="./export/exportToADJ.php">
-                    <button class="mainBtn">Rammer ugelig</button>
+                    <button class="mainBtn">Rammer </button>
                 </a>
             </div>
         </div>

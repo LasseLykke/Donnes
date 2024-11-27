@@ -20,20 +20,13 @@ $query = "
         ordre.ordreDate,
         kunde.Navn,
         kunde.Telefon,
-        ramme.profil,
-        ramme.størrelse,
-        ramme.glastype,
-        ramme.hulmål,
-        ramme.passepartoutFarve,
-        ramme.antal,
-        ramme.montering,
-        ramme.billedtype,
-        ramme.bemærkninger,
-        ramme.pris,
-        ramme.ekspedient
+        smalfilm.antal,
+        smalfilm.medieType,
+        smalfilm.bemærkninger,
+        smalfilm.ekspedient
     FROM ordre
     LEFT JOIN kunde ON ordre.kundeID = kunde.kundeID
-    LEFT JOIN ramme ON ordre.ordreID = ramme.ordreID
+    LEFT JOIN smalfilm ON ordre.ordreID = smalfilm.ordreID
     ORDER BY ordre.ordreID DESC
     LIMIT 1
 ";
@@ -91,44 +84,16 @@ if (!$orderDetails) {
             </thead>
             <tbody>
                 <tr>
-                    <td>Ramme Profil:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['profil']); ?></td>
-                </tr>
-                <tr>
-                    <td>Ramme Størrelse:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['størrelse']); ?></td>
-                </tr>
-                <tr>
-                    <td>Glastype:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['glastype']); ?></td>
-                </tr>
-                <tr>
-                    <td>Hulmål:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['hulmål']); ?></td>
-                </tr>
-                <tr>
-                    <td>Passepartout Farve:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['passepartoutFarve']); ?></td>
-                </tr>
-                <tr>
-                    <td>Antal Rammer:</td>
+                    <td>Antal spoler:</td>
                     <td><?php echo htmlspecialchars($orderDetails['antal']); ?></td>
                 </tr>
                 <tr>
-                    <td>Montering af billede:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['montering']); ?></td>
-                </tr>
-                <tr>
-                    <td>Dit eget billede eller skal vi printe:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['billedtype']); ?></td>
+                    <td>Overspilles til:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['medieType']); ?></td>
                 </tr>
                 <tr>
                     <td>Bemærkninger:</td>
                     <td><?php echo htmlspecialchars($orderDetails['bemærkninger']); ?></td>
-                </tr>
-                <tr>
-                    <td>Pris:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['pris']); ?> DKK</td>
                 </tr>
                 <tr>
                     <td>Du er blevet ekspederet af:</td>
@@ -138,9 +103,10 @@ if (!$orderDetails) {
         </table><br>
 
         <h2>Hvad sker der nu?</h2>
-        <p class="ordreText">Din ordre sættes straks i produktion. Når rammen er færdiggjort på værkstedet, monterer vi
-            dit billede, hvis dette er aftalt. Vi sørger samtidig for at pudse glasset og sikre, at billedet er klar til
-            ophængning. Du vil modtage en SMS, så snart din ordre er klar til afhentning. </p><br><br>
+        <p class="ordreText">Din smalfilm går nu i produktion! Vi digitaliserer dine film med professionelt udstyr for
+            at bevare kvaliteten og fremhæve detaljerne. For at sikre det bedst mulige resultat foretager vi nøje
+            farvekorrigering og optimering. Når arbejdet er færdigt og klar til afhentning, sender vi dig en SMS. Vi
+            glæder os til at levere minderne tilbage i ny digital kvalitet! </p><br><br>
 
 
     </div>

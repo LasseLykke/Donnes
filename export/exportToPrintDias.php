@@ -20,20 +20,17 @@ $query = "
         ordre.ordreDate,
         kunde.Navn,
         kunde.Telefon,
-        ramme.profil,
-        ramme.størrelse,
-        ramme.glastype,
-        ramme.hulmål,
-        ramme.passepartoutFarve,
-        ramme.antal,
-        ramme.montering,
-        ramme.billedtype,
-        ramme.bemærkninger,
-        ramme.pris,
-        ramme.ekspedient
+        dias.diasType,
+        dias.diasAntal,
+        dias.medieType,
+        dias.afpudsning,
+        dias.prøve,
+        dias.bemærkninger,
+        dias.pris,
+        dias.ekspedient
     FROM ordre
     LEFT JOIN kunde ON ordre.kundeID = kunde.kundeID
-    LEFT JOIN ramme ON ordre.ordreID = ramme.ordreID
+    LEFT JOIN dias ON ordre.ordreID = dias.ordreID
     ORDER BY ordre.ordreID DESC
     LIMIT 1
 ";
@@ -91,36 +88,24 @@ if (!$orderDetails) {
             </thead>
             <tbody>
                 <tr>
-                    <td>Ramme Profil:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['profil']); ?></td>
+                    <td>Dias type:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['diasType']); ?></td>
                 </tr>
                 <tr>
-                    <td>Ramme Størrelse:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['størrelse']); ?></td>
+                    <td>Antal dias indleveret:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['diasAntal']); ?></td>
                 </tr>
                 <tr>
-                    <td>Glastype:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['glastype']); ?></td>
+                    <td>Medie:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['medieType']); ?></td>
                 </tr>
                 <tr>
-                    <td>Hulmål:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['hulmål']); ?></td>
+                    <td>Skal de afpudses:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['afpudsning']); ?></td>
                 </tr>
                 <tr>
-                    <td>Passepartout Farve:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['passepartoutFarve']); ?></td>
-                </tr>
-                <tr>
-                    <td>Antal Rammer:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['antal']); ?></td>
-                </tr>
-                <tr>
-                    <td>Montering af billede:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['montering']); ?></td>
-                </tr>
-                <tr>
-                    <td>Dit eget billede eller skal vi printe:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['billedtype']); ?></td>
+                    <td>Prøve:</td>
+                    <td><?php echo htmlspecialchars($orderDetails['prøve']); ?></td>
                 </tr>
                 <tr>
                     <td>Bemærkninger:</td>
@@ -138,9 +123,10 @@ if (!$orderDetails) {
         </table><br>
 
         <h2>Hvad sker der nu?</h2>
-        <p class="ordreText">Din ordre sættes straks i produktion. Når rammen er færdiggjort på værkstedet, monterer vi
-            dit billede, hvis dette er aftalt. Vi sørger samtidig for at pudse glasset og sikre, at billedet er klar til
-            ophængning. Du vil modtage en SMS, så snart din ordre er klar til afhentning. </p><br><br>
+        <p class="ordreText">Din ordre går nu i produktion! Vi scanner dine dias med professionelt udstyr og
+            anvender farvekorrigering samt støvreducering for at sikre det bedst mulige resultat.<br> Når din ordre er færdig og klar til
+            afhentning, sender vi dig en SMS. Vi ser frem til at levere et resultat, der lever op til dine
+            forventninger! </p><br><br>
 
 
     </div>
