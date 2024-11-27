@@ -103,50 +103,64 @@ include '../header.php';
 
     <script>
         $(document).ready(function () {
-            $("#ordreForm").on("submit", function (e) {
-                e.preventDefault(); // Forhindrer standard formularindsendelse
+    let orderSaved = false; // Flag til at spore, om ordren er gemt
 
-                const submitButton = $("#submitButton");
-                const printButton = $("#printButton");
-                const statusMessage = $("#statusMessage");
+    $("#ordreForm").on("submit", function (e) {
+        e.preventDefault(); // Forhindrer standard formularindsendelse
 
-                const formData = $(this).serialize(); // Saml alle formularfelter
+        if (orderSaved) {
+            // Hvis ordren allerede er gemt, skal handlingen ikke udføres igen
+            return;
+        }
 
-                // Start knapanimation
-                submitButton.prop("disabled", true).addClass("saving").text("Gemmer...");
+        const submitButton = $("#submitButton");
+        const printButton = $("#printButton");
+        const statusMessage = $("#statusMessage");
 
-                // AJAX-opkald
-                $.ajax({
-                    url: "insertDataSmalfilm.php", // Dit PHP-script til at gemme data
-                    type: "POST",
-                    data: formData,
-                    success: function (response) {
-                        // Opdater gem-knappen til succes-tilstand
-                        submitButton.text("Ordre gemt").removeClass("saving").addClass("saved");
+        const formData = $(this).serialize(); // Saml alle formularfelter
 
-                        // Fjern successtil efter en tid
-                        setTimeout(() => {
-                            submitButton.removeClass("saved").text("Gem ordre").prop("disabled", false);
-                        }, 2000);
+        // Start knapanimation
+        submitButton.prop("disabled", true).addClass("saving").text("Gemmer...");
 
-                        $("body").addClass("orderSaved");
+        // AJAX-opkald
+        $.ajax({
+            url: "insertDataSmalfilm.php", // Dit PHP-script til at gemme data
+            type: "POST",
+            data: formData,
+            success: function (response) {
+                orderSaved = true; // Sæt flag til true, når gemning lykkes
 
-                        // Aktiver printknap og tilføj CSS-klassen "printBtn"
-                        printButton.prop("disabled", false).addClass("printBtn");
-                    },
-                    error: function (xhr, status, error) {
-                        // Håndter fejl
-                        submitButton.text("Gem ordre").removeClass("saving").prop("disabled", false);
-                        statusMessage.html("<p>Fejl: Kunne ikke gemme ordren.</p>").fadeIn().delay(3000).fadeOut();
-                    }
-                });
-            });
+                // Opdater gem-knappen til succes-tilstand
+                submitButton.text("Ordre gemt").removeClass("saving").addClass("saved");
 
-            // Printknap funktion
-            $("#printButton").on("click", function () {
-                window.location.href = "../export/exportToPrintSmalfilm.php"; // Henvisning til print-siden
-            });
+                // Fjern successtil efter en tid
+                setTimeout(() => {
+                    submitButton.removeClass("saved").text("Gem ordre").prop("disabled", false);
+                }, 2000);
+
+                $("body").addClass("orderSaved");
+
+                // Aktiver printknap
+                printButton.prop("disabled", false).addClass("printBtn");
+            },
+            error: function (xhr, status, error) {
+                // Håndter fejl
+                submitButton.text("Gem ordre").removeClass("saving").prop("disabled", false);
+                statusMessage.html("<p>Fejl: Kunne ikke gemme ordren.</p>").fadeIn().delay(3000).fadeOut();
+            }
         });
+    });
+
+    // Printknap funktion
+    $("#printButton").on("click", function () {
+        if (!orderSaved) {
+            alert("Du skal gemme ordren, før du kan printe.");
+            return;
+        }
+        window.location.href = "../export/exportToPrintSmalfilm.php"; // Henvisning til print-siden
+    });
+});
+
     </script>
 
 </body>

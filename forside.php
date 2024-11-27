@@ -136,13 +136,13 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 0.1,
                         borderRadius: 2,
-                        barThickness: 15, // Præcis tykkelse af baren
-                        maxBarThickness: 20, // Maksimal tykkelse
+                        barThickness: 15, 
+                        maxBarThickness: 20, 
                     },
                     {
                         label: 'Dummy',
                         borderRadius: 2,
-                        barThickness: 15, // Samme tykkelse for konsistens
+                        barThickness: 15, 
                         maxBarThickness: 20,
                     },
                     {
@@ -155,13 +155,13 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 0.1,
                         borderRadius: 2,
-                        barThickness: 15, // Samme tykkelse for konsistens
+                        barThickness: 15, 
                         maxBarThickness: 20,
                     },
                     {
                         label: 'Dummy',
                         borderRadius: 2,
-                        barThickness: 15, // Samme tykkelse for konsistens
+                        barThickness: 15, 
                         maxBarThickness: 20,
                     },
                     {
@@ -180,7 +180,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
                     {
                         label: 'Dummy',
                         borderRadius: 2,
-                        barThickness: 15, // Samme tykkelse for konsistens
+                        barThickness: 15, 
                         maxBarThickness: 20,
                     },
                     {

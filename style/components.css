@@ -314,6 +314,62 @@ body.orderSaved .printBtn {
   font-size: 1rem;
 }
 
+/* Filter-wrapper styling */
+.filter-wrapper {
+  max-width: 900px; /* Maksimal bredde på filter-wrapperen */
+  margin: 0 auto; /* Centrer wrapper */
+  padding: 20px;
+}
+
+/* Form styling */
+.dato-filter {
+  display: flex;
+  flex-direction: column; /* Form er i kolonne-retning */
+  gap: 10px; /* Afstand mellem inputfelter og knap */
+}
+
+/* Row med inputs */
+.input-row {
+  display: flex;
+  justify-content: space-between; /* Fordeler inputfelterne */
+  gap: 20px; /* Afstand mellem de to inputs */
+  align-items: center; /* Justerer vertikalt */
+}
+
+/* Labels */
+.input-row label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Input-styling */
+.input-row input[type="date"] {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 35%; /* Inputfelterne tager 45% af bredden */
+}
+
+form[action="export_filtreret.php"] {
+  margin-top: 20px;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+form[action="export_filtreret.php"] button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form[action="export_filtreret.php"] button:hover {
+  background-color: #218838;
+}
+
 /* Fjern mellemrummet mellem knapper */
 a {
   display: inline-block;

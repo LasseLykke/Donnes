@@ -25,11 +25,12 @@
         $startDatoFormatted = $startDatoObj->format('d/m/Y');
         $slutDatoFormatted = $slutDatoObj->format('d/m/Y');
 
-        $sql = "SELECT ramme.*, kunde.navn AS kunde_navn, kunde.telefon AS kunde_telefon, ordre.ordreDate
-                FROM ramme
-                INNER JOIN ordre ON ramme.ordreID = ordre.ordreID
-                INNER JOIN kunde ON ordre.kundeID = kunde.kundeID
-                WHERE ordre.ordreDate BETWEEN '$startDato' AND '$slutDato'";
+        $sql = "SELECT ramme.*, kunde.navn AS kunde_navn, kunde.telefon AS kunde_telefon, 
+            DATE_FORMAT(ordre.ordreDate, '%d/%m/%Y') AS ordreDateFormatted
+        FROM ramme
+        INNER JOIN ordre ON ramme.ordreID = ordre.ordreID
+        INNER JOIN kunde ON ordre.kundeID = kunde.kundeID
+        WHERE ordre.ordreDate BETWEEN '$startDato' AND '$slutDato'";
 
         $result = mysqli_query($conn, $sql);
         ?>
@@ -51,7 +52,7 @@
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                     <tr>
                         <td><?php echo $row['ordreID']; ?></td>
-                        <td><?php echo $row['ordreDate']; ?></td>
+                        <td><?php echo $row['ordreDateFormatted']; ?></td>
                         <td><?php echo $row['kunde_navn']; ?></td>
                         <td><?php echo $row['kunde_telefon']; ?></td>
                         <td><?php echo $row['profil']; ?></td>

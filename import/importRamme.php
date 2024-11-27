@@ -168,9 +168,16 @@ include '../header.php';
 
 
                 <script>
-                    $(document).ready(function () {
-                        $("#ordreForm").on("submit", function (e) {
+                    $(document).ready(function() {
+                        let orderSaved = false; // Flag til at spore, om ordren er gemt
+
+                        $("#ordreForm").on("submit", function(e) {
                             e.preventDefault(); // Forhindrer standard formularindsendelse
+
+                            if (orderSaved) {
+                                // Hvis ordren allerede er gemt, skal handlingen ikke udføres igen
+                                return;
+                            }
 
                             const submitButton = $("#submitButton");
                             const printButton = $("#printButton");
@@ -186,7 +193,9 @@ include '../header.php';
                                 url: "insertDataRammer.php", // Dit PHP-script til at gemme data
                                 type: "POST",
                                 data: formData,
-                                success: function (response) {
+                                success: function(response) {
+                                    orderSaved = true; // Sæt flag til true, når gemning lykkes
+
                                     // Opdater gem-knappen til succes-tilstand
                                     submitButton.text("Ordre gemt").removeClass("saving").addClass("saved");
 
@@ -197,10 +206,10 @@ include '../header.php';
 
                                     $("body").addClass("orderSaved");
 
-                                    // Aktiver printknap og tilføj CSS-klassen "printBtn"
+                                    // Aktiver printknap
                                     printButton.prop("disabled", false).addClass("printBtn");
                                 },
-                                error: function (xhr, status, error) {
+                                error: function(xhr, status, error) {
                                     // Håndter fejl
                                     submitButton.text("Gem ordre").removeClass("saving").prop("disabled", false);
                                     statusMessage.html("<p>Fejl: Kunne ikke gemme ordren.</p>").fadeIn().delay(3000).fadeOut();
@@ -209,7 +218,11 @@ include '../header.php';
                         });
 
                         // Printknap funktion
-                        $("#printButton").on("click", function () {
+                        $("#printButton").on("click", function() {
+                            if (!orderSaved) {
+                                alert("Du skal gemme ordren, før du kan printe.");
+                                return;
+                            }
                             window.location.href = "../export/exportToPrint.php"; // Henvisning til print-siden
                         });
                     });
