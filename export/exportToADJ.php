@@ -102,11 +102,12 @@ ORDER BY ramme.rammeID DESC";
             ?>
 
             <!-- Eksportformularen -->
-            <form method="POST" action="export_filtreret.php">
-                <input type="hidden" name="startDato" value="<?php echo isset($startDato) ? $startDato : ''; ?>">
-                <input type="hidden" name="slutDato" value="<?php echo isset($slutDato) ? $slutDato : ''; ?>">
-                <button type="submit" name="export">Eksporter resultater</button>
-            </form>
+            <form method="POST" action="export_filtreret.php" target="_blank">
+    <input type="hidden" name="startDato" value="<?php echo isset($startDato) ? $startDato : ''; ?>">
+    <input type="hidden" name="slutDato" value="<?php echo isset($slutDato) ? $slutDato : ''; ?>">
+    <button type="submit" name="export">Eksporter resultater</button>
+</form>
+
             <?PHP
             echo '</div>';
             ?>

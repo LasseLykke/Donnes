@@ -33,19 +33,20 @@
         WHERE ordre.ordreDate BETWEEN '$startDato' AND '$slutDato'";
 
         $result = mysqli_query($conn, $sql);
-        ?>
+    ?>
         <h2 class="ordreSection">Ordre fra <?php echo $startDatoFormatted; ?> til <?php echo $slutDatoFormatted; ?></h2>
         <table>
             <thead>
                 <tr>
                     <th>Ordre ID</th>
                     <th>Dato</th>
-                    <th>Kunde Navn</th>
-                    <th>Telefon</th>
                     <th>Profil</th>
                     <th>Størrelse</th>
+                    <th>Glas</th>
                     <th>Antal</th>
-                    <th>Bemærkninger</th>
+                    <th>Hulmål</th>
+                    <th>PP Farve</th>
+                    <th>Bemærkning</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,10 +54,11 @@
                     <tr>
                         <td><?php echo $row['ordreID']; ?></td>
                         <td><?php echo $row['ordreDateFormatted']; ?></td>
-                        <td><?php echo $row['kunde_navn']; ?></td>
-                        <td><?php echo $row['kunde_telefon']; ?></td>
                         <td><?php echo $row['profil']; ?></td>
                         <td><?php echo $row['størrelse']; ?></td>
+                        <td><?php echo $row['glastype']; ?></td>
+                        <td><?php echo $row['hulmål']; ?></td>
+                        <td><?php echo $row['passepartoutFarve']; ?></td>
                         <td><?php echo $row['antal']; ?></td>
                         <td><?php echo $row['bemærkninger']; ?></td>
                     </tr>
@@ -65,7 +67,7 @@
         </table>
         <script>
             // Trigger print dialog automatically
-            window.onload = function () {
+            window.onload = function() {
                 window.print();
             };
         </script>
