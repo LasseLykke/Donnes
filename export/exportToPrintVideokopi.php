@@ -16,26 +16,19 @@ include '../header.php';
 // Hent den seneste ordre fra databasen
 $query = "
     SELECT 
-        ordre.ordreID,
+            ordre.ordreID,
         ordre.ordreDate,
         kunde.Navn,
         kunde.Telefon,
-        ramme.profil,
-        ramme.størrelse,
-        ramme.glastype,
-        ramme.hulmål,
-        ramme.passepartoutFarve,
-        ramme.antal,
-        ramme.montering,
-        ramme.billedtype,
-        ramme.bemærkninger,
-        ramme.pris,
-        ramme.ekspedient
+        smalfilm.antal,
+        smalfilm.medieType,
+        smalfilm.bemærkninger,
+        smalfilm.ekspedient
     FROM ordre
     LEFT JOIN kunde ON ordre.kundeID = kunde.kundeID
-    LEFT JOIN ramme ON ordre.ordreID = ramme.ordreID
+    LEFT JOIN smalfilm ON ordre.ordreID = smalfilm.ordreID
     ORDER BY ordre.ordreID DESC
-    LIMIT 1
+    
 ";
 $result = mysqli_query($conn, $query);
 
@@ -53,7 +46,7 @@ if (!$orderDetails) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordrebekræftelse</title>
+    <title>Arbejdsseddel</title>
     <script>
         // Automatisk print, når siden er indlæst
         window.onload = function () {
@@ -69,78 +62,61 @@ if (!$orderDetails) {
         </a>
     </div>
     <div class="wrapper">
-        <h2>Tak for din ordre</h2>
-        <p class="ordreText">Kære <?php echo htmlspecialchars($orderDetails['Navn']); ?>, <br>Tusinde tak for din
-            bestilling. Her kan du
-            se en oversigt over din ordre: </p><br><br>
+        <h2>Arbejdsseddel:</h2>
+        <p class="ordreText">Kære Videokopi,<br>
+
+            Vi fremsender hermed smalfilm til overspilning på DVD.<br> Hvis der opstår spørgsmål undervejs, er I meget
+            velkomne til at kontakte os.<br>
+
+            Med venlig hilsen<br>
+            Holm Foto ApS </p><br><br>
 
         <p class="ordreText">
             <strong>Ordrenr:</strong> <?php echo htmlspecialchars($orderDetails['ordreID']); ?><br>
             <strong>Ordredato:</strong>
             <?php
             $formattedDate = date("d/m-Y", strtotime($orderDetails['ordreDate']));
-            echo htmlspecialchars($formattedDate);
-            ?><br>
-            <strong>Kunde navn:</strong> <?php echo htmlspecialchars($orderDetails['Navn']); ?><br>
-            <strong>Telefonnummer:</strong> <?php echo htmlspecialchars($orderDetails['Telefon']); ?>
-
-        </p>
+            echo htmlspecialchars($formattedDate); ?><br>
+            <strong>Antal spoler:</strong> <?php echo htmlspecialchars($orderDetails['antal']); ?><br>
+        </p><br><br>
         <table class="confTabel">
             <thead>
-
+                <h2>udfyldes af videokopi:</h2>
             </thead>
             <tbody>
                 <tr>
-                    <td>Ramme Profil:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['profil']); ?></td>
+                    <td>Minutter:</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td>Ramme Størrelse:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['størrelse']); ?></td>
+                    <td>Spoleskift:</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td>Glastype:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['glastype']); ?></td>
-                </tr>
-                <tr>
-                    <td>Hulmål:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['hulmål']); ?></td>
-                </tr>
-                <tr>
-                    <td>Passepartout Farve:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['passepartoutFarve']); ?></td>
-                </tr>
-                <tr>
-                    <td>Antal Rammer:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['antal']); ?></td>
-                </tr>
-                <tr>
-                    <td>Montering af billede:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['montering']); ?></td>
-                </tr>
-                <tr>
-                    <td>Dit eget billede eller skal vi printe:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['billedtype']); ?></td>
-                </tr>
-                <tr>
-                    <td>Bemærkninger:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['bemærkninger']); ?></td>
-                </tr>
-                <tr>
-                    <td>Pris:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['pris']); ?> DKK</td>
-                </tr>
-                <tr>
-                    <td>Du er blevet ekspederet af:</td>
-                    <td><?php echo htmlspecialchars($orderDetails['ekspedient']); ?></td>
+                    <td>Splejsninger:</td>
+                    <td></td>
                 </tr>
             </tbody>
         </table><br>
+        <h2>Bemærkninger:</h2>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 
-        <h2>Hvad sker der nu?</h2>
-        <p class="ordreText">Din ordre sættes straks i produktion. Når rammen er færdiggjort på værkstedet, monterer vi
-            dit billede, hvis dette er aftalt. Vi sørger samtidig for at pudse glasset og sikre, at billedet er klar til
-            ophængning. Du vil modtage en SMS, så snart din ordre er klar til afhentning. </p><br><br>
+
 
 
     </div>

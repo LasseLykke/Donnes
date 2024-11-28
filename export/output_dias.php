@@ -12,7 +12,6 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     <head>
         <title>DONNÉS || ALLE DIAS ORDRE</title>
         <link rel="shortcut icon" href="fav.ico" type="image/x-icon" />
-        <meta http-equiv="refresh" content="900;url=logout.php" />
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
 

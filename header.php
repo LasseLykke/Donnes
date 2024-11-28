@@ -2,6 +2,7 @@
 include 'connection.php';
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,5 +25,17 @@ include 'connection.php';
     
     
     <!-- LOGUD TIMER 15min -->
-    <meta http-equiv="refresh" content="900;url=logout.php" />
+    <meta http-equiv="refresh" content="900;url=../logout.php" />
 </head>
+
+<?php
+
+
+if (isset($_GET['action']) && $_GET['action'] === 'logout') {
+    // Logout script
+    session_unset();
+    session_destroy();
+    header('Location: /index.php');
+    exit();
+}
+?>
