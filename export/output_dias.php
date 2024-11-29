@@ -18,7 +18,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     <body>
         <nav class="navbar">
             <a href="../forside.php">
-                <img src="../img/hflogo.png" class="logo" alt="logo"></a>
+                <img src="../img/logo.png" class="logo" alt="logo"></a>
             <h3>Hej
                 <?php echo $_SESSION['name']; ?> 👋🏻
             </h3>

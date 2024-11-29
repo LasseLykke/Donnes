@@ -17,7 +17,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
     <body>
         <nav class="navbar">
             <a href="../forside.php">
-                <img src="../img/hflogo.png" class="logo" alt="logo"></a>
+                <img src="../img/logo.png" class="logo" alt="logo"></a>
             <h3>Hej <?php echo $_SESSION['name']; ?> 👋🏻</h3>
             <a href="../logout.php"><button class="signOut" alt="LogOut"></button></a>
         </nav>
@@ -104,7 +104,7 @@ ORDER BY ramme.rammeID DESC";
             <form method="POST" action="export_filtreret.php" target="_blank">
     <input type="hidden" name="startDato" value="<?php echo isset($startDato) ? $startDato : ''; ?>">
     <input type="hidden" name="slutDato" value="<?php echo isset($slutDato) ? $slutDato : ''; ?>">
-    <button type="submit" name="export">Eksporter resultater</button>
+    <button type="submit" name="export" class="printBtn">Eksporter resultater</button>
 </form>
 
             <?PHP

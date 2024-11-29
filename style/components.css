@@ -201,6 +201,7 @@
   cursor: not-allowed;
 }
 
+
 /*Åbn ordre knap*/
 .btn-åbn {
   background-color: var(--deepblue);
@@ -357,16 +358,22 @@ form[action="export_filtreret.php"] {
 }
 
 form[action="export_filtreret.php"] button {
-  padding: 10px 20px;
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
+  background-color: var(--white);
+  border: 1px solid var(--grey);
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: var(--shadow-xxs);
   cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
 }
 
 form[action="export_filtreret.php"] button:hover {
-  background-color: #218838;
+  background-color: var(--deepblue);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Fjern mellemrummet mellem knapper */

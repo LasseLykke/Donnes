@@ -45,7 +45,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['user_name'])) {
 
     <body>
         <nav class="navbar">
-            <img src="./img/hflogo.png" class="logo" alt="logo">
+            <img src="./img/logo.png" class="logo" alt="logo">
             <h3>Hej
                 <?php
                 echo $_SESSION['name'];

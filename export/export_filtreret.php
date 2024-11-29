@@ -34,6 +34,11 @@
 
         $result = mysqli_query($conn, $sql);
     ?>
+    <div class="logoWrapper">
+        <a href="../forside.php">
+            <img src="../img/hflogoUp.png" class="printLogo" alt="Logo">
+        </a>
+    </div>
         <h2 class="ordreSection">Ordre fra <?php echo $startDatoFormatted; ?> til <?php echo $slutDatoFormatted; ?></h2>
         <table>
             <thead>
