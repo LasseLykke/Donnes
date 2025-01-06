@@ -62,9 +62,9 @@
                         <td><?php echo $row['profil']; ?></td>
                         <td><?php echo $row['størrelse']; ?></td>
                         <td><?php echo $row['glastype']; ?></td>
+                        <td><?php echo $row['antal']; ?></td>
                         <td><?php echo $row['hulmål']; ?></td>
                         <td><?php echo $row['passepartoutFarve']; ?></td>
-                        <td><?php echo $row['antal']; ?></td>
                         <td><?php echo $row['bemærkninger']; ?></td>
                     </tr>
                 <?php endwhile; ?>

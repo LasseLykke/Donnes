@@ -1,0 +1,97 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2818
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Bold;\f1\fnil\fcharset0 HelveticaNeue;\f2\fswiss\fcharset0 Helvetica;
+}
+{\colortbl;\red255\green255\blue255;\red246\green247\blue249;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c97255\c97647\c98039;\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww22000\viewh19200\viewkind0
+\deftab560
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0\b\fs26 \cf0 -- Opretter kunde-tabellen
+\f1\b0 \
+CREATE TABLE kunde (\
+    kundeID INT AUTO_INCREMENT PRIMARY KEY,\
+    navn VARCHAR(100) NOT NULL,\
+    telefon VARCHAR(15)\
+);\
+\
+
+\f0\b -- Opretter ordre-tabellen med en FK til kunde
+\f1\b0 \
+CREATE TABLE ordre (\
+    ordreID INT AUTO_INCREMENT PRIMARY KEY,\
+    kundeID INT,  -- Fremmedn\'f8gle tilknytning til kunde-tabellen\
+    ordreDate DATE NOT NULL,\
+    FOREIGN KEY (kundeID) REFERENCES kunde(kundeID) ON DELETE SET NULL\
+);\
+\
+
+\f0\b -- Opretter ramme-tabellen med FK til ordre-tabellen
+\f1\b0 \
+CREATE TABLE ramme (\
+    rammeID INT AUTO_INCREMENT PRIMARY KEY,\
+    ordreID INT,  -- Fremmedn\'f8gle tilknytning til ordre-tabellen\
+    profil VARCHAR(50),\
+    st\'f8rrelse VARCHAR(50),\
+    glastype VARCHAR(20),\
+    hulm\'e5l VARCHAR(50),\
+    passepartoutFarve VARCHAR(50),\
+    antal INT,\
+    montering VARCHAR(3),\
+    billedtype VARCHAR(50),\
+    bem\'e6rkninger TEXT,\
+    pris DECIMAL(10, 2),\uc0\u8232 
+\f2\fs26\fsmilli13120 \cb2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 ekspedient
+\f1\fs26 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0  VARCHAR(50),\
+    FOREIGN KEY (ordreID) REFERENCES ordre(ordreID) ON DELETE CASCADE\
+);\
+\
+
+\f0\b -- Opretter b\'e5nd-tabellen med FK til ordre-tabellen
+\f1\b0 \
+CREATE TABLE b\'e5nd (\
+    b\'e5ndID INT AUTO_INCREMENT PRIMARY KEY,\
+    ordreID INT,  -- Fremmedn\'f8gle tilknytning til ordre-tabellen\
+    b\'e5ndType VARCHAR(50),\
+    b\'e5ndAntal INT,\
+    b\'e5ndMedie VARCHAR(50),\
+    b\'e5ndMedieKopi BOOLEAN,\
+    b\'e5ndNotes TEXT,\
+    b\'e5ndBetalt BOOLEAN,\
+    b\'e5ndPris DECIMAL(10, 2),\
+ekspedient VARCHAR(50),\
+    FOREIGN KEY (ordreID) REFERENCES ordre(ordreID) ON DELETE CASCADE\
+);\
+\
+\
+
+\f0\b CREATE TABLE dias (
+\f1\b0 \
+    diasID INT AUTO_INCREMENT PRIMARY KEY,          -- Prim\'e6r n\'f8gle\
+    ordreID INT,                                    -- Fremmed n\'f8gle\
+    diasType VARCHAR(50),                           -- Type af dias\
+    diasAntal INT,                                  -- Antal dias\
+    medieType VARCHAR(50),                          -- Type af medie\
+    afpudsning VARCHAR(3),                             -- Om afpudsning er valgt (0 eller 1)\
+    bem\'e6rkninger TEXT,                              -- Ekstra noter\
+    pris DECIMAL(10, 2),                            -- Pris for dias\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 pr\'f8ve VARCHAR(3),\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 ekspedient VARCHAR(50),\
+    FOREIGN KEY (ordreID) REFERENCES ordre(ordreID) ON DELETE CASCADE -- Fremmed n\'f8gle med kaskadering\
+);\
+\
+\
+
+\f0\b CREATE TABLE smalfilm (
+\f1\b0 \
+    smalfilmID INT AUTO_INCREMENT PRIMARY KEY,      -- Prim\'e6r n\'f8gle\
+    ordreID INT,                                    -- Fremmed n\'f8gle\
+    antal INT,                                      -- Antal smalfilm\
+    medieType VARCHAR(50),                              -- Type af medie\
+    bem\'e6rkninger TEXT,                              -- Ekstra noter\
+ekspedient VARCHAR(50),\
+    FOREIGN KEY (ordreID) REFERENCES ordre(ordreID) ON DELETE CASCADE -- Fremmed n\'f8gle med kaskadering\
+);}
